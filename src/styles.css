@@ -1,0 +1,41 @@
+html {
+  --background-color: #cbd9db;
+
+  /* SVG SETTINGS */
+  --tile-dim: 2rem;
+  --ghost-tile-stroke-dim: 7.5rem;
+  --tile-wall-stroke-dim: 5rem;
+  --tile-wall-stroke-color: #0d0d0d55;
+  --tile-wall-stroke-color-part: #0d0d0d;
+  --tile-ghost-home-stroke-color-part: #007aff;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+table,
+table tr,
+tr td,
+table tbody,
+table thead,
+table tfoot,
+table tr th,
+table tfoot tr tf {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background-image: none;
+  vertical-align: baseline;
+}
+
+table {
+  table-layout: fixed;
+}

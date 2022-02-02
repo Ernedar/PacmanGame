@@ -1,0 +1,16 @@
+.game-plan {
+}
+
+.game-plan tr {
+  height: var(--tile-dim) !important;
+  overflow: hidden;
+}
+
+.game-plan td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-spacing: 0px;
+  width: var(--tile-dim);
+  height: var(--tile-dim);
+}

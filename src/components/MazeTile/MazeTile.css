@@ -1,0 +1,958 @@
+.path {
+  width: var(--tile-dim);
+  height: var(--tile-dim);
+}
+
+.wall {
+  width: var(--tile-dim);
+  height: var(--tile-dim);
+  stroke-width: var(--tile-wall-stroke-dim);
+  display: block;
+}
+
+.ghost-tile {
+  width: var(--tile-dim);
+  height: var(--tile-dim);
+  stroke-width: var(--ghost-tile-stroke-dim);
+  display: block;
+}
+
+/* SINGLE WALL FRAGMENTS */
+
+/* CENTER BORDER */
+/*
+.maze_line_center_left_top {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_line_center_left_bottom {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_line_center_right_top {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_line_center_right_bottom {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_line_center_top_left {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_line_center_top_right {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_line_center_bottom_left {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_line_center_bottom_right {
+	stroke: var(--tile-wall-stroke-color);
+}
+*/
+/* CENTER RING */
+/*
+.maze_center_ring_left_top {
+	stroke: var(--tile-wall-stroke-color);	
+}
+.maze_center_ring_left_bottom {
+	stroke: var(--tile-wall-stroke-color);	
+}
+.maze_center_ring_right_top {
+	stroke: var(--tile-wall-stroke-color);	
+}
+.maze_center_ring_right_bottom {
+	stroke: var(--tile-wall-stroke-color);	
+}
+/*
+/* CENTER CAPS */
+/*
+.maze_caps_top {
+	stroke: var(--tile-wall-stroke-color);	
+}
+.maze_caps_bottom {
+	stroke: var(--tile-wall-stroke-color);	
+}
+.maze_caps_left {
+	stroke: var(--tile-wall-stroke-color);	
+}
+.maze_caps_right {
+	stroke: var(--tile-wall-stroke-color);	
+}
+*/
+/* SIDE RINGS */
+/*
+.maze_outer_ring_top_left {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_ring_top_right {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_ring_bottom_left {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_ring_bottom_right {
+	stroke: var(--tile-wall-stroke-color);
+}
+*/
+/* SIDE BORDER */
+/*
+.maze_outer_line_top_left {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_line_top_right {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_line_bottom_left {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_line_bottom_right {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_line_left_top {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_line_left_bottom {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_line_right_top {
+	stroke: var(--tile-wall-stroke-color);
+}
+
+.maze_outer_line_right_bottom {
+	stroke: var(--tile-wall-stroke-color);
+}
+*/
+
+.all {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+/* MAZE WALL SETS */
+
+/* CORNERS */
+
+.corner-top-left .maze_center_ring_left_top,
+.corner-top-left .maze_line_center_top_right,
+.corner-top-left .maze_outer_line_right_top,
+.corner-top-left .maze_line_center_left_bottom,
+.corner-top-left .maze_outer_line_bottom_left,
+.corner-top-left .maze_outer_ring_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.corner-top-right .maze_center_ring_right_top,
+.corner-top-right .maze_line_center_top_left,
+.corner-top-right .maze_outer_line_left_top,
+.corner-top-right .maze_line_center_right_bottom,
+.corner-top-right .maze_outer_line_bottom_right,
+.corner-top-right .maze_outer_ring_bottom_left {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.corner-bottom-left .maze_center_ring_left_bottom,
+.corner-bottom-left .maze_line_center_bottom_right,
+.corner-bottom-left .maze_outer_line_right_bottom,
+.corner-bottom-left .maze_line_center_left_top,
+.corner-bottom-left .maze_outer_line_top_left,
+.corner-bottom-left .maze_outer_ring_top_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.corner-bottom-right .maze_center_ring_right_bottom,
+.corner-bottom-right .maze_line_center_bottom_left,
+.corner-bottom-right .maze_outer_line_left_bottom,
+.corner-bottom-right .maze_line_center_right_top,
+.corner-bottom-right .maze_outer_line_top_right,
+.corner-bottom-right .maze_outer_ring_top_left {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+/* STRAIGHT LINES */
+
+.vertical-straight .maze_outer_line_top_left,
+.vertical-straight .maze_line_center_left_top,
+.vertical-straight .maze_line_center_left_bottom,
+.vertical-straight .maze_outer_line_bottom_left,
+.vertical-straight .maze_outer_line_top_right,
+.vertical-straight .maze_line_center_right_top,
+.vertical-straight .maze_line_center_right_bottom,
+.vertical-straight .maze_outer_line_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.horizontal-straight .maze_outer_line_left_top,
+.horizontal-straight .maze_line_center_top_left,
+.horizontal-straight .maze_line_center_top_right,
+.horizontal-straight .maze_outer_line_right_top,
+.horizontal-straight .maze_outer_line_left_bottom,
+.horizontal-straight .maze_line_center_bottom_left,
+.horizontal-straight .maze_line_center_bottom_right,
+.horizontal-straight .maze_outer_line_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.crossroad .maze_outer_ring_top_left,
+.crossroad .maze_outer_ring_top_right,
+.crossroad .maze_outer_ring_bottom_left,
+.crossroad .maze_outer_ring_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.three-top .maze_outer_ring_top_left,
+.three-top .maze_outer_ring_top_right,
+.three-top .maze_outer_line_left_bottom,
+.three-top .maze_line_center_bottom_left,
+.three-top .maze_line_center_bottom_right,
+.three-top .maze_outer_line_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.three-bottom .maze_outer_ring_bottom_left,
+.three-bottom .maze_outer_ring_bottom_right,
+.three-bottom .maze_outer_line_left_top,
+.three-bottom .maze_line_center_top_left,
+.three-bottom .maze_line_center_top_right,
+.three-bottom .maze_outer_line_right_top {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.three-left .maze_outer_ring_top_left,
+.three-left .maze_outer_ring_bottom_left,
+.three-left .maze_outer_line_top_right,
+.three-left .maze_line_center_right_top,
+.three-left .maze_line_center_right_bottom,
+.three-left .maze_outer_line_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.three-right .maze_outer_ring_top_right,
+.three-right .maze_outer_ring_bottom_right,
+.three-right .maze_outer_line_top_left,
+.three-right .maze_line_center_left_top,
+.three-right .maze_line_center_left_bottom,
+.three-right .maze_outer_line_bottom_left {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+/* CAPPED ENDS */
+
+.flower .maze_caps_top,
+.flower .maze_caps_bottom,
+.flower .maze_caps_left,
+.flower .maze_caps_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-top .maze_line_center_left_top,
+.single-cap-top .maze_line_center_left_bottom,
+.single-cap-top .maze_outer_line_bottom_left,
+.single-cap-top .maze_caps_top,
+.single-cap-top .maze_line_center_right_top,
+.single-cap-top .maze_line_center_right_bottom,
+.single-cap-top .maze_outer_line_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-bottom .maze_line_center_left_top,
+.single-cap-bottom .maze_line_center_left_bottom,
+.single-cap-bottom .maze_outer_line_top_left,
+.single-cap-bottom .maze_caps_bottom,
+.single-cap-bottom .maze_line_center_right_top,
+.single-cap-bottom .maze_line_center_right_bottom,
+.single-cap-bottom .maze_outer_line_top_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-left .maze_outer_line_right_top,
+.single-cap-left .maze_line_center_top_right,
+.single-cap-left .maze_line_center_top_left,
+.single-cap-left .maze_caps_left,
+.single-cap-left .maze_line_center_bottom_left,
+.single-cap-left .maze_line_center_bottom_right,
+.single-cap-left .maze_outer_line_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-right .maze_outer_line_left_top,
+.single-cap-right .maze_line_center_top_right,
+.single-cap-right .maze_line_center_top_left,
+.single-cap-right .maze_caps_right,
+.single-cap-right .maze_line_center_bottom_left,
+.single-cap-right .maze_line_center_bottom_right,
+.single-cap-right .maze_outer_line_left_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-straight-horizontal-top .maze_outer_line_left_top,
+.single-cap-straight-horizontal-top .maze_caps_top,
+.single-cap-straight-horizontal-top .maze_outer_line_right_top,
+.single-cap-straight-horizontal-top .maze_outer_line_left_bottom,
+.single-cap-straight-horizontal-top .maze_line_center_bottom_left,
+.single-cap-straight-horizontal-top .maze_line_center_bottom_right,
+.single-cap-straight-horizontal-top .maze_outer_line_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-straight-horizontal-bottom .maze_outer_line_left_top,
+.single-cap-straight-horizontal-bottom .maze_line_center_top_left,
+.single-cap-straight-horizontal-bottom .maze_line_center_top_right,
+.single-cap-straight-horizontal-bottom .maze_outer_line_right_top,
+.single-cap-straight-horizontal-bottom .maze_outer_line_left_bottom,
+.single-cap-straight-horizontal-bottom .maze_caps_bottom,
+.single-cap-straight-horizontal-bottom .maze_outer_line_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-straight-vertical-left .maze_outer_line_top_left,
+.single-cap-straight-vertical-left .maze_outer_line_top_right,
+.single-cap-straight-vertical-left .maze_caps_left,
+.single-cap-straight-vertical-left .maze_outer_line_bottom_left,
+.single-cap-straight-vertical-left .maze_outer_line_bottom_right,
+.single-cap-straight-vertical-left .maze_line_center_right_top,
+.single-cap-straight-vertical-left .maze_line_center_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-straight-vertical-right .maze_outer_line_top_left,
+.single-cap-straight-vertical-right .maze_outer_line_top_right,
+.single-cap-straight-vertical-right .maze_caps_right,
+.single-cap-straight-vertical-right .maze_outer_line_bottom_left,
+.single-cap-straight-vertical-right .maze_outer_line_bottom_right,
+.single-cap-straight-vertical-right .maze_line_center_left_top,
+.single-cap-straight-vertical-right .maze_line_center_left_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-top .maze_outer_ring_top_left,
+.single-cap-three-top .maze_outer_ring_top_right,
+.single-cap-three-top .maze_outer_line_left_bottom,
+.single-cap-three-top .maze_caps_bottom,
+.single-cap-three-top .maze_outer_line_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-bottom .maze_outer_ring_bottom_left,
+.single-cap-three-bottom .maze_outer_ring_bottom_right,
+.single-cap-three-bottom .maze_outer_line_left_top,
+.single-cap-three-bottom .maze_caps_top,
+.single-cap-three-bottom .maze_outer_line_right_top {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-left .maze_outer_ring_top_left,
+.single-cap-three-left .maze_outer_ring_bottom_left,
+.single-cap-three-left .maze_outer_line_top_right,
+.single-cap-three-left .maze_caps_right,
+.single-cap-three-left .maze_outer_line_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-right .maze_outer_ring_top_right,
+.single-cap-three-right .maze_outer_ring_bottom_right,
+.single-cap-three-right .maze_outer_line_top_left,
+.single-cap-three-right .maze_caps_left,
+.single-cap-three-right .maze_outer_line_bottom_left {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-side-top-right .maze_outer_line_right_top,
+.single-cap-three-side-top-right .maze_caps_top,
+.single-cap-three-side-top-right .maze_line_center_left_top,
+.single-cap-three-side-top-right .maze_line_center_left_bottom,
+.single-cap-three-side-top-right .maze_outer_line_bottom_left,
+.single-cap-three-side-top-right .maze_outer_ring_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-side-top-left .maze_outer_line_left_top,
+.single-cap-three-side-top-left .maze_caps_top,
+.single-cap-three-side-top-left .maze_line_center_right_top,
+.single-cap-three-side-top-left .maze_line_center_right_bottom,
+.single-cap-three-side-top-left .maze_outer_line_bottom_right,
+.single-cap-three-side-top-left .maze_outer_ring_bottom_left {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-side-bottom-right .maze_outer_line_right_bottom,
+.single-cap-three-side-bottom-right .maze_caps_bottom,
+.single-cap-three-side-bottom-right .maze_line_center_left_top,
+.single-cap-three-side-bottom-right .maze_line_center_left_bottom,
+.single-cap-three-side-bottom-right .maze_outer_line_top_left,
+.single-cap-three-side-bottom-right .maze_outer_ring_top_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-side-bottom-left .maze_outer_line_left_bottom,
+.single-cap-three-side-bottom-left .maze_caps_bottom,
+.single-cap-three-side-bottom-left .maze_line_center_right_top,
+.single-cap-three-side-bottom-left .maze_line_center_right_bottom,
+.single-cap-three-side-bottom-left .maze_outer_line_top_right,
+.single-cap-three-side-bottom-left .maze_outer_ring_top_left {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-side-top-right-side .maze_outer_line_right_top,
+.single-cap-three-side-top-right-side .maze_caps_left,
+.single-cap-three-side-top-right-side .maze_line_center_top_left,
+.single-cap-three-side-top-right-side .maze_line_center_top_right,
+.single-cap-three-side-top-right-side .maze_outer_line_bottom_left,
+.single-cap-three-side-top-right-side .maze_outer_ring_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-side-top-left-side .maze_outer_line_left_top,
+.single-cap-three-side-top-left-side .maze_caps_right,
+.single-cap-three-side-top-left-side .maze_line_center_top_left,
+.single-cap-three-side-top-left-side .maze_line_center_top_right,
+.single-cap-three-side-top-left-side .maze_outer_line_bottom_right,
+.single-cap-three-side-top-left-side .maze_outer_ring_bottom_left {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-side-bottom-right-side .maze_outer_line_right_bottom,
+.single-cap-three-side-bottom-right-side .maze_caps_left,
+.single-cap-three-side-bottom-right-side .maze_line_center_bottom_left,
+.single-cap-three-side-bottom-right-side .maze_line_center_bottom_right,
+.single-cap-three-side-bottom-right-side .maze_outer_line_top_left,
+.single-cap-three-side-bottom-right-side .maze_outer_ring_top_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.single-cap-three-side-bottom-left-side .maze_outer_line_left_bottom,
+.single-cap-three-side-bottom-left-side .maze_caps_right,
+.single-cap-three-side-bottom-left-side .maze_line_center_bottom_left,
+.single-cap-three-side-bottom-left-side .maze_line_center_bottom_right,
+.single-cap-three-side-bottom-left-side .maze_outer_line_top_right,
+.single-cap-three-side-bottom-left-side .maze_outer_ring_top_left {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-straight-vertical .maze_outer_line_top_left,
+.double-cap-straight-vertical .maze_outer_line_top_right,
+.double-cap-straight-vertical .maze_caps_left,
+.double-cap-straight-vertical .maze_outer_line_bottom_left,
+.double-cap-straight-vertical .maze_outer_line_bottom_right,
+.double-cap-straight-vertical .maze_caps_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-straight-horizontal .maze_outer_line_left_top,
+.double-cap-straight-horizontal .maze_caps_top,
+.double-cap-straight-horizontal .maze_outer_line_right_top,
+.double-cap-straight-horizontal .maze_outer_line_left_bottom,
+.double-cap-straight-horizontal .maze_caps_bottom,
+.double-cap-straight-horizontal .maze_outer_line_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-top-right .maze_caps_left,
+.double-cap-top-right .maze_caps_bottom,
+.double-cap-top-right .maze_outer_ring_top_right,
+.double-cap-top-right .maze_outer_line_top_left,
+.double-cap-top-right .maze_outer_line_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-top-left .maze_caps_right,
+.double-cap-top-left .maze_caps_bottom,
+.double-cap-top-left .maze_outer_ring_top_left,
+.double-cap-top-left .maze_outer_line_top_right,
+.double-cap-top-left .maze_outer_line_left_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-bottom-right .maze_caps_left,
+.double-cap-bottom-right .maze_caps_top,
+.double-cap-bottom-right .maze_outer_ring_bottom_right,
+.double-cap-bottom-right .maze_outer_line_bottom_left,
+.double-cap-bottom-right .maze_outer_line_right_top {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-bottom-left .maze_caps_right,
+.double-cap-bottom-left .maze_caps_top,
+.double-cap-bottom-left .maze_outer_ring_bottom_left,
+.double-cap-bottom-left .maze_outer_line_bottom_right,
+.double-cap-bottom-left .maze_outer_line_left_top {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-straight-top .maze_caps_right,
+.double-cap-straight-top .maze_caps_left,
+.double-cap-straight-top .maze_outer_line_top_left,
+.double-cap-straight-top .maze_outer_line_top_right,
+.double-cap-straight-top .maze_line_center_bottom_left,
+.double-cap-straight-top .maze_line_center_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-straight-bottom .maze_caps_right,
+.double-cap-straight-bottom .maze_caps_left,
+.double-cap-straight-bottom .maze_outer_line_bottom_left,
+.double-cap-straight-bottom .maze_outer_line_bottom_right,
+.double-cap-straight-bottom .maze_line_center_top_left,
+.double-cap-straight-bottom .maze_line_center_top_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-straight-left .maze_caps_top,
+.double-cap-straight-left .maze_caps_bottom,
+.double-cap-straight-left .maze_outer_line_left_top,
+.double-cap-straight-left .maze_outer_line_left_bottom,
+.double-cap-straight-left .maze_line_center_right_top,
+.double-cap-straight-left .maze_line_center_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.double-cap-straight-right .maze_caps_top,
+.double-cap-straight-right .maze_caps_bottom,
+.double-cap-straight-right .maze_outer_line_right_top,
+.double-cap-straight-right .maze_outer_line_right_bottom,
+.double-cap-straight-right .maze_line_center_left_top,
+.double-cap-straight-right .maze_line_center_left_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.three-cap-top .maze_caps_left,
+.three-cap-top .maze_caps_bottom,
+.three-cap-top .maze_caps_right,
+.three-cap-top .maze_outer_line_top_left,
+.three-cap-top .maze_outer_line_top_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.three-cap-bottom .maze_caps_left,
+.three-cap-bottom .maze_caps_top,
+.three-cap-bottom .maze_caps_right,
+.three-cap-bottom .maze_outer_line_bottom_left,
+.three-cap-bottom .maze_outer_line_bottom_right {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.three-cap-left .maze_caps_bottom,
+.three-cap-left .maze_caps_top,
+.three-cap-left .maze_caps_right,
+.three-cap-left .maze_outer_line_left_top,
+.three-cap-left .maze_outer_line_left_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+.three-cap-right .maze_caps_bottom,
+.three-cap-right .maze_caps_top,
+.three-cap-right .maze_caps_left,
+.three-cap-right .maze_outer_line_right_top,
+.three-cap-right .maze_outer_line_right_bottom {
+  stroke: var(--tile-wall-stroke-color-part);
+}
+
+/* SINGLE GHOST HOME FRAGMENT */
+/*
+.tile-line-top-left {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-top {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-top-right {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-bottom-left {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-bottom {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-bottom-right {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-left-top {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-left {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-left-bottom {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-right-top {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-right {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-line-right-bottom {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-curve-outer-top-left {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-curve-outer-top-right {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-curve-outer-bottom-left {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-curve-outer-bottom-right {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-curve-inner-top-left {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-curve-inner-top-right {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-curve-inner-bottom-left {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.tile-curve-inner-bottom-right {
+	stroke: var(--tile-ghost-home-stroke-color-part);
+}
+*/
+/* GHOST HOME TILE VARIANTS */
+
+.horizontal-straight .tile-line-top-left,
+.horizontal-straight .tile-line-top,
+.horizontal-straight .tile-line-top-right,
+.horizontal-straight .tile-line-bottom-left,
+.horizontal-straight .tile-line-bottom,
+.horizontal-straight .tile-line-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.vertical-straight .tile-line-left-top,
+.vertical-straight .tile-line-left,
+.vertical-straight .tile-line-left-bottom,
+.vertical-straight .tile-line-right-top,
+.vertical-straight .tile-line-right,
+.vertical-straight .tile-line-right-bottom {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.three-bottom .tile-line-top-left,
+.three-bottom .tile-line-top,
+.three-bottom .tile-line-top-right,
+.three-bottom .tile-curve-outer-bottom-left,
+.three-bottom .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.three-top .tile-line-bottom-left,
+.three-top .tile-line-bottom,
+.three-top .tile-line-bottom-right,
+.three-top .tile-curve-outer-top-left,
+.three-top .tile-curve-outer-top-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.three-right .tile-line-left-top,
+.three-right .tile-line-left,
+.three-right .tile-line-left-bottom,
+.three-right .tile-curve-outer-top-right,
+.three-right .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.three-left .tile-line-right-top,
+.three-left .tile-line-right,
+.three-left .tile-line-right-bottom,
+.three-left .tile-curve-outer-top-left,
+.three-left .tile-curve-outer-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-top .tile-line-top-left,
+.single-top .tile-line-top,
+.single-top .tile-line-top-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-bottom .tile-line-bottom-left,
+.single-bottom .tile-line-bottom,
+.single-bottom .tile-line-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-left .tile-line-left-top,
+.single-left .tile-line-left,
+.single-left .tile-line-left-bottom {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-right .tile-line-right-top,
+.single-right .tile-line-right,
+.single-right .tile-line-right-bottom {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.corner-open-top-left .tile-line-top-right,
+.corner-open-top-left .tile-line-top,
+.corner-open-top-left .tile-curve-inner-top-left,
+.corner-open-top-left .tile-line-left,
+.corner-open-top-left .tile-line-left-bottom {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.corner-open-top-right .tile-line-top-left,
+.corner-open-top-right .tile-line-top,
+.corner-open-top-right .tile-curve-inner-top-right,
+.corner-open-top-right .tile-line-right,
+.corner-open-top-right .tile-line-right-bottom {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.corner-open-bottom-left .tile-line-bottom-right,
+.corner-open-bottom-left .tile-line-bottom,
+.corner-open-bottom-left .tile-curve-inner-bottom-left,
+.corner-open-bottom-left .tile-line-left,
+.corner-open-bottom-left .tile-line-left-top {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.corner-open-bottom-right .tile-line-bottom-left,
+.corner-open-bottom-right .tile-line-bottom,
+.corner-open-bottom-right .tile-curve-inner-bottom-right,
+.corner-open-bottom-right .tile-line-right,
+.corner-open-bottom-right .tile-line-right-top {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.top-and-corner-bottom-right .tile-line-top-left,
+.top-and-corner-bottom-right .tile-line-top,
+.top-and-corner-bottom-right .tile-line-top-right,
+.top-and-corner-bottom-right .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.top-and-corner-bottom-left .tile-line-top-left,
+.top-and-corner-bottom-left .tile-line-top,
+.top-and-corner-bottom-left .tile-line-top-right,
+.top-and-corner-bottom-left .tile-curve-outer-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.left-and-corner-bottom-right .tile-line-left-top,
+.left-and-corner-bottom-right .tile-line-left,
+.left-and-corner-bottom-right .tile-line-left-bottom,
+.left-and-corner-bottom-right .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.right-and-corner-bottom-left .tile-line-right-top,
+.right-and-corner-bottom-left .tile-line-right,
+.right-and-corner-bottom-left .tile-line-right-bottom,
+.right-and-corner-bottom-left .tile-curve-outer-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.bottom-and-corner-top-right .tile-line-bottom-left,
+.bottom-and-corner-top-right .tile-line-bottom,
+.bottom-and-corner-top-right .tile-line-bottom-right,
+.bottom-and-corner-top-right .tile-curve-outer-top-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.bottom-and-corner-top-left .tile-line-bottom-left,
+.bottom-and-corner-top-left .tile-line-bottom,
+.bottom-and-corner-top-left .tile-line-bottom-right,
+.bottom-and-corner-top-left .tile-curve-outer-top-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.left-and-corner-top-right .tile-line-left-top,
+.left-and-corner-top-right .tile-line-left,
+.left-and-corner-top-right .tile-line-left-bottom,
+.left-and-corner-top-right .tile-curve-outer-top-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.right-and-corner-top-left .tile-line-right-top,
+.right-and-corner-top-left .tile-line-right,
+.right-and-corner-top-left .tile-line-right-bottom,
+.right-and-corner-top-left .tile-curve-outer-top-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.corner-capped-top-left .tile-curve-inner-top-left,
+.corner-capped-top-left .tile-line-left,
+.corner-capped-top-left .tile-line-left-bottom,
+.corner-capped-top-left .tile-line-top,
+.corner-capped-top-left .tile-line-top-right,
+.corner-capped-top-left .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.corner-capped-top-right .tile-curve-inner-top-right,
+.corner-capped-top-right .tile-line-right,
+.corner-capped-top-right .tile-line-right-bottom,
+.corner-capped-top-right .tile-line-top,
+.corner-capped-top-right .tile-line-top-left,
+.corner-capped-top-right .tile-curve-outer-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.corner-capped-bottom-left .tile-curve-outer-top-right,
+.corner-capped-bottom-left .tile-line-left,
+.corner-capped-bottom-left .tile-line-left-top,
+.corner-capped-bottom-left .tile-curve-inner-bottom-left,
+.corner-capped-bottom-left .tile-line-bottom,
+.corner-capped-bottom-left .tile-line-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.corner-capped-bottom-right .tile-curve-outer-top-left,
+.corner-capped-bottom-right .tile-line-right,
+.corner-capped-bottom-right .tile-line-right-top,
+.corner-capped-bottom-right .tile-curve-inner-bottom-right,
+.corner-capped-bottom-right .tile-line-bottom,
+.corner-capped-bottom-right .tile-line-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-cap-left .tile-line-top-right,
+.single-cap-left .tile-line-top,
+.single-cap-left .tile-curve-inner-top-left,
+.single-cap-left .tile-line-left,
+.single-cap-left .tile-curve-inner-bottom-left,
+.single-cap-left .tile-line-bottom,
+.single-cap-left .tile-line-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-cap-right .tile-line-top-left,
+.single-cap-right .tile-line-top,
+.single-cap-right .tile-curve-inner-top-right,
+.single-cap-right .tile-line-right,
+.single-cap-right .tile-curve-inner-bottom-right,
+.single-cap-right .tile-line-bottom,
+.single-cap-right .tile-line-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-cap-bottom .tile-line-left-top,
+.single-cap-bottom .tile-line-left,
+.single-cap-bottom .tile-curve-inner-bottom-left,
+.single-cap-bottom .tile-line-bottom,
+.single-cap-bottom .tile-curve-inner-bottom-right,
+.single-cap-bottom .tile-line-right,
+.single-cap-bottom .tile-line-right-top {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-cap-top .tile-line-left-bottom,
+.single-cap-top .tile-line-left,
+.single-cap-top .tile-curve-inner-top-left,
+.single-cap-top .tile-line-top,
+.single-cap-top .tile-curve-inner-top-right,
+.single-cap-top .tile-line-right,
+.single-cap-top .tile-line-right-bottom {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.crossroad .tile-curve-outer-top-left,
+.crossroad .tile-curve-outer-top-right,
+.crossroad .tile-curve-outer-bottom-left,
+.crossroad .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.three-corner-no-bottom-right .tile-curve-outer-top-left,
+.three-corner-no-bottom-right .tile-curve-outer-top-right,
+.three-corner-no-bottom-right .tile-curve-outer-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.three-corner-no-bottom-left .tile-curve-outer-top-left,
+.three-corner-no-bottom-left .tile-curve-outer-top-right,
+.three-corner-no-bottom-left .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.three-corner-no-top-left .tile-curve-outer-top-right,
+.three-corner-no-top-left .tile-curve-outer-bottom-left,
+.three-corner-no-top-left .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.three-corner-no-top-right .tile-curve-outer-top-left,
+.three-corner-no-top-right .tile-curve-outer-bottom-left,
+.three-corner-no-top-right .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.double-corner-left .tile-curve-outer-top-left,
+.double-corner-left .tile-curve-outer-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.double-corner-top .tile-curve-outer-top-left,
+.double-corner-top .tile-curve-outer-top-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.double-corner-right .tile-curve-outer-top-right,
+.double-corner-right .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.double-corner-bottom .tile-curve-outer-bottom-left,
+.double-corner-bottom .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.double-corner-diag-top-left .tile-curve-outer-top-left,
+.double-corner-diag-top-left .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.double-corner-diag-top-right .tile-curve-outer-top-right,
+.double-corner-diag-top-right .tile-curve-outer-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-corner-bottom-right .tile-curve-outer-bottom-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-corner-bottom-left .tile-curve-outer-bottom-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-corner-top-left .tile-curve-outer-top-left {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
+
+.single-corner-top-right .tile-curve-outer-top-right {
+  stroke: var(--tile-ghost-home-stroke-color-part);
+}
