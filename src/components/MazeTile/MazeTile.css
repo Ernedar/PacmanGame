@@ -3,20 +3,6 @@
   height: var(--tile-dim);
 }
 
-.wall {
-  width: var(--tile-dim);
-  height: var(--tile-dim);
-  stroke-width: var(--tile-wall-stroke-dim);
-  display: block;
-}
-
-.ghost-tile {
-  width: var(--tile-dim);
-  height: var(--tile-dim);
-  stroke-width: var(--ghost-tile-stroke-dim);
-  display: block;
-}
-
 /* SINGLE WALL FRAGMENTS */
 
 /* CENTER BORDER */
