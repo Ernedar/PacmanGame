@@ -1,6 +1,3 @@
-.game-plan {
-}
-
 .game-plan tr {
   height: var(--tile-dim) !important;
   overflow: hidden;

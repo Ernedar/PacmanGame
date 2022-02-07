@@ -2,7 +2,7 @@ html {
   --background-color: #cbd9db;
 
   /* SVG SETTINGS */
-  --tile-dim: 2rem;
+  --tile-dim: 1.75rem;
   --ghost-tile-stroke-dim: 7.5rem;
   --tile-wall-stroke-dim: 5rem;
   --tile-wall-stroke-color: #0d0d0d55;
@@ -17,6 +17,11 @@ body {
 .App {
   font-family: sans-serif;
   text-align: center;
+  width: 100%;
+  height: auto;
+  display: block;
+  padding: 0;
+  margin: 0;
 }
 
 table,

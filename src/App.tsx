@@ -1,12 +1,24 @@
 import "./styles.css";
-import MazeBuilder from "./components/MazeBuilder";
+import MazeLayerWrapper from "./components/MazeLayerWrapper";
 
-import PacmanMaze from "./assets/OriginalPacmanMaze";
+import {
+  PacmanMaze,
+  PacmanPoints,
+  PacmanPowerPoints,
+  PacmanStartPosition,
+  GhostStartPositions
+} from "./assets/OriginalPacmanMaze";
 
 export default function App() {
   return (
     <div className="App">
-      <MazeBuilder mazeArray={PacmanMaze} />
+      <MazeLayerWrapper
+        mazeArrayInput={PacmanMaze}
+        pointsArrayInput={PacmanPoints}
+        powerUpArrayInput={PacmanPowerPoints}
+        pacmanStartInput={PacmanStartPosition}
+        ghostsStartInput={GhostStartPositions}
+      />
     </div>
   );
 }
