@@ -4,11 +4,11 @@ import Icon from "../Icons";
 
 import "./MazeTile.css";
 
-interface Props {
+interface MazeTileProps {
   tileKey?: string;
 }
 
-const MazeTile: FC<Props> = ({ tileKey = "" }) => {
+const MazeTile: FC<MazeTileProps> = ({ tileKey }) => {
   let tileKeyNumber = !!tileKey && tileKey !== "" ? parseInt(tileKey, 0) : NaN;
 
   if (
@@ -21,7 +21,7 @@ const MazeTile: FC<Props> = ({ tileKey = "" }) => {
   } else if (tileKeyNumber >= 100 && tileKeyNumber < 200) {
     let ghostHomeEnumKey: keyof typeof GhostHome;
 
-    ghostHomeEnumKey = "g" + tileKey;
+    ghostHomeEnumKey = ("g" + tileKey) as keyof typeof GhostHome;
 
     const ghostHomeClass = GhostHome[ghostHomeEnumKey];
 
@@ -29,7 +29,7 @@ const MazeTile: FC<Props> = ({ tileKey = "" }) => {
   } else if (tileKeyNumber >= 200 && tileKeyNumber < 300) {
     let wallEnumKey: keyof typeof MazeWall;
 
-    wallEnumKey = "w" + tileKey;
+    wallEnumKey = ("w" + tileKey) as keyof typeof MazeWall;
 
     const wallClass = MazeWall[wallEnumKey];
 
