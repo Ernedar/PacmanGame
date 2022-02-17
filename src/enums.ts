@@ -94,3 +94,16 @@ export enum GhostHome {
   "g173" = "single-corner-top-left",
   "g174" = "single-corner-top-right"
 }
+
+export enum PortalDirection {
+  "horizontal" = "two-way-horizontal",
+  "vertical" = "two-way-vertical",
+  "top-in" = "single-top-in",
+  "top-out" = "single-top-out",
+  "bottom-in" = "single-bottom-in",
+  "bottom-out" = "single-bottom-out",
+  "left-in" = "single-left-in",
+  "left-out" = "single-left-out",
+  "right-in" = "single-right-in",
+  "right-out" = "single-right-out"
+}

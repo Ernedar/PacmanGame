@@ -5,11 +5,17 @@
 .wall {
   width: var(--tile-dim);
   height: var(--tile-dim);
-  stroke-width: var(--tile-wall-stroke-dim);s
+  stroke-width: var(--tile-wall-stroke-dim);
 }
 
 .ghost-tile {
   width: var(--tile-dim);
   height: var(--tile-dim);
   stroke-width: var(--ghost-tile-stroke-dim);
+}
+
+.portal {
+  width: var(--tile-dim);
+  height: var(--tile-dim);
+  stroke-width: var(--tile-portal-stroke-dim);
 }

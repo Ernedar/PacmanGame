@@ -6,9 +6,10 @@ import "./Icons.css";
 
 import IconWall from "./IconWall";
 import IconGhostHome from "./IconGhostHome";
+import IconPortal from "./IconPortal";
 
 type IconsProps = {
-  iconToLoad: "wall" | "ghostHome";
+  iconToLoad: "wall" | "ghostHome" | "portal";
   className?: string;
 };
 
@@ -20,6 +21,8 @@ const Icon: FC<IconsProps> = ({ iconToLoad, className }) => {
       return (
         <IconGhostHome className={classNames("icon ghost-tile", className)} />
       );
+    case "portal":
+      return <IconPortal className={classNames("icon portal", className)} />;
     default:
       return <IconWall className={classNames("icon wall", className)} />;
   }

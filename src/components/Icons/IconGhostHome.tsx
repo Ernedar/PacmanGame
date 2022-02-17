@@ -1,10 +1,7 @@
 import React, { FC } from "react";
+import IconClassName from "./Icons.interface";
 
-interface Props {
-  className?: string;
-}
-
-const IconGhostHome: FC<Props> = ({ className }) => {
+const IconGhostHome: FC<IconClassName> = ({ className }) => {
   return (
     <svg
       className={className}

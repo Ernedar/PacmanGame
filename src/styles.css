@@ -5,9 +5,12 @@ html {
   --tile-dim: 1.75rem;
   --ghost-tile-stroke-dim: 7.5rem;
   --tile-wall-stroke-dim: 5rem;
+  --tile-portal-stroke-dim: 1.5rem;
   --tile-wall-stroke-color: #0d0d0d55;
   --tile-wall-stroke-color-part: #0d0d0d;
   --tile-ghost-home-stroke-color-part: #007aff;
+  --tile-portal-stroke-color-part: #873e23;
+  --tile-portal-fill-color-part: #eab676;
 }
 
 body {
