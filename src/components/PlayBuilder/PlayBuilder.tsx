@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import "./PlayBuilder.css";
 
-interface Props {
+type PlayBuilderProps = {
   pointsArray: number[][];
   powerUpsArray: number[][];
   pacmanStartPosition: number[];
   ghostsStartPositions: number[][];
-}
+};
 
-const PlayBuilder: FC<Props> = ({
+const PlayBuilder: FC<PlayBuilderProps> = ({
   pointsArray,
   powerUpsArray,
   pacmanStartPosition,

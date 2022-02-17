@@ -3,11 +3,11 @@ import "./MazeBuilder.css";
 
 import MazeTile from "../MazeTile";
 
-interface Props {
+type MazeBuilderProps = {
   mazeArray: number[][];
-}
+};
 
-const MazeBuilder: FC<Props> = ({ mazeArray }) => {
+const MazeBuilder: FC<MazeBuilderProps> = ({ mazeArray }) => {
   return (
     <table cellSpacing="0">
       <tbody className="game-plan">

@@ -4,9 +4,9 @@ import Icon from "../Icons";
 
 import "./MazeTile.css";
 
-interface MazeTileProps {
+type MazeTileProps = {
   tileKey?: string;
-}
+};
 
 const MazeTile: FC<MazeTileProps> = ({ tileKey }) => {
   let tileKeyNumber = !!tileKey && tileKey !== "" ? parseInt(tileKey, 0) : NaN;

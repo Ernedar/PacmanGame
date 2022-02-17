@@ -4,15 +4,15 @@ import PlayBuilder from "../PlayBuilder";
 
 import "./MazeLayerWrapper.css";
 
-interface Props {
+type MazeLayerProps = {
   mazeArrayInput: number[][];
   pointsArrayInput: number[][];
   powerUpArrayInput: number[][];
   pacmanStartInput: number[];
   ghostsStartInput: number[][];
-}
+};
 
-const MazeLayerWrapper: FC<Props> = ({
+const MazeLayerWrapper: FC<MazeLayerProps> = ({
   mazeArrayInput,
   pointsArrayInput,
   powerUpArrayInput,

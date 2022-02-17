@@ -7,12 +7,12 @@ import "./Icons.css";
 import IconWall from "./IconWall";
 import IconGhostHome from "./IconGhostHome";
 
-interface Props {
-  iconToLoad: string;
+type IconsProps = {
+  iconToLoad: "wall" | "ghostHome";
   className?: string;
-}
+};
 
-const Icon: FC<Props> = ({ iconToLoad, className }) => {
+const Icon: FC<IconsProps> = ({ iconToLoad, className }) => {
   switch (iconToLoad) {
     case "wall":
       return <IconWall className={classNames("icon wall", className)} />;
