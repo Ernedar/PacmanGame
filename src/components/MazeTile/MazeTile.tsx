@@ -10,8 +10,20 @@ type MazeTileProps = {
 
 const MazeTile: FC<MazeTileProps> = ({ tileKey }) => {
   let tileKeyNumber = !!tileKey && tileKey !== "" ? parseInt(tileKey, 0) : NaN;
-
-  if (
+  /* POINTS PLACEHOLDER */
+  if (tileKey === "31") {
+    return (
+      <div className="path with-point">
+        <div className="point" />
+      </div>
+    );
+  } else if (tileKey === "32") {
+    return (
+      <div className="path with-power">
+        <div className="power" />
+      </div>
+    ); /* POINTS PLACEHOLDER END */
+  } else if (
     tileKey === "0" ||
     tileKey === "" ||
     (tileKeyNumber > 0 && tileKeyNumber < 100) ||

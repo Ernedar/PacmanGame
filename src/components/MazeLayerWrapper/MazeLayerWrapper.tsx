@@ -6,16 +6,12 @@ import "./MazeLayerWrapper.css";
 
 type MazeLayerProps = {
   mazeArrayInput: number[][];
-  pointsArrayInput: number[][];
-  powerUpArrayInput: number[][];
   pacmanStartInput: number[];
   ghostsStartInput: number[][];
 };
 
 const MazeLayerWrapper: FC<MazeLayerProps> = ({
   mazeArrayInput,
-  pointsArrayInput,
-  powerUpArrayInput,
   pacmanStartInput,
   ghostsStartInput
 }) => {
@@ -32,8 +28,6 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({
     >
       <MazeBuilder mazeArray={mazeArrayInput} />
       <PlayBuilder
-        pointsArray={pointsArrayInput}
-        powerUpsArray={powerUpArrayInput}
         pacmanStartPosition={pacmanStartInput}
         ghostsStartPositions={ghostsStartInput}
       />

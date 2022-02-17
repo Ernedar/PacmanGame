@@ -2,15 +2,11 @@ import React, { FC } from "react";
 import "./PlayBuilder.css";
 
 type PlayBuilderProps = {
-  pointsArray: number[][];
-  powerUpsArray: number[][];
   pacmanStartPosition: number[];
   ghostsStartPositions: number[][];
 };
 
 const PlayBuilder: FC<PlayBuilderProps> = ({
-  pointsArray,
-  powerUpsArray,
   pacmanStartPosition,
   ghostsStartPositions
 }) => {

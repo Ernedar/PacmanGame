@@ -3,6 +3,31 @@
   height: var(--tile-dim);
 }
 
+.with-point,
+.with-power {
+  position: relative;
+}
+
+.point,
+.power {
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--tile-ghost-home-stroke-color-part);
+}
+
+.point {
+  width: calc(var(--tile-dim) / 3);
+  height: calc(var(--tile-dim) / 3);
+}
+
+.power {
+  width: calc(var(--tile-dim) * 2 / 3);
+  height: calc(var(--tile-dim) * 2 / 3);
+}
+
 /* SINGLE WALL FRAGMENTS */
 
 /* CENTER BORDER */
