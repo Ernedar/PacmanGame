@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { MazeWall, GhostHome } from "../../enums";
+import { MazeWall, GhostHome, PortalDirection } from "../../enums";
 import Icon from "../Icons";
 
 import "./MazeTile.css";
@@ -23,10 +23,19 @@ const MazeTile: FC<MazeTileProps> = ({ tileKey }) => {
         <div className="power" />
       </div>
     ); /* POINTS PLACEHOLDER END */
+  } else if (tileKeyNumber >= 60 && tileKeyNumber <= 69) {
+    let portalEnumKey: keyof typeof PortalDirection;
+
+    portalEnumKey = ("p" + tileKey) as keyof typeof PortalDirection;
+
+    const portalClass = PortalDirection[portalEnumKey];
+
+    return <Icon className={portalClass} iconToLoad="portal" />;
   } else if (
     tileKey === "0" ||
     tileKey === "" ||
-    (tileKeyNumber > 0 && tileKeyNumber < 100) ||
+    (tileKeyNumber > 0 && tileKeyNumber < 60) ||
+    (tileKeyNumber > 69 && tileKeyNumber < 100) ||
     tileKeyNumber >= 300
   ) {
     return <div className="path" />;

@@ -1,5 +1,15 @@
 import React, { FC } from "react";
 import "./PlayBuilder.css";
+/*
+interface PlayTile {
+  x: number;
+  y: number;
+  whatAmI: "wall" | "point" | "power";
+}
+
+type PlayMap = Record<string, PlayTile>;
+
+*/
 
 type PlayBuilderProps = {
   pacmanStartPosition: number[];

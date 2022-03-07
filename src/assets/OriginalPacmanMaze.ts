@@ -420,7 +420,7 @@ export const PacmanMaze = [
     212
   ],
   [
-    0,
+    61,
     0,
     0,
     0,
@@ -447,7 +447,7 @@ export const PacmanMaze = [
     0,
     0,
     0,
-    0
+    61
   ],
   [
     212,

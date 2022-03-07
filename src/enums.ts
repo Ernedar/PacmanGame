@@ -96,14 +96,22 @@ export enum GhostHome {
 }
 
 export enum PortalDirection {
-  "horizontal" = "two-way-horizontal",
-  "vertical" = "two-way-vertical",
-  "top-in" = "single-top-in",
-  "top-out" = "single-top-out",
-  "bottom-in" = "single-bottom-in",
-  "bottom-out" = "single-bottom-out",
-  "left-in" = "single-left-in",
-  "left-out" = "single-left-out",
-  "right-in" = "single-right-in",
-  "right-out" = "single-right-out"
+  "p60" = "two-way-vertical",
+  "p61" = "two-way-horizontal",
+  "p62" = "single-top-in",
+  "p63" = "single-top-out",
+  "p64" = "single-bottom-in",
+  "p65" = "single-bottom-out",
+  "p66" = "single-left-in",
+  "p67" = "single-left-out",
+  "p68" = "single-right-in",
+  "p69" = "single-right-out"
+}
+
+export enum TileType {
+  wall = "wall",
+  path = "path",
+  door = "portal",
+  point = "point",
+  power = "powerup"
 }
