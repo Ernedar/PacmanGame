@@ -27,10 +27,20 @@ const PlayBuilder: FC<PlayBuilderProps> = ({
       pacmanStartPosition[1]
   );
   console.log("Ghosts start on " + ghostsStartPositions);
-  //console.log("Points to collect: " + pointsArray);
-  //console.log("Power Ups to collect: " + powerUpsArray);
   return (
-    <div className="game-actions-entities" style={{ display: "none" }}></div>
+    <div className="game-actions-entities">
+      <div
+        className="testSquare"
+        style={{
+          transform:
+            "translate(calc(" +
+            pacmanStartPosition[1] +
+            " * var(--tile-dim)), calc(" +
+            pacmanStartPosition[0] +
+            " * var(--tile-dim))"
+        }}
+      ></div>
+    </div>
   );
 };
 
