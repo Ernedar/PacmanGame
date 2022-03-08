@@ -28,6 +28,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({
     >
       <MazeBuilder mazeArray={mazeArrayInput} />
       <PlayBuilder
+        mazeDefinition={mazeArrayInput}
         pacmanStartPosition={pacmanStartInput}
         ghostsStartPositions={ghostsStartInput}
       />

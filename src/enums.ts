@@ -113,5 +113,6 @@ export enum TileType {
   path = "path",
   door = "portal",
   point = "point",
-  power = "powerup"
+  power = "powerup",
+  ghost = "ghost"
 }

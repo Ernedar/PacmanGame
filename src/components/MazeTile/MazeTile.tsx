@@ -31,14 +31,6 @@ const MazeTile: FC<MazeTileProps> = ({ tileKey }) => {
     const portalClass = PortalDirection[portalEnumKey];
 
     return <Icon className={portalClass} iconToLoad="portal" />;
-  } else if (
-    tileKey === "0" ||
-    tileKey === "" ||
-    (tileKeyNumber > 0 && tileKeyNumber < 60) ||
-    (tileKeyNumber > 69 && tileKeyNumber < 100) ||
-    tileKeyNumber >= 300
-  ) {
-    return <div className="path" />;
   } else if (tileKeyNumber >= 100 && tileKeyNumber < 200) {
     let ghostHomeEnumKey: keyof typeof GhostHome;
 
@@ -55,6 +47,8 @@ const MazeTile: FC<MazeTileProps> = ({ tileKey }) => {
     const wallClass = MazeWall[wallEnumKey];
 
     return <Icon className={wallClass} iconToLoad="wall" />;
+  } else {
+    return <div className="path" />;
   }
 };
 

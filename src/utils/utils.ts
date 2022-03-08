@@ -1,5 +1,45 @@
-export function positionChecker() {
-  // it should get object coordinates, take same coordinates from generated maze and return class of tile on those coordinates in maze.
+import { TileType } from "../enums";
+import { PacmanMaze } from "../assets/OriginalPacmanMaze";
+
+export function translateTile(t: number) {
+  if (t === 31) {
+    return TileType["point"];
+  } else if (t === 32) {
+    return TileType["power"];
+  } else if (t >= 60 && t <= 69) {
+    return TileType["door"];
+  } else if (t >= 100 && t < 200) {
+    return TileType["ghost"];
+  } else if (t >= 200 && t < 300) {
+    return TileType["wall"];
+  } else {
+    return TileType["path"];
+  }
+}
+
+// it should get object coordinates, take same coordinates from generated maze and return class of tile on those coordinates in maze.
+
+export function positionChecker(x: number, y: number) {
+  let left;
+
+  if (y === 0) {
+    left = TileType["wall"];
+  } else {
+    left = translateTile(PacmanMaze[x][y - 1]);
+  }
+
+  let top;
+
+  if (y === 0) {
+    top = TileType["wall"];
+  } else {
+    top = translateTile(PacmanMaze[x - 1][y]);
+  }
+
+  const right = translateTile(PacmanMaze[x][y + 1]);
+  const bottom = translateTile(PacmanMaze[x + 1][y]);
+
+  return { left, right, top, bottom };
 }
 
 export function pacmanMovement(
