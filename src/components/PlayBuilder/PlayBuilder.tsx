@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import "./PlayBuilder.css";
 import { positionChecker } from "../../utils/utils";
+import EntityPoint from "../EntityPoint/";
 
 /*
 interface PlayTile {
@@ -24,6 +25,7 @@ const PlayBuilder: FC<PlayBuilderProps> = ({
   pacmanStartPosition,
   ghostsStartPositions
 }) => {
+  /*
   const testPosition = [14, 15];
 
   console.log(
@@ -37,20 +39,17 @@ const PlayBuilder: FC<PlayBuilderProps> = ({
   const movement = positionChecker(testPosition[0], testPosition[1]);
 
   console.log(movement);
-
+*/
   return (
     <div className="game-actions-entities">
-      <div
-        className="testSquare"
-        style={{
-          transform:
-            "translate(calc(" +
-            testPosition[1] +
-            " * var(--tile-dim)), calc(" +
-            testPosition[0] +
-            " * var(--tile-dim))"
-        }}
-      ></div>
+      {mazeDefinition.map((tileLine, x) =>
+        tileLine.map((tile, y) => {
+          if (tile === 31) {
+            return <EntityPoint key={"tile-" + x + "-" + y} x={x} y={y} />;
+          }
+          return null;
+        })
+      )}
     </div>
   );
 };

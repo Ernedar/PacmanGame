@@ -1,0 +1,20 @@
+.point-wrapper {
+  width: var(--tile-dim);
+  height: var(--tile-dim);
+  position: absolute;
+}
+
+.point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: var(--point-bg-color);
+  box-shadow: inset calc(var(--tile-point-dim) / -2)
+    calc(var(--tile-point-dim) / -2) calc(var(--tile-point-dim) / 2)
+    calc(var(--tile-point-dim) / -2) var(--point-shadow-color);
+
+  width: calc(var(--tile-point-dim));
+  height: calc(var(--tile-point-dim));
+}
