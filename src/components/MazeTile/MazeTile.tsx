@@ -10,14 +10,8 @@ type MazeTileProps = {
 
 const MazeTile: FC<MazeTileProps> = ({ tileKey }) => {
   let tileKeyNumber = !!tileKey && tileKey !== "" ? parseInt(tileKey, 0) : NaN;
-  /* POINTS PLACEHOLDER */
-  if (tileKey === "32") {
-    return (
-      <div className="path with-power">
-        <div className="power" />
-      </div>
-    ); /* POINTS PLACEHOLDER END */
-  } else if (tileKeyNumber >= 60 && tileKeyNumber <= 69) {
+
+  if (tileKeyNumber >= 60 && tileKeyNumber <= 69) {
     let portalEnumKey: keyof typeof PortalDirection;
 
     portalEnumKey = ("p" + tileKey) as keyof typeof PortalDirection;

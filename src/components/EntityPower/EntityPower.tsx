@@ -1,20 +1,22 @@
 import React, { FC } from "react";
 
-import "./EntityPoint.css";
+import "./EntityPower.css";
 
-type PointProps = {
+import CNLogo from "../../assets/cngrouplogo.jpg";
+
+type PowerProps = {
   x: number;
   y: number;
   eaten?: Boolean;
 };
 
-const EntityPoint: FC<PointProps> = ({ x, y, eaten = false }) => {
+const EntityPoint: FC<PowerProps> = ({ x, y, eaten = false }) => {
   console.log(eaten);
 
   if (!eaten) {
     return (
       <div
-        className="point-wrapper"
+        className="power-wrapper"
         style={{
           transform:
             "translate(calc(" +
@@ -24,7 +26,9 @@ const EntityPoint: FC<PointProps> = ({ x, y, eaten = false }) => {
             " * var(--tile-dim))"
         }}
       >
-        <div className="point" />
+        <div className="power">
+          <img src={CNLogo} alt="CN Group Logo" />
+        </div>
       </div>
     );
   } else {

@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import "./PlayBuilder.css";
 import { positionChecker } from "../../utils/utils";
 import EntityPoint from "../EntityPoint/";
+import EntityPower from "../EntityPower";
 
 /*
 interface PlayTile {
@@ -42,10 +43,12 @@ const PlayBuilder: FC<PlayBuilderProps> = ({
 */
   return (
     <div className="game-actions-entities">
-      {mazeDefinition.map((tileLine, x) =>
-        tileLine.map((tile, y) => {
+      {mazeDefinition.map((tileColumn, y) =>
+        tileColumn.map((tile, x) => {
           if (tile === 31) {
             return <EntityPoint key={"tile-" + x + "-" + y} x={x} y={y} />;
+          } else if (tile === 32) {
+            return <EntityPower key={"tile-" + x + "-" + y} x={x} y={y} />;
           }
           return null;
         })
