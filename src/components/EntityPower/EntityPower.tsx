@@ -1,8 +1,7 @@
 import React, { FC } from "react";
+import * as logos from "../../utils/logo";
 
 import "./EntityPower.css";
-
-import CNLogo from "../../assets/cngrouplogo.jpg";
 
 type PowerProps = {
   x: number;
@@ -10,8 +9,16 @@ type PowerProps = {
   eaten?: Boolean;
 };
 
+function getRandomLogo(maxLogos: number) {
+  return Math.floor(Math.random() * maxLogos);
+}
+
 const EntityPoint: FC<PowerProps> = ({ x, y, eaten = false }) => {
-  console.log(eaten);
+  let randomLogoKey: keyof typeof logos;
+
+  randomLogoKey = Object.keys(logos)[
+    getRandomLogo(Object.keys(logos).length)
+  ] as keyof typeof logos;
 
   if (!eaten) {
     return (
@@ -27,7 +34,7 @@ const EntityPoint: FC<PowerProps> = ({ x, y, eaten = false }) => {
         }}
       >
         <div className="power">
-          <img src={CNLogo} alt="CN Group Logo" />
+          <img src={logos[randomLogoKey]} alt="CN Group Logo" />
         </div>
       </div>
     );

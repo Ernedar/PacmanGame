@@ -9,8 +9,6 @@ type PointProps = {
 };
 
 const EntityPoint: FC<PointProps> = ({ x, y, eaten = false }) => {
-  console.log(eaten);
-
   if (!eaten) {
     return (
       <div
