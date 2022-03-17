@@ -1,4 +1,4 @@
-import { TileType } from "../enums";
+import { TileType } from "./enums";
 import { PacmanMaze } from "../assets/OriginalPacmanMaze";
 
 export function translateTile(t: number) {

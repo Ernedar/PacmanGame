@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { MazeWall, GhostHome, PortalDirection } from "../../enums";
+import { MazeWall, GhostHome, PortalDirection } from "../../utils/enums";
 import Icon from "../Icons";
 
 import "./MazeTile.css";
