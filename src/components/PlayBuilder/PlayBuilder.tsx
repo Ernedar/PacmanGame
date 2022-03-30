@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import "./PlayBuilder.css";
 import { positionChecker } from "../../utils/utils";
+import { randomDirectionHandler } from "../../utils/handlers";
 import EntityPoint from "../EntityPoint/";
 import EntityPower from "../EntityPower";
 
@@ -27,7 +28,7 @@ const PlayBuilder: FC<PlayBuilderProps> = ({
   ghostsStartPositions
 }) => {
   /*
-  const testPosition = [14, 15];
+  console.log("Ghosts start on " + ghostsStartPositions);
 
   console.log(
     "Pacman Starting on coordinates: X: " +
@@ -35,12 +36,26 @@ const PlayBuilder: FC<PlayBuilderProps> = ({
       " Y: " +
       pacmanStartPosition[1]
   );
-  console.log("Ghosts start on " + ghostsStartPositions);
+*/
+  const testPosition = [14, 15];
 
   const movement = positionChecker(testPosition[0], testPosition[1]);
-
-  console.log(movement);
+  /*
+  console.log(
+    "movement options: " +
+      movement.top +
+      ", " +
+      movement.right +
+      ", " +
+      movement.bottom +
+      ", " +
+      movement.left
+  );
 */
+  const randomDirection = randomDirectionHandler(movement);
+
+  console.log("randomDirection result: " + randomDirection);
+
   return (
     <div className="game-actions-entities">
       {mazeDefinition.map((tileColumn, y) =>
@@ -53,6 +68,17 @@ const PlayBuilder: FC<PlayBuilderProps> = ({
           return null;
         })
       )}
+      <div
+        className="testSquare"
+        style={{
+          transform:
+            "translate(calc(" +
+            testPosition[1] +
+            " * var(--tile-dim)), calc(" +
+            testPosition[0] +
+            " * var(--tile-dim))"
+        }}
+      />
     </div>
   );
 };
