@@ -1,5 +1,4 @@
-import { TileType } from "./enums";
-import { translateTile, positionChecker } from "./utils";
+import { Inhabitants } from "./enums";
 
 export function randomDirectionHandler(directions: {}) {
   const directionsArray = Object.entries(directions);
@@ -18,3 +17,52 @@ export function randomDirectionHandler(directions: {}) {
 
   return Object.values(randomDirection)[0];
 }
+
+export function startPositionHandler(maze: number[][], inhabitant: string) {
+  let inhabitantValue: number;
+
+  const inhabitantSetter = inhabitant as keyof typeof Inhabitants;
+
+  inhabitantValue = Inhabitants[inhabitantSetter];
+
+  let entityStartPosition: number[] = [];
+
+  maze.map((tileColumn, y) =>
+    tileColumn.map((tile, x) => {
+      if (tile === inhabitantValue) {
+        return (entityStartPosition = [y, x]);
+      } else {
+        return [];
+      }
+    })
+  );
+
+  return entityStartPosition;
+}
+
+/*
+  ------ WINDOW LISTENER FOR KEYBOARD ------
+*/
+
+export function keyDownEventHandler(event: KeyboardEvent): void {
+  if (event.code === "Enter") {
+    console.log("agreed");
+  } else if (event.code === "keyA" || event.code === "ArrowLeft") {
+    console.log("direction: left");
+  } else if (event.code === "keyD" || event.code === "ArrowRight") {
+    console.log("direction: right");
+  } else if (event.code === "keyW" || event.code === "ArrowUp") {
+    console.log("direction: up");
+  } else if (event.code === "keyS" || event.code === "ArrowDown") {
+    console.log("direction: down");
+  }
+}
+
+export function escapeKeyEventHandler(event: KeyboardEvent): void {
+  if (event.code === "Escape") {
+    console.log(event.code + " was pushed and released");
+  }
+}
+
+window.addEventListener("keydown", keyDownEventHandler);
+window.addEventListener("keyup", escapeKeyEventHandler);

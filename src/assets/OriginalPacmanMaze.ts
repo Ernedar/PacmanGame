@@ -432,10 +432,10 @@ export const PacmanMaze = [
     0,
     211,
     123,
-    0,
-    0,
-    0,
-    0,
+    21,
+    22,
+    23,
+    24,
     124,
     211,
     0,
@@ -703,7 +703,7 @@ export const PacmanMaze = [
     31,
     31,
     31,
-    0,
+    1,
     0,
     31,
     31,
@@ -931,17 +931,4 @@ export const PacmanMaze = [
   ]
 ];
 
-export const PacmanStartPosition = [23, 13];
-
-export const GhostStartPositions = [
-  [14, 12],
-  [14, 13],
-  [14, 14],
-  [14, 15]
-];
-
-export default {
-  PacmanMaze,
-  PacmanStartPosition,
-  GhostStartPositions
-};
+export default { PacmanMaze };

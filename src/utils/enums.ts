@@ -116,3 +116,11 @@ export enum TileType {
   power = "powerup",
   ghost = "ghost"
 }
+
+export enum Inhabitants {
+  pacman = 1,
+  clyde = 21,
+  inky = 22,
+  pinky = 23,
+  blinky = 24
+}

@@ -1,60 +1,41 @@
 import React, { FC } from "react";
 import "./PlayBuilder.css";
 import { positionChecker } from "../../utils/utils";
-import { randomDirectionHandler } from "../../utils/handlers";
+import {
+  randomDirectionHandler,
+  startPositionHandler
+} from "../../utils/handlers";
 import EntityPoint from "../EntityPoint/";
 import EntityPower from "../EntityPower";
 
-/*
-interface PlayTile {
-  x: number;
-  y: number;
-  whatAmI: "wall" | "point" | "power";
-}
-
-type PlayMap = Record<string, PlayTile>;
-
-*/
-
 type PlayBuilderProps = {
   mazeDefinition: number[][];
-  pacmanStartPosition: number[];
-  ghostsStartPositions: number[][];
 };
 
-const PlayBuilder: FC<PlayBuilderProps> = ({
-  mazeDefinition,
-  pacmanStartPosition,
-  ghostsStartPositions
-}) => {
-  /*
-  console.log("Ghosts start on " + ghostsStartPositions);
+const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
+  const pacmanStarterPosition = startPositionHandler(mazeDefinition, "pacman");
 
-  console.log(
-    "Pacman Starting on coordinates: X: " +
-      pacmanStartPosition[0] +
-      " Y: " +
-      pacmanStartPosition[1]
+  const pacmanCurrentDirections = positionChecker(
+    pacmanStarterPosition[0],
+    pacmanStarterPosition[1]
   );
-*/
+
+  const pacmanNextRandomDirection = randomDirectionHandler(
+    pacmanCurrentDirections
+  );
+
+  /*
+  console.log(
+    "Pacman starts on [" +
+      pacmanStarterPosition +
+      "], with possible directions: " +
+      Object.values(pacmanCurrentDirections) +
+      "; next move to: " +
+      pacmanNextRandomDirection
+  );
+  */
+
   const testPosition = [14, 15];
-
-  const movement = positionChecker(testPosition[0], testPosition[1]);
-  /*
-  console.log(
-    "movement options: " +
-      movement.top +
-      ", " +
-      movement.right +
-      ", " +
-      movement.bottom +
-      ", " +
-      movement.left
-  );
-*/
-  const randomDirection = randomDirectionHandler(movement);
-
-  console.log("randomDirection result: " + randomDirection);
 
   return (
     <div className="game-actions-entities">
