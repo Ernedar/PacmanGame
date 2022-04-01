@@ -13,8 +13,30 @@ html {
   --tile-ghost-home-stroke-color-part: #007aff;
   --tile-portal-stroke-color-part: #873e23;
   --tile-portal-fill-color-part: #eab676;
+
+  /* POINTS */
   --point-bg-color: #ed1848;
   --point-shadow-color: #900c3f;
+
+  /* PACMAN */
+  --pacman-dimension: var(--tile-dim);
+  --pacman-color: #ffe300;
+  --pacman-color-grad: #ffc23d;
+  --pacman-color-eye: var(--background-color);
+  --pacman-mouth-rotation: 45deg;
+  --pacman-mouth-rotation-neg: -45deg;
+
+  /* GHOST */
+  --ghost-dimension: var(--tile-dim) * 0.85;
+  --ghost-hover: var(--ghost-dimension) / 20;
+  --ghost-hover-neg: var(--ghost-dimension) / -20;
+  --ghost-eye-color-white: var(--background-color);
+  --ghost-eye-color: #0d0d0d;
+  --ghost-inky: #00ffff;
+  --ghost-pinky: #ffb8ff;
+  --ghost-clyde: #ffb852;
+  --ghost-blinky: #ff0000;
+  --ghost-scared: #1919a6;
 }
 
 body {

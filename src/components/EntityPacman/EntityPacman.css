@@ -1,0 +1,87 @@
+.pacman {
+  position: relative;
+  width: var(--pacman-dimension);
+  height: var(--pacman-dimension);
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.top-half,
+.bottom-half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(var(--pacman-dimension) / 2);
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  background-color: var(--pacman-color);
+}
+
+.top-half {
+  top: 0;
+  transform: rotate(var(--pacman-mouth-rotation-neg));
+  transform-origin: 50% 100%;
+  animation-name: TopRotation;
+  border-top-left-radius: var(--pacman-dimension);
+  border-top-right-radius: var(--pacman-dimension);
+  background: radial-gradient(
+    ellipse at bottom,
+    var(--pacman-color) 55%,
+    var(--pacman-color-grad)
+  );
+}
+
+.bottom-half {
+  bottom: 0;
+  transform: rotate(var(--pacman-mouth-rotation));
+  transform-origin: 50% 0%;
+  animation-name: BottomRotation;
+  border-bottom-left-radius: var(--pacman-dimension);
+  border-bottom-right-radius: var(--pacman-dimension);
+  background: radial-gradient(
+    ellipse at top,
+    var(--pacman-color) 55%,
+    var(--pacman-color-grad)
+  );
+}
+
+.eye {
+  position: absolute;
+  top: calc(var(--pacman-dimension) / 5);
+  left: 50%;
+  width: calc(var(--pacman-dimension) / 10);
+  height: calc(var(--pacman-dimension) / 10);
+  border-radius: 50%;
+  background-color: var(--background-color);
+}
+
+@keyframes TopRotation {
+  0% {
+    transform: rotate(var(--pacman-mouth-rotation-neg));
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(var(--pacman-mouth-rotation-neg));
+  }
+}
+
+@keyframes BottomRotation {
+  0% {
+    transform: rotate(var(--pacman-mouth-rotation));
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(var(--pacman-mouth-rotation));
+  }
+}

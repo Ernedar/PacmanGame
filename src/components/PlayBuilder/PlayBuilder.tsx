@@ -1,12 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import "./PlayBuilder.css";
 import { positionChecker } from "../../utils/utils";
 import {
   randomDirectionHandler,
-  startPositionHandler
+  startPositionHandler,
+  keyDownEventHandler,
+  escapeKeyEventHandler
 } from "../../utils/handlers";
+import { Pacman, Ghost } from "../../utils/interfaces";
 import EntityPoint from "../EntityPoint/";
 import EntityPower from "../EntityPower";
+import EntityPacman from "../EntityPacman";
+import EntityGhost from "../EntityGhost";
+
+window.addEventListener("keydown", keyDownEventHandler);
+window.addEventListener("keyup", escapeKeyEventHandler);
 
 type PlayBuilderProps = {
   mazeDefinition: number[][];
@@ -14,6 +22,7 @@ type PlayBuilderProps = {
 
 const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
   const pacmanStarterPosition = startPositionHandler(mazeDefinition, "pacman");
+  const pacmanCurrentPosition = pacmanStarterPosition;
 
   const pacmanCurrentDirections = positionChecker(
     pacmanStarterPosition[0],
@@ -35,7 +44,26 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
   );
   */
 
-  const testPosition = [14, 15];
+  const ghostClydeStarterPosition = startPositionHandler(
+    mazeDefinition,
+    "clyde"
+  );
+  const ghostClydeCurrentPosition = ghostClydeStarterPosition;
+
+  const ghostPinkyStarterPosition = startPositionHandler(
+    mazeDefinition,
+    "pinky"
+  );
+  const ghostPinkyCurrentPosition = ghostPinkyStarterPosition;
+
+  const ghostInkyStarterPosition = startPositionHandler(mazeDefinition, "inky");
+  const ghostInkyCurrentPosition = ghostInkyStarterPosition;
+
+  const ghostBlinkyStarterPosition = startPositionHandler(
+    mazeDefinition,
+    "blinky"
+  );
+  const ghostBlinkyCurrentPosition = ghostBlinkyStarterPosition;
 
   return (
     <div className="game-actions-entities">
@@ -49,16 +77,30 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
           return null;
         })
       )}
-      <div
-        className="testSquare"
-        style={{
-          transform:
-            "translate(calc(" +
-            testPosition[1] +
-            " * var(--tile-dim)), calc(" +
-            testPosition[0] +
-            " * var(--tile-dim))"
-        }}
+      <EntityPacman speed={250} currentPosition={pacmanCurrentPosition} />
+      <EntityGhost
+        ghostName="clyde"
+        ghostState="inactive"
+        speed={250}
+        currentPosition={ghostClydeCurrentPosition}
+      />
+      <EntityGhost
+        ghostName="inky"
+        ghostState="inactive"
+        speed={150}
+        currentPosition={ghostInkyCurrentPosition}
+      />
+      <EntityGhost
+        ghostName="pinky"
+        ghostState="inactive"
+        speed={450}
+        currentPosition={ghostPinkyCurrentPosition}
+      />
+      <EntityGhost
+        ghostName="blinky"
+        ghostState="inactive"
+        speed={300}
+        currentPosition={ghostBlinkyCurrentPosition}
       />
     </div>
   );

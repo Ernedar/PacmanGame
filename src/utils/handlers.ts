@@ -63,6 +63,3 @@ export function escapeKeyEventHandler(event: KeyboardEvent): void {
     console.log(event.code + " was pushed and released");
   }
 }
-
-window.addEventListener("keydown", keyDownEventHandler);
-window.addEventListener("keyup", escapeKeyEventHandler);
