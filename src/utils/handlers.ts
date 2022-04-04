@@ -47,13 +47,13 @@ export function startPositionHandler(maze: number[][], inhabitant: string) {
 export function keyDownEventHandler(event: KeyboardEvent): void {
   if (event.code === "Enter") {
     console.log("agreed");
-  } else if (event.code === "keyA" || event.code === "ArrowLeft") {
+  } else if (event.code === "ArrowLeft") {
     console.log("direction: left");
-  } else if (event.code === "keyD" || event.code === "ArrowRight") {
+  } else if (event.code === "ArrowRight") {
     console.log("direction: right");
-  } else if (event.code === "keyW" || event.code === "ArrowUp") {
+  } else if (event.code === "ArrowUp") {
     console.log("direction: up");
-  } else if (event.code === "keyS" || event.code === "ArrowDown") {
+  } else if (event.code === "ArrowDown") {
     console.log("direction: down");
   }
 }

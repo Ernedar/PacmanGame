@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import "./PlayBuilder.css";
 import { positionChecker } from "../../utils/utils";
 import {
@@ -13,14 +13,27 @@ import EntityPower from "../EntityPower";
 import EntityPacman from "../EntityPacman";
 import EntityGhost from "../EntityGhost";
 
-window.addEventListener("keydown", keyDownEventHandler);
-window.addEventListener("keyup", escapeKeyEventHandler);
-
 type PlayBuilderProps = {
   mazeDefinition: number[][];
 };
 
 const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
+  useEffect(() => {
+    window.addEventListener("keydown", keyDownEventHandler);
+
+    return () => {
+      window.removeEventListener("keydown", keyDownEventHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("keyup", escapeKeyEventHandler);
+
+    return () => {
+      window.removeEventListener("keyup", escapeKeyEventHandler);
+    };
+  }, []);
+
   const pacmanStarterPosition = startPositionHandler(mazeDefinition, "pacman");
   const pacmanCurrentPosition = pacmanStarterPosition;
 

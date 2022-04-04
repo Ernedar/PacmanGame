@@ -6,15 +6,9 @@ import "./MazeLayerWrapper.css";
 
 type MazeLayerProps = {
   mazeArrayInput: number[][];
-  pacmanStartInput: number[];
-  ghostsStartInput: number[][];
 };
 
-const MazeLayerWrapper: FC<MazeLayerProps> = ({
-  mazeArrayInput,
-  pacmanStartInput,
-  ghostsStartInput
-}) => {
+const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput }) => {
   const playgroundWidth = mazeArrayInput[0].length;
   const playgroundHeight = mazeArrayInput.length;
 
@@ -27,11 +21,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({
       }}
     >
       <MazeBuilder mazeArray={mazeArrayInput} />
-      <PlayBuilder
-        mazeDefinition={mazeArrayInput}
-        pacmanStartPosition={pacmanStartInput}
-        ghostsStartPositions={ghostsStartInput}
-      />
+      <PlayBuilder mazeDefinition={mazeArrayInput} />
     </div>
   );
 };
