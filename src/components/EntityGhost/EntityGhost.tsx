@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import classNames from "classnames";
-import { GhostStates, GhostBehavior } from "../../utils/types";
+import { GhostStates, GhostBehavior } from "../../utils/enums";
 
 import "./EntityGhost.css";
 
@@ -17,7 +17,18 @@ const EntityGhost: FC<GhostProps> = ({
   speed,
   currentPosition
 }) => {
-  const ghostAnimationDuration = speed * 10 + "ms";
+  const ghostAnimationDuration = speed * 10 + "ms";  
+
+  let ghostStateName; 
+
+  if(ghostState === GhostStates.scared) {
+    ghostStateName = GhostStates.scared;
+  } else if (ghostState === GhostStates.dead) {
+    ghostStateName = GhostStates.dead
+  } else {
+    ghostStateName = ghostName;
+  }
+
   return (
     <div
       className="ghost-wrapper"
@@ -31,7 +42,7 @@ const EntityGhost: FC<GhostProps> = ({
       }}
     >
       <div
-        className={classNames("ghost", ghostName)}
+        className={classNames("ghost", ghostStateName)}
         style={{ animationDuration: ghostAnimationDuration }}
       >
         <div className="ghost-body">

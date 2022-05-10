@@ -114,11 +114,12 @@
   background-color: var(--ghost-scared);
 }
 
-.dead-ghost .ghost-body,
-.dead-ghost .skirt-wave {
+.dead .ghost-body,
+.dead .skirt-wave {
   background-color: transparent;
 }
 
-.dead-ghost .ghost-eye {
+.dead .ghost-eye {
   border: 1px solid var(--ghost-eye-color);
+  background-color: var(--ghost-eye-color-white-dead);
 }

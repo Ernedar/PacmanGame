@@ -1,6 +1,16 @@
 html {
   --background-color: #cbd9db;
   --pure-white: #ffffff;
+  --text-light: #f7f7f7;
+  --base-black: #0d0d0d;
+
+  /* PAGE SETTINGS */
+
+  --padding-main: 1rem;
+
+  /* MODAL SETTINGS */
+  --modal-background: var(--base-black);
+  --modal-text: var(--text-light);
 
   /* SVG SETTINGS */
   --tile-dim: 1.75rem;
@@ -9,7 +19,7 @@ html {
   --tile-portal-stroke-dim: 1.5rem;
   --tile-point-dim: var(--tile-dim) / 3;
   --tile-wall-stroke-color: #0d0d0d55;
-  --tile-wall-stroke-color-part: #0d0d0d;
+  --tile-wall-stroke-color-part: var(--base-black);
   --tile-ghost-home-stroke-color-part: #007aff;
   --tile-portal-stroke-color-part: #873e23;
   --tile-portal-fill-color-part: #eab676;
@@ -31,6 +41,7 @@ html {
   --ghost-hover: var(--ghost-dimension) / 20;
   --ghost-hover-neg: var(--ghost-dimension) / -20;
   --ghost-eye-color-white: var(--background-color);
+  --ghost-eye-color-white-dead: var(--pure-white);
   --ghost-eye-color: #0d0d0d;
   --ghost-inky: #00ffff;
   --ghost-pinky: #ffb8ff;
@@ -41,6 +52,12 @@ html {
 
 body {
   background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .App {

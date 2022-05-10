@@ -1,13 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import "./PlayBuilder.css";
 import { positionChecker } from "../../utils/utils";
-import {
-  GhostStates,
-  PacManStates,
-  Directions,
-  GhostBehavior,
-  GameState
-} from "../../utils/types";
 import { Ghost, Pacman } from "../../utils/interfaces";
 import {
   randomDirectionHandler,
@@ -15,6 +8,7 @@ import {
   keyDownEventHandler,
   escapeKeyEventHandler
 } from "../../utils/handlers";
+import { GameStateType, Directions, InhabitantNames, PacManStates, GhostStates, GhostBehavior } from "../../utils/enums";
 import EntityPoint from "../EntityPoint/";
 import EntityPower from "../EntityPower";
 import EntityPacman from "../EntityPacman";
@@ -38,13 +32,13 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
    * +1 point is for EntityPoint eaten, +10 points is for EntityPower eaten and +200 for eaten scared Ghosts.
    */
 
-  const [gameState, handleGameState] = useState<GameState>("not-started");
+  const [gameState, handleGameState] = useState<GameStateType>(GameStateType.notstarted);
   const [gameScore, handleGameScore] = useState<number>(0);
 
   /* ----- PACMAN ----- */
 
   const [pacmanCurrentPosition, handlePacmanPosition] = useState<number[]>(
-    startPositionHandler(mazeDefinition, "pacman")
+    startPositionHandler(mazeDefinition, InhabitantNames.pacman)
   );
 
   const pacmanAvailableDirections = positionChecker(
@@ -52,11 +46,9 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
     pacmanCurrentPosition[1]
   );
 
-  const [pacmanCurrentDirection, handlePacmanDirection] = useState<Directions>(
-    "none"
-  );
+  const [pacmanCurrentDirection, handlePacmanDirection] = useState<Directions>(Directions.none);
 
-  const [pacmanState, handlePacmanStates] = useState<PacManStates>("inactive");
+  const [pacmanState, handlePacmanStates] = useState<PacManStates>(PacManStates.idle);
 
   const pacmanSpeed = 250;
 
@@ -66,10 +58,10 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
 
   const [ghostPinkyCurrentPosition, handleGhostPinkyPosition] = useState<
     number[]
-  >(startPositionHandler(mazeDefinition, "pinky"));
+  >(startPositionHandler(mazeDefinition, InhabitantNames.pinky));
 
   const [ghostPinkyState, handleGhostPinkyState] = useState<GhostStates>(
-    "inactive"
+    GhostStates.idle
   );
 
   const ghostPinkySpeed = 450;
@@ -78,10 +70,10 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
 
   const [ghostInkyCurrentPosition, handleGhostInkyPosition] = useState<
     number[]
-  >(startPositionHandler(mazeDefinition, "inky"));
+  >(startPositionHandler(mazeDefinition, InhabitantNames.inky));
 
   const [ghostInkyState, handleGhostInkyState] = useState<GhostStates>(
-    "inactive"
+    GhostStates.idle
   );
 
   const ghostInkySpeed = 150;
@@ -90,10 +82,10 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
 
   const [ghostBlinkyCurrentPosition, handleGhostBlinkyPosition] = useState<
     number[]
-  >(startPositionHandler(mazeDefinition, "blinky"));
+  >(startPositionHandler(mazeDefinition, InhabitantNames.blinky));
 
   const [ghostBlinkyState, handleGhostBlinkyState] = useState<GhostStates>(
-    "inactive"
+    GhostStates.idle
   );
 
   const ghostBlinkySpeed = 300;
@@ -102,10 +94,10 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
 
   const [ghostClydeCurrentPosition, handleGhostClydePosition] = useState<
     number[]
-  >(startPositionHandler(mazeDefinition, "clyde"));
+  >(startPositionHandler(mazeDefinition, InhabitantNames.clyde));
 
   const [ghostClydeState, handleGhostClydeState] = useState<GhostStates>(
-    "inactive"
+    GhostStates.idle
   );
 
   const ghostClydeSpeed = 250;
@@ -156,25 +148,25 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
         currentPosition={pacmanCurrentPosition}
       />
       <EntityGhost
-        ghostName="clyde"
+        ghostName={GhostBehavior.clyde}
         ghostState={ghostClydeState}
         speed={ghostClydeSpeed}
         currentPosition={ghostClydeCurrentPosition}
       />
       <EntityGhost
-        ghostName="inky"
+        ghostName={GhostBehavior.inky}
         ghostState={ghostInkyState}
         speed={ghostInkySpeed}
         currentPosition={ghostInkyCurrentPosition}
       />
       <EntityGhost
-        ghostName="pinky"
+        ghostName={GhostBehavior.pinky}
         ghostState={ghostPinkyState}
         speed={ghostPinkySpeed}
         currentPosition={ghostPinkyCurrentPosition}
       />
       <EntityGhost
-        ghostName="blinky"
+        ghostName={GhostBehavior.blinky}
         ghostState={ghostBlinkyState}
         speed={ghostBlinkySpeed}
         currentPosition={ghostBlinkyCurrentPosition}
