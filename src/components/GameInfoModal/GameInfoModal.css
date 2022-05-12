@@ -31,7 +31,7 @@
   width: 95%;
   max-width: 95%;
   height: auto;
-  min-height: 300px;
+  min-height: var(--modal-min-h);
   max-height: 95%;
   background-color: var(--modal-background);
   color: var(--modal-text);
@@ -41,7 +41,80 @@
 
 @media only screen and (min-width: 768px) {
   .modal-card {
-    max-width: 600px;
-    max-height: 600px;
+    max-width: var(--modal-max-dim);
+    max-height: var(--modal-max-dim);
   }
+}
+
+.modal-card-header {
+  width: 100%;
+  height: auto;
+  min-height: var(--header-footer-height);
+  padding: var(--padding-main);
+}
+
+.modal-card-header h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.786rem;
+  line-height: 1.4875;
+}
+
+.modal-card-body {
+  padding: var(--padding-main);
+  display: block;
+  width: 100%;
+  height: calc(100% - (var(--header-footer-height) * 2));
+  min-height: calc(var(--modal-min-h) - (var(--header-footer-height) * 2));
+}
+
+.modal-card-body p {
+  text-align: center;
+  max-width: 75%;
+  display: block;
+  margin: 0 auto;
+  font-size: 1.325rem;
+  line-height: 1.4875;
+}
+
+.modal-card-footer {
+  width: 100%;
+  height: auto;
+  min-height: var(--header-footer-height);
+  padding: var(--padding-main);
+}
+
+.modal-btn {
+  font-size: 1.325rem;
+  line-height: 1.4875;
+  margin: 0;
+  border-radius: calc(var(--padding-main) / 2);
+  padding: calc(var(--padding-main) / 2) calc(var(--padding-main) * 2);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--modal-btn-border);
+  background-color: var(--modal-btn-bg);
+  color: var(--modal-btn-text);
+  transition: all 450ms ease-in-out;
+  cursor: pointer;
+}
+
+.modal-btn:hover {
+  border-color: var(--modal-btn-border-hover);
+  background-color: var(--modal-btn-bg-hover);
+  color: var(--modal-btn-text-hover);
+}
+
+.modal-btn + .modal-btn {
+  margin-right: var(--padding-main);
+}
+
+.force-hidden {
+  display: none !important;
+  visibility: hidden;
+  pointer-events: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
 }

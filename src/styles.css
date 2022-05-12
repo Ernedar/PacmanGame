@@ -11,6 +11,15 @@ html {
   /* MODAL SETTINGS */
   --modal-background: var(--base-black);
   --modal-text: var(--text-light);
+  --modal-min-h: 300px;
+  --modal-max-dim: 600px;
+  --header-footer-height: 2.5rem;
+  --modal-btn-border: #ffc23d;
+  --modal-btn-bg: var(--base-black);
+  --modal-btn-text: var(--text-light);
+  --modal-btn-border-hover: #ffc23d;
+  --modal-btn-bg-hover: #ffe300;
+  --modal-btn-text-hover: var(--base-black);
 
   /* SVG SETTINGS */
   --tile-dim: 1.75rem;

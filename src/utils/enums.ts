@@ -158,7 +158,8 @@ export enum GameStateType {
   notstarted = "not-started",
   running = "running",
   paused = "paused",
-  finished = "finished"
+  finished = "finished",
+  lost = "lost"
 }
 
 export enum Directions {

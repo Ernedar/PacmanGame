@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import {
-  GhostStates,
-  PacManStates,
-  Directions,
-  GhostBehavior,
-  GameState
-} from "./types";
-import { Ghost, Pacman } from "./interfaces";
+import { GameStateType } from "./enums";
+
+const initialGameState = {
+  gameState: GameStateType.notstarted,
+  gameScore: 0
+};
+
+export default initialGameState;
