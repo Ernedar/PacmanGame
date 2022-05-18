@@ -9,14 +9,13 @@ function GameInfoModal({ gameStateType, dispatch }) {
   const opened =
     gameStateType === GameStateType.notstarted ||
     gameStateType === GameStateType.paused ||
-    gameStateType === GameStateType.finished ||
-    gameStateType === GameStateType.lost;
+    gameStateType === GameStateType.lost ||
+    gameStateType === GameStateType.finished;
 
   return (
     <div
       className={classNames("modal-wrapper", {
-        opened: opened,
-        closed: !opened
+        opened: opened
       })}
     >
       <div className="modal-card">
@@ -57,12 +56,11 @@ function GameInfoModal({ gameStateType, dispatch }) {
         <div className="modal-card-footer">
           <button
             className={classNames("modal-btn", {
-              "force-hidden": gameStateType === GameStateType.paused
+              "force-hidden": !(gameStateType === GameStateType.notstarted)
             })}
             onClick={() =>
               dispatch({
-                type: GAME_ACTIONS.START_GAME,
-                payload: { gameState: GameStateType.running }
+                type: GAME_ACTIONS.START_GAME
               })
             }
           >
@@ -74,8 +72,7 @@ function GameInfoModal({ gameStateType, dispatch }) {
             })}
             onClick={() =>
               dispatch({
-                type: GAME_ACTIONS.CONTINUE_GAME,
-                payload: { gameState: GameStateType.running }
+                type: GAME_ACTIONS.CONTINUE_GAME
               })
             }
           >
@@ -83,12 +80,15 @@ function GameInfoModal({ gameStateType, dispatch }) {
           </button>
           <button
             className={classNames("modal-btn", {
-              "force-hidden": !(gameStateType === GameStateType.paused)
+              "force-hidden": !(
+                gameStateType === GameStateType.paused ||
+                gameStateType === GameStateType.lost ||
+                gameStateType === GameStateType.finished
+              )
             })}
             onClick={() =>
               dispatch({
-                type: GAME_ACTIONS.RESET_GAME,
-                payload: { gameState: GameStateType.notstarted, gameScore: 0 }
+                type: GAME_ACTIONS.RESET_GAME
               })
             }
           >

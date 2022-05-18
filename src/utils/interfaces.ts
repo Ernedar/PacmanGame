@@ -1,4 +1,4 @@
-import { PacManStates, GhostStates, Directions, GhostBehavior } from "./types";
+import { PacManStates, GhostStates, Directions, GhostBehavior } from "./enums";
 
 export interface Pacman {
   startPosition: [];

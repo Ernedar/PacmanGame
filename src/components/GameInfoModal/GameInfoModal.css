@@ -9,6 +9,9 @@
   margin: 0;
   padding: var(--padding-main);
   background-color: rgba(0, 0, 0, 0.25);
+  display: none;
+  visibility: hidden;
+  pointer-events: none;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
@@ -18,12 +21,6 @@
   display: flex;
   visibility: visible;
   pointer-events: initial;
-}
-
-.closed {
-  display: none;
-  visibility: hidden;
-  pointer-events: none;
 }
 
 .modal-card {
