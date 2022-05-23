@@ -24,16 +24,17 @@ type MazeLayerProps = {
   mazeArrayInput: number[][];
 };
 
-function updateAllGhosts(ghosts, values = {}) {
-  console.log(ghosts);
+function selectGameState(state) {
+  return state.game.gameState;
+}
 
+function updateAllGhosts(ghosts, values = {}) {
   const updatedObject = Object.keys(ghosts).reduce((acc, ghostName) => {
     return {
       ...acc,
       [ghostName]: { ...ghosts[ghostName], ...values }
     };
   }, {});
-  console.log(updatedObject);
 }
 
 function GameReducer(state, action) {
@@ -62,9 +63,56 @@ function GameReducer(state, action) {
       };
     case GAME_ACTIONS.RESET_GAME:
       console.log("Reseted");
-      return initialGameState;
+      /* RESET helper function needed, this is a mess, not even points and powers present. */
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          gameState: GameStateType.notstarted,
+          gameScore: 0
+        },
+        pacman: {
+          ...state.pacman,
+          pacmanState: PacManStates.idle,
+          pacmanCurrentPosition: state.pacman.pacmanStartPosition,
+          pacmanCurrentDirection: Directions.none
+        },
+        ghosts: {
+          ...state.ghosts,
+          clyde: {
+            ...state.ghosts.clyde,
+            ghostState: GhostStates.idle,
+            ghostCurrentPosition: state.ghosts.clyde.ghostStartPosition,
+            ghostCurrentDirection: Directions.none
+          },
+          pinky: {
+            ...state.ghosts.pinky,
+            ghostState: GhostStates.idle,
+            ghostCurrentPosition: state.ghosts.pinky.ghostStartPosition,
+            ghostCurrentDirection: Directions.none
+          },
+          blinky: {
+            ...state.ghosts.blinky,
+            ghostState: GhostStates.idle,
+            ghostCurrentPosition: state.ghosts.blinky.ghostStartPosition,
+            ghostCurrentDirection: Directions.none
+          },
+          inky: {
+            ...state.ghosts.cinky,
+            ghostState: GhostStates.idle,
+            ghostCurrentPosition: state.ghosts.inky.ghostStartPosition,
+            ghostCurrentDirection: Directions.none
+          }
+        }
+      };
     case GAME_ACTIONS.PAUSE_GAME:
-      return state;
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          gameState: GameStateType.paused
+        }
+      };
     case GAME_ACTIONS.CONTINUE_GAME:
       console.log("Running again");
       return {
@@ -109,30 +157,33 @@ function GameReducer(state, action) {
 
 const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput }) => {
   const [state, dispatch] = useReducer(GameReducer, initialGameState);
+  const gameState = selectGameState(state);
 
   const playgroundWidth = mazeArrayInput[0].length;
   const playgroundHeight = mazeArrayInput.length;
 
   /* GAME TICK BASICS AND SETTINGS */
 
+  /* prepare selector for different parts of state and helper functions */
+
   useEffect(() => {
     let gameTick = null;
 
-    if (state.game.gameState === GameStateType.running) {
+    if (gameState === GameStateType.running) {
       dispatch({ type: GAME_ACTIONS.GAME_TICK });
       /*  gameTick = setInterval(() => {
         dispatch({ type: GAME_ACTIONS.GAME_TICK });
-      }, 100);*/
+      }, 100); > Look at request animation frame */
     } else {
       if (gameTick) {
         clearInterval(gameTick);
       }
     }
-  }, [state.game.gameState]);
+  }, [gameState]);
 
   useEffect(() => {
     dispatch({ type: GAME_ACTIONS.INIT_GAME, payload: { mazeArrayInput } });
-  }, []);
+  }, [mazeArrayInput]);
 
   return (
     <div className="main-wrapper">
