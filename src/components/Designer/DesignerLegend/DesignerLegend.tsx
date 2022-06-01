@@ -15,20 +15,6 @@ import {
 
 const numberRegexPattern = /\d+/g;
 
-function getKeysFromEnums(enumImport: Object) {
-  const enumKeyArray = Object.keys(enumImport);
-
-  const cleanedEnumKeyArray = enumKeyArray.map((key) => {
-    const matchedString = key.match(numberRegexPattern) || [];
-
-    if (matchedString.length) {
-      return parseInt(matchedString[0], 0);
-    }
-  });
-
-  return cleanedEnumKeyArray;
-}
-
 function renderBuildingBlocks(enumImport: Object, type: TileType) {
   const array = Object.keys(enumImport);
 
@@ -51,9 +37,6 @@ function renderBuildingBlocks(enumImport: Object, type: TileType) {
 }
 
 const DesignerLegend: FC = () => {
-  const piecesGhostsClass = Object.values(GhostHome)[0];
-  const piecesGhosts = getKeysFromEnums(GhostHome)[0];
-
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
