@@ -1,9 +1,9 @@
 import React from "react";
-import { GameStateType } from "../../utils/enums";
+import { GameStateType } from "../../../utils/enums";
 import classNames from "classnames";
 
 import "./GameInfoModal.css";
-import { GAME_ACTIONS } from "../../utils/actions";
+import { GAME_ACTIONS } from "../../../utils/actions";
 
 function GameInfoModal({ gameStateType, dispatch }) {
   const opened =

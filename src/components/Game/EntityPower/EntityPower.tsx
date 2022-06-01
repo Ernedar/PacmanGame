@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import * as logos from "../../utils/logo";
+import * as logos from "../../../utils/logo";
 
 import "./EntityPower.css";
 

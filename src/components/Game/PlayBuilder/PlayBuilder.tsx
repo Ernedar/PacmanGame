@@ -1,13 +1,13 @@
 import React, { FC, useState, useEffect } from "react";
 import "./PlayBuilder.css";
-import { positionChecker } from "../../utils/utils";
-import { Ghost, Pacman } from "../../utils/interfaces";
+import { positionChecker } from "../../../utils/utils";
+import { Ghost, Pacman } from "../../../utils/interfaces";
 import {
   randomDirectionHandler,
   startPositionHandler,
   keyDownEventHandler,
   escapeKeyEventHandler
-} from "../../utils/handlers";
+} from "../../../utils/handlers";
 import {
   GameStateType,
   Directions,
@@ -15,8 +15,8 @@ import {
   PacManStates,
   GhostStates,
   GhostBehavior
-} from "../../utils/enums";
-import EntityPoint from "../EntityPoint/";
+} from "../../../utils/enums";
+import EntityPoint from "../EntityPoint";
 import EntityPower from "../EntityPower";
 import EntityPacman from "../EntityPacman";
 import EntityGhost from "../EntityGhost";

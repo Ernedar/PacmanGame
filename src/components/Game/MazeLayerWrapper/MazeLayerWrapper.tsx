@@ -8,15 +8,15 @@ import {
   GameStateType,
   GhostStates,
   PacManStates
-} from "../../utils/enums";
-import { GAME_ACTIONS } from "../../utils/actions";
+} from "../../../utils/enums";
+import { GAME_ACTIONS } from "../../../utils/actions";
 import {
   randomDirectionHandler,
   startPositionHandler,
   keyDownEventHandler,
   escapeKeyEventHandler
-} from "../../utils/handlers";
-import initialGameState from "../../state/initialState";
+} from "../../../utils/handlers";
+import initialGameState from "../../../state/initialState";
 
 import "./MazeLayerWrapper.css";
 
@@ -186,7 +186,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput }) => {
   }, [mazeArrayInput]);
 
   return (
-    <div className="main-wrapper">
+    <div className="game-wrapper">
       <div
         className="maze-layer-wrapper"
         style={{

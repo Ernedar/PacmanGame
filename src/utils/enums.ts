@@ -114,7 +114,7 @@ export enum TileType {
   door = "portal",
   point = "point",
   power = "powerup",
-  ghost = "ghost"
+  ghost = "ghostHome"
 }
 
 export enum Inhabitants {

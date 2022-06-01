@@ -1,0 +1,58 @@
+.side-nav {
+  min-width: var(--nav-min-w);
+  max-width: var(--nav-max-w);
+  width: 25%;
+  height: 100vh;
+  background-color: var(--nav-bg);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul li p {
+  font-size: 1.5rem;
+  line-height: 1.325;
+  text-transform: uppercase;
+  color: var(--nav-text);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.sub-link {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+ul li {
+  margin-bottom: var(--nav-obj-margin);
+}
+
+p + ul {
+  margin-top: calc(var(--nav-obj-margin) / 2);
+}
+
+ul ul li:not(:last-child) {
+  margin-bottom: calc(var(--nav-obj-margin) / 2);
+}
+
+ul li a {
+  text-transform: uppercase;
+  color: var(--nav-text);
+  text-decoration: none;
+  transition: color 250ms ease-in-out;
+}
+
+ul li a:hover {
+  color: var(--pacman-color-grad);
+}

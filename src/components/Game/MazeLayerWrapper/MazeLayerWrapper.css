@@ -4,10 +4,11 @@
   position: relative;
 }
 
-.main-wrapper {
+.game-wrapper {
+  text-align: center;
   width: 100%;
   height: auto;
-  padding: 0;
+  padding: 1rem;
   margin: 0;
   display: block;
   position: relative;

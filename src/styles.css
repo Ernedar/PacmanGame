@@ -8,6 +8,15 @@ html {
 
   --padding-main: 1rem;
 
+  /* NAVIGATION SETTINGS */
+
+  --nav-min-w: 200px;
+  --nav-max-w: 250px;
+  --nav-bg: #1f2c2d;
+  --nav-text: var(--text-light);
+  --nav-obj-margin: 1.5rem;
+  --nav-sub-obj-margin: 0.5rem;
+
   /* MODAL SETTINGS */
   --modal-background: var(--base-black);
   --modal-text: var(--text-light);
@@ -57,6 +66,12 @@ html {
   --ghost-clyde: #ffb852;
   --ghost-blinky: #ff0000;
   --ghost-scared: #1919a6;
+
+  /* DESIGNER SETTINGS */
+
+  --header-bg: #344a4b;
+  --header-bg-rgb: 52, 74, 75;
+  --legend-btn-bg: var(--text-light);
 }
 
 body {
@@ -67,16 +82,8 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-.App {
-  font-family: sans-serif;
-  text-align: center;
-  width: 100%;
-  height: auto;
-  display: block;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 table,
@@ -98,4 +105,13 @@ table tfoot tr tf {
 
 table {
   table-layout: fixed;
+}
+
+.main-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
 }
