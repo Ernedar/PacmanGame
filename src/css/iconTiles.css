@@ -1,6 +1,19 @@
+.icon {
+  display: block;
+}
+
+.wall,
+.ghost-tile,
+.portal,
 .path {
   width: var(--tile-dim);
   height: var(--tile-dim);
+}
+
+.wall,
+.ghost-tile,
+.portal {
+  stroke-width: var(--tile-wall-stroke-dim);
 }
 
 /* SINGLE WALL FRAGMENTS */

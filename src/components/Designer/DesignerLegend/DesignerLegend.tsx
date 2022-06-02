@@ -93,7 +93,9 @@ const DesignerLegend: FC = () => {
           className={classNames("designer-legend-tab", {
             active: selectedTab === 3
           })}
-        ></div>
+        >
+          <LegendButton tileType={TileType.path} tileNumber={0} />
+        </div>
       </div>
     </div>
   );

@@ -2,8 +2,6 @@ import React, { FC } from "react";
 import classNames from "classnames";
 import { GhostStates, GhostBehavior } from "../../../utils/enums";
 
-import "./EntityGhost.css";
-
 type GhostProps = {
   ghostName: GhostBehavior;
   ghostState: GhostStates;

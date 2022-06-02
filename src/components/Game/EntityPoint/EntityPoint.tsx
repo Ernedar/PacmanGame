@@ -1,7 +1,5 @@
 import React, { FC } from "react";
 
-import "./EntityPoint.css";
-
 type PointProps = {
   x: number;
   y: number;

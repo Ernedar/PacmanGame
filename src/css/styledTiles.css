@@ -1,0 +1,274 @@
+.testSquare {
+  width: var(--tile-dim);
+  height: var(--tile-dim);
+  background-color: rgba(255, 0, 0, 0.75);
+  position: absolute;
+}
+
+/* POWER + POINT + PACMAN + GHOSTS SHARED STYLES */
+
+.point-wrapper,
+.power-wrapper,
+.ghost-wrapper {
+  width: var(--tile-dim);
+  height: var(--tile-dim);
+  position: absolute;
+}
+
+.point,
+.power {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* POINT TILE */
+
+.point {
+  border-radius: 50%;
+  background-color: var(--point-bg-color);
+  box-shadow: inset calc(var(--tile-point-dim) / -2)
+    calc(var(--tile-point-dim) / -2) calc(var(--tile-point-dim) / 2)
+    calc(var(--tile-point-dim) / -2) var(--point-shadow-color);
+
+  width: calc(var(--tile-point-dim));
+  height: calc(var(--tile-point-dim));
+}
+
+/* POWER TILE */
+
+.power {
+  border: 2px solid var(--point-shadow-color);
+  background-color: var(--pure-white);
+  width: calc(var(--tile-dim) * 2 / 3);
+  height: calc(var(--tile-dim) * 2 / 3);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+}
+
+.power img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* PACMAN */
+
+.pacman {
+  position: relative;
+  width: var(--pacman-dimension);
+  height: var(--pacman-dimension);
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.top-half,
+.bottom-half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(var(--pacman-dimension) / 2);
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  background-color: var(--pacman-color);
+}
+
+.top-half {
+  top: 0;
+  transform: rotate(var(--pacman-mouth-rotation-neg));
+  transform-origin: 50% 100%;
+  animation-name: TopRotation;
+  border-top-left-radius: var(--pacman-dimension);
+  border-top-right-radius: var(--pacman-dimension);
+  background: radial-gradient(
+    ellipse at bottom,
+    var(--pacman-color) 55%,
+    var(--pacman-color-grad)
+  );
+}
+
+.bottom-half {
+  bottom: 0;
+  transform: rotate(var(--pacman-mouth-rotation));
+  transform-origin: 50% 0%;
+  animation-name: BottomRotation;
+  border-bottom-left-radius: var(--pacman-dimension);
+  border-bottom-right-radius: var(--pacman-dimension);
+  background: radial-gradient(
+    ellipse at top,
+    var(--pacman-color) 55%,
+    var(--pacman-color-grad)
+  );
+}
+
+.eye {
+  position: absolute;
+  top: calc(var(--pacman-dimension) / 5);
+  left: 50%;
+  width: calc(var(--pacman-dimension) / 10);
+  height: calc(var(--pacman-dimension) / 10);
+  border-radius: 50%;
+  background-color: var(--background-color);
+}
+
+@keyframes TopRotation {
+  0% {
+    transform: rotate(var(--pacman-mouth-rotation-neg));
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(var(--pacman-mouth-rotation-neg));
+  }
+}
+
+@keyframes BottomRotation {
+  0% {
+    transform: rotate(var(--pacman-mouth-rotation));
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(var(--pacman-mouth-rotation));
+  }
+}
+
+/* GHOSTS */
+
+.ghost-wrapper {
+  top: 0;
+  left: 0;
+}
+
+.ghost {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  width: calc(var(--ghost-dimension));
+  height: calc(var(--ghost-dimension) * 1.2);
+  animation-name: hover;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes hover {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, calc(-50% + var(--ghost-hover)));
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+
+.ghost-body {
+  position: relative;
+  width: calc(var(--ghost-dimension));
+  height: calc(var(--ghost-dimension));
+  border-top-left-radius: calc(var(--ghost-dimension) / 2);
+  border-top-right-radius: calc(var(--ghost-dimension) / 2);
+}
+
+.ghost-skirt {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+}
+
+.skirt-wave {
+  width: calc(var(--ghost-dimension) / 3);
+  height: calc(var(--ghost-dimension) / 5);
+  top: 100%;
+  border-bottom-left-radius: calc(var(--ghost-dimension) / 3);
+  border-bottom-right-radius: calc(var(--ghost-dimension) / 3);
+}
+
+.ghost-eye {
+  position: absolute;
+  top: calc(var(--ghost-dimension) / 3);
+  width: calc(var(--ghost-dimension) / 6);
+  height: calc(var(--ghost-dimension) / 3);
+  transform: translateX(-50%);
+  background-color: var(--ghost-eye-color-white);
+  border-radius: 100%;
+}
+
+.ghost-eye:nth-child(1) {
+  left: 35%;
+}
+
+.ghost-eye:nth-child(2) {
+  left: 65%;
+}
+
+.ghost-eye-socket {
+  width: calc(var(--ghost-dimension) / 10);
+  height: calc(var(--ghost-dimension) / 10);
+  background-color: var(--ghost-eye-color);
+  border-radius: 100%;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* GHOST COLORS */
+
+.clyde .ghost-body,
+.clyde .skirt-wave {
+  background-color: var(--ghost-clyde);
+}
+
+.inky .ghost-body,
+.inky .skirt-wave {
+  background-color: var(--ghost-inky);
+}
+
+.pinky .ghost-body,
+.pinky .skirt-wave {
+  background-color: var(--ghost-pinky);
+}
+
+.blinky .ghost-body,
+.blinky .skirt-wave {
+  background-color: var(--ghost-blinky);
+}
+
+.scared .ghost-body,
+.scared .skirt-wave {
+  background-color: var(--ghost-scared);
+}
+
+.dead .ghost-body,
+.dead .skirt-wave {
+  background-color: transparent;
+}
+
+.dead .ghost-eye {
+  border: 1px solid var(--ghost-eye-color);
+  background-color: var(--ghost-eye-color-white-dead);
+}

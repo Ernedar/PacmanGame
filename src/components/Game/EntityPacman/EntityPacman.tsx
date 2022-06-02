@@ -1,7 +1,5 @@
 import React, { FC } from "react";
 
-import "./EntityPacman.css";
-
 type PacmanProps = {
   speed: number;
   currentPosition: number[];

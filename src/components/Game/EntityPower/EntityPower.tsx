@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import * as logos from "../../../utils/logo";
 
-import "./EntityPower.css";
-
 type PowerProps = {
   x: number;
   y: number;
