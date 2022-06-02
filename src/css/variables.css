@@ -32,7 +32,7 @@ html {
 
   /* SVG SETTINGS */
   --tile-dim: 1.75rem;
-  --ghost-tile-stroke-dim: 7.5rem;
+  --tile-ghost-stroke-dim: 7.5rem;
   --tile-wall-stroke-dim: 5rem;
   --tile-portal-stroke-dim: 1.5rem;
   --tile-point-dim: var(--tile-dim) / 3;

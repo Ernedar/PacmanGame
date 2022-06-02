@@ -169,3 +169,17 @@ export enum Directions {
   left = "left",
   none = "none"
 }
+
+export enum DesignerTileType {
+  wall = "wall",
+  path = "path",
+  door = "portal",
+  point = "point",
+  power = "powerup",
+  ghome = "ghostHome",
+  pacman = "pacman",
+  clyde = "clyde",
+  pinky = "pinky",
+  blinky = "blinky",
+  inky = "inky"
+}

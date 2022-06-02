@@ -10,10 +10,16 @@
   height: var(--tile-dim);
 }
 
-.wall,
-.ghost-tile,
-.portal {
+.wall {
   stroke-width: var(--tile-wall-stroke-dim);
+}
+
+.ghost-tile{
+  stroke-width: var(--tile-ghost-stroke-dim);
+}
+
+.portal {
+  stroke-width: var(--tile-portal-stroke-dim);
 }
 
 /* SINGLE WALL FRAGMENTS */

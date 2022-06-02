@@ -1,7 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import classNames from "classnames";
 
 import "./DesignerLegend.css";
+
+import MazeDesignerInitState from "../../../state/initialDesignerState";
 
 import LegendButton from "../LegendButton";
 
@@ -10,12 +12,17 @@ import {
   GhostHome,
   PortalDirection,
   Inhabitants,
-  TileType
+  DesignerTileType
 } from "../../../utils/enums";
 
 const numberRegexPattern = /\d+/g;
 
-function renderBuildingBlocks(enumImport: Object, type: TileType) {
+function renderBuildingBlocks(
+  enumImport: Object,
+  type: DesignerTileType,
+  designerState: typeof MazeDesignerInitState,
+  dispatch
+) {
   const array = Object.keys(enumImport);
 
   const buildingBlocks = array.map((key) => {
@@ -29,6 +36,8 @@ function renderBuildingBlocks(enumImport: Object, type: TileType) {
         tileType={type}
         tileNumber={tileFinalNumber}
         tileKey={enumImport[key]}
+        buttonGrantedState={designerState}
+        dispatch={dispatch}
       />
     );
   });
@@ -36,8 +45,12 @@ function renderBuildingBlocks(enumImport: Object, type: TileType) {
   return buildingBlocks;
 }
 
-const DesignerLegend: FC = () => {
+const DesignerLegend: FC = ({ mazeDesignerState, dispatch }) => {
   const [selectedTab, setSelectedTab] = useState(0);
+
+  useEffect(() => {
+    console.log(mazeDesignerState);
+  }, [mazeDesignerState]);
 
   return (
     <div className="designer-legend-wrapper">
@@ -73,28 +86,48 @@ const DesignerLegend: FC = () => {
             active: selectedTab === 0
           })}
         >
-          {renderBuildingBlocks(MazeWall, TileType.wall)}
+          {renderBuildingBlocks(
+            MazeWall,
+            DesignerTileType.wall,
+            mazeDesignerState,
+            dispatch
+          )}
         </div>
         <div
           className={classNames("designer-legend-tab", {
             active: selectedTab === 1
           })}
         >
-          {renderBuildingBlocks(PortalDirection, TileType.door)}
+          {renderBuildingBlocks(
+            PortalDirection,
+            DesignerTileType.door,
+            mazeDesignerState,
+            dispatch
+          )}
         </div>
         <div
           className={classNames("designer-legend-tab", {
             active: selectedTab === 2
           })}
         >
-          {renderBuildingBlocks(GhostHome, TileType.ghost)}
+          {renderBuildingBlocks(
+            GhostHome,
+            DesignerTileType.ghome,
+            mazeDesignerState,
+            dispatch
+          )}
         </div>
         <div
           className={classNames("designer-legend-tab", {
             active: selectedTab === 3
           })}
         >
-          <LegendButton tileType={TileType.path} tileNumber={0} />
+          <LegendButton
+            tileType={DesignerTileType.path}
+            tileNumber={0}
+            buttonGrantedState={mazeDesignerState}
+            dispatch={dispatch}
+          />
         </div>
       </div>
     </div>

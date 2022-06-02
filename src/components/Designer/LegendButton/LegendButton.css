@@ -29,3 +29,7 @@
   font-weight: bold;
   color: var(--text-light);
 }
+
+.path {
+  background-color: var(--text-light);
+}
