@@ -57,7 +57,13 @@ function MazeDesignerReducer(
     case DESIGNER_ACTIONS.CLEAR_DESIGNER:
       return {
         ...state,
-        designedMaze: [[]]
+        designedMaze: [
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0]
+        ]
       };
     default:
       return state;
@@ -77,7 +83,7 @@ const MazeDesigner: FC = () => {
   return (
     <div className="designer-wrapper">
       <DesignerLegend mazeDesignerState={state} dispatch={dispatch} />
-      <DesignerView />
+      <DesignerView designerState={state} dispatch={dispatch} />
     </div>
   );
 };

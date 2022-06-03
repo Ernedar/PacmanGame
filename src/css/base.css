@@ -10,6 +10,17 @@ body {
   padding: 0;
 }
 
+.main-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+/* TABLE */
+
 table,
 table tr,
 tr td,
@@ -29,13 +40,48 @@ table tfoot tr tf {
 
 table {
   table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-.main-container {
-  width: 100%;
-  min-height: 100vh;
+/* BUTTONS */
+
+.btn,
+button {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
   flex-wrap: nowrap;
+  align-items: center;
+  transition: all 300ms ease-in-out;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.btn-md {
+  padding: var(--btn-md-p-ver) var(--btn-md-p-hor);
+}
+
+.btn-danger {
+  background-color: var(--btn-danger-bg);
+  border-color: var(--btn-danger-border);
+  color: var(--btn-danger-text);
+}
+
+.btn-danger:hover {
+  background-color: var(--btn-danger-hover-bg);
+  border-color: var(--btn-danger-hover-border);
+  color: var(--btn-danger-hover-text);
+}
+
+.btn-success {
+  background-color: var(--btn-success-bg);
+  border-color: var(--btn-success-border);
+  color: var(--btn-success-text);
+}
+
+.btn-success:hover {
+  background-color: var(--btn-success-hover-bg);
+  border-color: var(--btn-success-hover-border);
+  color: var(--btn-success-hover-text);
 }

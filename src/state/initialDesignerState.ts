@@ -4,7 +4,7 @@ const MazeDesignerInitState = {
   selectedTileType: DesignerTileType.path,
   selectedTileNumber: 0,
   selectedTileClass: "",
-  designedMaze: [[]]
+  designedMaze: [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
 };
 
 export default MazeDesignerInitState;

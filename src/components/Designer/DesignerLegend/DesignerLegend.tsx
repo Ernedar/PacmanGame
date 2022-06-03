@@ -17,6 +17,11 @@ import {
 
 const numberRegexPattern = /\d+/g;
 
+type designerLegendProps = {
+  mazeDesignerState: typeof MazeDesignerInitState;
+  dispatch(arg: {}): void;
+};
+
 function renderBuildingBlocks(
   enumImport: Object,
   type: DesignerTileType,
@@ -45,7 +50,10 @@ function renderBuildingBlocks(
   return buildingBlocks;
 }
 
-const DesignerLegend: FC = ({ mazeDesignerState, dispatch }) => {
+const DesignerLegend: FC<designerLegendProps> = ({
+  mazeDesignerState,
+  dispatch
+}) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   useEffect(() => {
@@ -125,6 +133,48 @@ const DesignerLegend: FC = ({ mazeDesignerState, dispatch }) => {
           <LegendButton
             tileType={DesignerTileType.path}
             tileNumber={0}
+            buttonGrantedState={mazeDesignerState}
+            dispatch={dispatch}
+          />
+          <LegendButton
+            tileType={DesignerTileType.pacman}
+            tileNumber={1}
+            buttonGrantedState={mazeDesignerState}
+            dispatch={dispatch}
+          />
+          <LegendButton
+            tileType={DesignerTileType.clyde}
+            tileNumber={21}
+            buttonGrantedState={mazeDesignerState}
+            dispatch={dispatch}
+          />
+          <LegendButton
+            tileType={DesignerTileType.inky}
+            tileNumber={22}
+            buttonGrantedState={mazeDesignerState}
+            dispatch={dispatch}
+          />
+          <LegendButton
+            tileType={DesignerTileType.blinky}
+            tileNumber={23}
+            buttonGrantedState={mazeDesignerState}
+            dispatch={dispatch}
+          />
+          <LegendButton
+            tileType={DesignerTileType.pinky}
+            tileNumber={24}
+            buttonGrantedState={mazeDesignerState}
+            dispatch={dispatch}
+          />
+          <LegendButton
+            tileType={DesignerTileType.point}
+            tileNumber={31}
+            buttonGrantedState={mazeDesignerState}
+            dispatch={dispatch}
+          />
+          <LegendButton
+            tileType={DesignerTileType.power}
+            tileNumber={32}
             buttonGrantedState={mazeDesignerState}
             dispatch={dispatch}
           />

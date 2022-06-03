@@ -34,7 +34,7 @@ html {
   --tile-dim: 1.75rem;
   --tile-ghost-stroke-dim: 7.5rem;
   --tile-wall-stroke-dim: 5rem;
-  --tile-portal-stroke-dim: 1.5rem;
+  --tile-portal-stroke-dim: 3rem;
   --tile-point-dim: var(--tile-dim) / 3;
   --tile-wall-stroke-color: #0d0d0d55;
   --tile-wall-stroke-color-part: var(--base-black);
@@ -72,4 +72,23 @@ html {
   --header-bg: #344a4b;
   --header-bg-rgb: 52, 74, 75;
   --legend-btn-bg: var(--text-light);
+
+  /* BUTTON COLORS */
+
+  --btn-md-p-ver: 0.5rem;
+  --btn-md-p-hor: 1.5rem;
+
+  --btn-danger-bg: #ed1848;
+  --btn-danger-border: var(--btn-danger-bg);
+  --btn-danger-text: var(--text-light);
+  --btn-danger-hover-bg: #8a142f;
+  --btn-danger-hover-border: var(--btn-danger-hover-bg);
+  --btn-danger-hover-text: var(--text-light);
+
+  --btn-success-bg: #33cc33;
+  --btn-success-border: var(--btn-success-bg);
+  --btn-success-text: var(--text-light);
+  --btn-success-hover-bg: #248f24;
+  --btn-success-hover-border: var(--btn-success-hover-bg);
+  --btn-success-hover-text: var(--text-light);
 }
