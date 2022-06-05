@@ -3,15 +3,9 @@ import React, { FC } from "react";
 import "./DesignerView.css";
 
 import { DESIGNER_ACTIONS } from "../../../utils/actions";
-import { DesignerTileType } from "../../../utils/enums";
-import MazeDesignerInitState from "../../../state/initialDesignerState";
+import { designerProps } from "../../../utils/types";
 
-type designerViewProps = {
-  designerState: typeof MazeDesignerInitState;
-  dispatch(arg: {}): void;
-};
-
-const DesignerView: FC<designerViewProps> = ({ designerState, dispatch }) => {
+const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
   return (
     <div className="designer-view-wrapper">
       <div className="designer-view-action-bar">
@@ -34,7 +28,7 @@ const DesignerView: FC<designerViewProps> = ({ designerState, dispatch }) => {
             <th>
               <div className="legend-cell empty"></div>
             </th>
-            {designerState.designedMaze[0].map((cell, i) => (
+            {mazeState.designedMaze[0].map((cell, i) => (
               <th key={"mazeCol" + i}>
                 <div className="legend-cell horizontal">
                   <p>{i}</p>
@@ -44,7 +38,7 @@ const DesignerView: FC<designerViewProps> = ({ designerState, dispatch }) => {
           </tr>
         </thead>
         <tbody className="design-maze">
-          {designerState.designedMaze.map((mazeLine, x) => (
+          {mazeState.designedMaze.map((mazeLine, x) => (
             <tr key={"mazeLine" + x}>
               <td>
                 <div className="legend-cell vertical">

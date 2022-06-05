@@ -11,16 +11,12 @@ import {
   MazeWall,
   GhostHome,
   PortalDirection,
-  Inhabitants,
   DesignerTileType
 } from "../../../utils/enums";
+import { DESIGNER_ACTIONS } from "../../../utils/actions";
+import { designerProps } from "../../../utils/types";
 
 const numberRegexPattern = /\d+/g;
-
-type designerLegendProps = {
-  mazeDesignerState: typeof MazeDesignerInitState;
-  dispatch(arg: {}): void;
-};
 
 function renderBuildingBlocks(
   enumImport: Object,
@@ -41,7 +37,7 @@ function renderBuildingBlocks(
         tileType={type}
         tileNumber={tileFinalNumber}
         tileKey={enumImport[key]}
-        buttonGrantedState={designerState}
+        mazeState={designerState}
         dispatch={dispatch}
       />
     );
@@ -50,18 +46,20 @@ function renderBuildingBlocks(
   return buildingBlocks;
 }
 
-const DesignerLegend: FC<designerLegendProps> = ({
-  mazeDesignerState,
-  dispatch
-}) => {
+const DesignerLegend: FC<designerProps> = ({ mazeState, dispatch }) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   useEffect(() => {
-    console.log(mazeDesignerState);
-  }, [mazeDesignerState]);
+    console.log(mazeState);
+  }, [mazeState]);
 
   return (
-    <div className="designer-legend-wrapper">
+    <div
+      className="designer-legend-wrapper"
+      onAuxClick={() =>
+        dispatch({ type: DESIGNER_ACTIONS.CLEAR_SELECTED_TILE })
+      }
+    >
       <div className="designer-legend-header">
         <button
           className={classNames("tab-button", { active: selectedTab === 0 })}
@@ -97,7 +95,7 @@ const DesignerLegend: FC<designerLegendProps> = ({
           {renderBuildingBlocks(
             MazeWall,
             DesignerTileType.wall,
-            mazeDesignerState,
+            mazeState,
             dispatch
           )}
         </div>
@@ -109,7 +107,7 @@ const DesignerLegend: FC<designerLegendProps> = ({
           {renderBuildingBlocks(
             PortalDirection,
             DesignerTileType.door,
-            mazeDesignerState,
+            mazeState,
             dispatch
           )}
         </div>
@@ -121,7 +119,7 @@ const DesignerLegend: FC<designerLegendProps> = ({
           {renderBuildingBlocks(
             GhostHome,
             DesignerTileType.ghome,
-            mazeDesignerState,
+            mazeState,
             dispatch
           )}
         </div>
@@ -133,49 +131,49 @@ const DesignerLegend: FC<designerLegendProps> = ({
           <LegendButton
             tileType={DesignerTileType.path}
             tileNumber={0}
-            buttonGrantedState={mazeDesignerState}
+            mazeState={mazeState}
             dispatch={dispatch}
           />
           <LegendButton
             tileType={DesignerTileType.pacman}
             tileNumber={1}
-            buttonGrantedState={mazeDesignerState}
+            mazeState={mazeState}
             dispatch={dispatch}
           />
           <LegendButton
             tileType={DesignerTileType.clyde}
             tileNumber={21}
-            buttonGrantedState={mazeDesignerState}
+            mazeState={mazeState}
             dispatch={dispatch}
           />
           <LegendButton
             tileType={DesignerTileType.inky}
             tileNumber={22}
-            buttonGrantedState={mazeDesignerState}
+            mazeState={mazeState}
             dispatch={dispatch}
           />
           <LegendButton
             tileType={DesignerTileType.blinky}
             tileNumber={23}
-            buttonGrantedState={mazeDesignerState}
+            mazeState={mazeState}
             dispatch={dispatch}
           />
           <LegendButton
             tileType={DesignerTileType.pinky}
             tileNumber={24}
-            buttonGrantedState={mazeDesignerState}
+            mazeState={mazeState}
             dispatch={dispatch}
           />
           <LegendButton
             tileType={DesignerTileType.point}
             tileNumber={31}
-            buttonGrantedState={mazeDesignerState}
+            mazeState={mazeState}
             dispatch={dispatch}
           />
           <LegendButton
             tileType={DesignerTileType.power}
             tileNumber={32}
-            buttonGrantedState={mazeDesignerState}
+            mazeState={mazeState}
             dispatch={dispatch}
           />
         </div>

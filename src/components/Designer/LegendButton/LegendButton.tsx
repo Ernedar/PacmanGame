@@ -1,28 +1,18 @@
 import React, { FC } from "react";
 import classNames from "classnames";
+import LegendButtonShard from "../LegendButtonShard";
+
+import { CNGroup } from "../../../utils/logo";
 
 import Icon from "../../Icons";
 import { DesignerTileType } from "../../../utils/enums";
-import { DESIGNER_ACTIONS } from "../../../utils/actions";
+import { designerButtonProps } from "../../../utils/types";
 
-import MazeDesignerInitState from "../../../state/initialDesignerState";
-
-import "./LegendButton.css";
-
-type legendButtonProps = {
-  tileKey?: string | undefined;
-  tileNumber?: number | undefined;
-  tileType: DesignerTileType;
-  selected?: boolean;
-  buttonGrantedState: typeof MazeDesignerInitState;
-  dispatch(arg: {}): void;
-};
-
-const LegendButton: FC<legendButtonProps> = ({
+const LegendButton: FC<designerButtonProps> = ({
   tileKey,
   tileNumber,
   tileType,
-  buttonGrantedState,
+  mazeState,
   dispatch
 }) => {
   if (
@@ -31,52 +21,102 @@ const LegendButton: FC<legendButtonProps> = ({
     tileType === DesignerTileType.ghome
   ) {
     return (
-      <div
-        className={classNames("legend-btn-wrapper", {
-          selected: tileNumber === buttonGrantedState.selectedTileNumber
-        })}
+      <LegendButtonShard
+        tileType={tileType}
+        tileNumber={tileNumber}
+        tileKey={tileKey}
+        mazeState={mazeState}
+        dispatch={dispatch}
       >
-        <button
-          onClick={() =>
-            dispatch({
-              type: DESIGNER_ACTIONS.SELECT_TILE,
-              payload: {
-                selectedTileType: tileType,
-                selectedTileNumber: tileNumber,
-                selectedTileClass: tileKey
-              }
-            })
-          }
-        >
-          <Icon className={tileKey} iconToLoad={tileType} />
-        </button>
-        <p>{tileNumber}</p>
-      </div>
+        <Icon className={tileKey} iconToLoad={tileType} />
+      </LegendButtonShard>
+    );
+  } else if (tileType === DesignerTileType.point) {
+    return (
+      <LegendButtonShard
+        tileType={tileType}
+        tileNumber={tileNumber}
+        tileKey={tileKey}
+        mazeState={mazeState}
+        buttonClasses="point-wrapper styled-entity-legend-button"
+        dispatch={dispatch}
+      >
+        <div className="point" />
+      </LegendButtonShard>
+    );
+  } else if (tileType === DesignerTileType.power) {
+    return (
+      <LegendButtonShard
+        tileType={tileType}
+        tileNumber={tileNumber}
+        tileKey={tileKey}
+        mazeState={mazeState}
+        buttonClasses="power-wrapper styled-entity-legend-button"
+        dispatch={dispatch}
+      >
+        <div className="power">
+          <img src={CNGroup} alt="CN Group Logo" />
+        </div>
+      </LegendButtonShard>
+    );
+  } else if (tileType === DesignerTileType.pacman) {
+    return (
+      <LegendButtonShard
+        tileType={tileType}
+        tileNumber={tileNumber}
+        tileKey={tileKey}
+        mazeState={mazeState}
+        buttonClasses="styled-entity-legend-button"
+        dispatch={dispatch}
+      >
+        <div className="pacman">
+          <div className="top-half"></div>
+          <div className="bottom-half"></div>
+          <div className="eye"></div>
+        </div>
+      </LegendButtonShard>
+    );
+  } else if (
+    tileType === DesignerTileType.clyde ||
+    tileType === DesignerTileType.inky ||
+    tileType === DesignerTileType.pinky ||
+    tileType === DesignerTileType.blinky
+  ) {
+    return (
+      <LegendButtonShard
+        tileType={tileType}
+        tileNumber={tileNumber}
+        tileKey={tileKey}
+        mazeState={mazeState}
+        buttonClasses="ghost-wrapper styled-entity-legend-button"
+        dispatch={dispatch}
+      >
+        <div className={classNames("ghost", tileType)}>
+          <div className="ghost-body">
+            <div className="ghost-eye">
+              <div className="ghost-eye-socket"></div>
+            </div>
+            <div className="ghost-eye">
+              <div className="ghost-eye-socket"></div>
+            </div>
+            <div className="ghost-skirt">
+              <div className="skirt-wave"></div>
+              <div className="skirt-wave"></div>
+              <div className="skirt-wave"></div>
+            </div>
+          </div>
+        </div>
+      </LegendButtonShard>
     );
   } else {
     return (
-      <div
-        className={classNames("legend-btn-wrapper", {
-          selected: tileNumber === buttonGrantedState.selectedTileNumber
-        })}
-      >
-        <button
-          onClick={() =>
-            dispatch({
-              type: DESIGNER_ACTIONS.SELECT_TILE,
-              payload: {
-                selectedTileType: DesignerTileType.path,
-                selectedTileNumber: 0,
-                selectedTileClass: ""
-              }
-            })
-          }
-        >
-          <div className="path" />
-        </button>
-        <p>path</p>
-        <p>empty</p>
-      </div>
+      <LegendButtonShard
+        tileType={tileType}
+        tileNumber={tileNumber}
+        tileKey={tileKey}
+        mazeState={mazeState}
+        dispatch={dispatch}
+      />
     );
   }
 };

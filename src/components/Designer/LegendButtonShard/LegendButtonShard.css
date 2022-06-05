@@ -1,4 +1,5 @@
 .legend-btn-wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,9 +8,12 @@
   margin-bottom: 0.5rem;
   margin-right: 0.5rem;
   cursor: pointer;
+  width: calc(var(--tile-dim) + 4px);
+  min-height: 32px;
 }
 
 .legend-btn-wrapper button {
+  position: relative;
   display: block;
   border: 0;
   background-color: var(--text-light);
@@ -17,6 +21,11 @@
   border-radius: 4px;
   margin-bottom: 0.25rem;
   cursor: pointer;
+}
+
+.styled-entity-legend-button {
+  width: calc(var(--tile-dim) + 4px);
+  height: calc(var(--tile-dim) + 4px);
 }
 
 .legend-btn-wrapper.selected button {

@@ -4,14 +4,15 @@ import "./DesignerContainer.css";
 
 import { DESIGNER_ACTIONS } from "../../../utils/actions";
 import { DesignerTileType } from "../../../utils/enums";
+import { payloadType } from "../../../utils/types";
 import MazeDesignerInitState from "../../../state/initialDesignerState";
 
 import DesignerLegend from "../DesignerLegend";
 import DesignerView from "../DesignerView";
 
 interface DesignerAction {
-  type;
-  payload: typeof MazeDesignerInitState;
+  type: String;
+  payload: payloadType;
 }
 
 function MazeDesignerReducer(
@@ -35,6 +36,14 @@ function MazeDesignerReducer(
         selectedTileClass: ""
       };
     case DESIGNER_ACTIONS.ADD_TILE_TO_MAZE:
+      return {
+        ...state
+      };
+    case DESIGNER_ACTIONS.CHANGE_MAZE_TILE:
+      return {
+        ...state
+      };
+    case DESIGNER_ACTIONS.CLEAR_MAZE_TILE:
       return {
         ...state
       };
@@ -82,8 +91,8 @@ const MazeDesigner: FC = () => {
 
   return (
     <div className="designer-wrapper">
-      <DesignerLegend mazeDesignerState={state} dispatch={dispatch} />
-      <DesignerView designerState={state} dispatch={dispatch} />
+      <DesignerLegend mazeState={state} dispatch={dispatch} />
+      <DesignerView mazeState={state} dispatch={dispatch} />
     </div>
   );
 };
