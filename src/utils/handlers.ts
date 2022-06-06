@@ -105,3 +105,9 @@ export function addNewRowToMaze(maze: number[][], newNumber: number) {
 
   return maze;
 }
+
+export function removeTileFromMaze(maze: number[][], rowNumber: number) {
+  maze[rowNumber].pop();
+
+  return maze;
+}

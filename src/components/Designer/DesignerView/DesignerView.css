@@ -93,4 +93,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: var(--tile-dim);
+  height: var(--tile-dim);
 }

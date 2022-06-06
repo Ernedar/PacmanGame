@@ -35,6 +35,29 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
             <th>
               <div className="legend-cell empty"></div>
             </th>
+            <th>
+              <div className="legend-cell empty"></div>
+            </th>
+            {mazeState.designedMaze[0].map((cell, i) => (
+              <th key={"mazeColPre" + i}>
+                <div className="action-cell">
+                  <AddClearButton
+                    cellAction={designerCellActions.clearRow}
+                    colNumber={i}
+                    mazeState={mazeState}
+                    dispatch={dispatch}
+                  />
+                </div>
+              </th>
+            ))}
+          </tr>
+          <tr>
+            <th>
+              <div className="legend-cell empty"></div>
+            </th>
+            <th>
+              <div className="legend-cell empty"></div>
+            </th>
             {mazeState.designedMaze[0].map((cell, i) => (
               <th key={"mazeCol" + i}>
                 <div className="legend-cell horizontal">
@@ -53,6 +76,16 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
           {mazeState.designedMaze.map((mazeLine, x) => (
             <tr key={"mazeLine" + x}>
               <td>
+                <div className="action-cell">
+                  <AddClearButton
+                    cellAction={designerCellActions.clearRow}
+                    rowNumber={x}
+                    mazeState={mazeState}
+                    dispatch={dispatch}
+                  />
+                </div>
+              </td>
+              <td>
                 <div className="legend-cell vertical">
                   <p>{x}</p>
                 </div>
@@ -68,13 +101,25 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
                   />
                 </td>
               ))}
-              <td className="action-cell">
-                <AddClearButton
-                  cellAction={designerCellActions.addTile}
-                  rowNumber={x}
-                  mazeState={mazeState}
-                  dispatch={dispatch}
-                />
+              <td>
+                <div className="action-cell">
+                  <AddClearButton
+                    cellAction={designerCellActions.removeTile}
+                    rowNumber={x}
+                    mazeState={mazeState}
+                    dispatch={dispatch}
+                  />
+                </div>
+              </td>
+              <td>
+                <div className="action-cell">
+                  <AddClearButton
+                    cellAction={designerCellActions.addTile}
+                    rowNumber={x}
+                    mazeState={mazeState}
+                    dispatch={dispatch}
+                  />
+                </div>
               </td>
             </tr>
           ))}
@@ -84,16 +129,21 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
             })}
           >
             <td>
+              <div className="legend-cell empty"></div>
+            </td>
+            <td>
               <div className="legend-cell vertical">
                 <p>{mazeState.designedMaze.length}</p>
               </div>
             </td>
-            <td className="action-cell">
-              <AddClearButton
-                cellAction={designerCellActions.addRow}
-                mazeState={mazeState}
-                dispatch={dispatch}
-              />
+            <td>
+              <div className="action-cell">
+                <AddClearButton
+                  cellAction={designerCellActions.addRow}
+                  mazeState={mazeState}
+                  dispatch={dispatch}
+                />
+              </div>
             </td>
           </tr>
         </tbody>

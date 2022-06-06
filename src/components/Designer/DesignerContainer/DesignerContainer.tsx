@@ -8,7 +8,8 @@ import { payloadType } from "../../../utils/types";
 import {
   changeMazeDesignerTile,
   addTileToMaze,
-  addNewRowToMaze
+  addNewRowToMaze,
+  removeTileFromMaze
 } from "../../../utils/handlers";
 import MazeDesignerInitState from "../../../state/initialDesignerState";
 
@@ -71,7 +72,8 @@ function MazeDesignerReducer(
       };
     case DESIGNER_ACTIONS.REMOVE_TILE_FROM_MAZE:
       return {
-        ...state
+        ...state,
+        designedMaze: removeTileFromMaze(state.designedMaze, payload.x)
       };
     case DESIGNER_ACTIONS.ADD_ROW_OF_TILES:
       return {

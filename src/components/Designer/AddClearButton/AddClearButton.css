@@ -27,7 +27,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: calc(var(--tile-dim) * 0.4);
   height: 2px;
   background-color: var(--act-btn-add-bg);
@@ -39,4 +38,38 @@
 
 .add-btn:after {
   transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.rmw-btn,
+.clr-btn {
+  border-color: var(--act-btn-clr-bg);
+  color: var(--act-btn-clr-text);
+}
+
+.rmw-btn:hover,
+.clr-btn:hover {
+  background-color: var(--act-btn-clr-hover-bg);
+}
+
+.rmw-btn:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--tile-dim) * 0.4);
+  height: 2px;
+  background-color: var(--act-btn-clr-bg);
+}
+
+.clr-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clr-btn p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 10px;
 }

@@ -52,6 +52,55 @@ const AddClearButton: FC<addClearButtonProps> = ({
         }
       />
     );
+  } else if (cellAction === designerCellActions.removeTile) {
+    return (
+      <button
+        className={classNames("add-clear-btn rmw-btn")}
+        onClick={() =>
+          dispatch({
+            type: DESIGNER_ACTIONS.REMOVE_TILE_FROM_MAZE,
+            payload: {
+              x: rowNumber
+            }
+          })
+        }
+      />
+    );
+  } else if (cellAction === designerCellActions.clearRow) {
+    return (
+      <button
+        className={classNames("add-clear-btn clr-btn")}
+        onClick={() =>
+          dispatch({
+            type: DESIGNER_ACTIONS.CLEAR_ROW_OF_TILES,
+            payload: {
+              x: rowNumber
+            }
+          })
+        }
+      >
+        <p>C</p>
+      </button>
+    );
+  } else if (
+    cellAction === designerCellActions.clearCol &&
+    mazeState.designedMaze[0].length > 0
+  ) {
+    return (
+      <button
+        className={classNames("add-clear-btn clr-btn")}
+        onClick={() =>
+          dispatch({
+            type: DESIGNER_ACTIONS.CLEAR_COL_OF_TILES,
+            payload: {
+              x: colNumber
+            }
+          })
+        }
+      >
+        <p>C</p>
+      </button>
+    );
   } else {
     return null;
   }
