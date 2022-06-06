@@ -94,5 +94,5 @@ html {
 
   --act-btn-add-bg: #344a4b;
   --act-btn-add-text: var(--act-btn-add-bg);
-  --act-btn-add-hover-bg: rgba(52, 74, 75, 0.5);
+  --act-btn-add-hover-bg: rgba(52, 74, 75, 0.25);
 }
