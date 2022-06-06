@@ -5,6 +5,8 @@ import "./DesignerView.css";
 import { DESIGNER_ACTIONS } from "../../../utils/actions";
 import { designerProps } from "../../../utils/types";
 
+import DesignerViewButton from "../DesignerViewButton";
+
 const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
   return (
     <div className="designer-view-wrapper">
@@ -46,7 +48,15 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
                 </div>
               </td>
               {mazeLine.map((mazeCellID, y) => (
-                <td key={"mazeCell-" + x + "-" + y}>{mazeCellID}</td>
+                <td key={"mazeCell-" + x + "-" + y}>
+                  <DesignerViewButton
+                    x={x}
+                    y={y}
+                    mazeCell={mazeCellID}
+                    mazeState={mazeState}
+                    dispatch={dispatch}
+                  />
+                </td>
               ))}
             </tr>
           ))}

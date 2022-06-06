@@ -10,6 +10,17 @@ import MazeDesignerInitState from "../../../state/initialDesignerState";
 import DesignerLegend from "../DesignerLegend";
 import DesignerView from "../DesignerView";
 
+function changeMazeDesignerTile(
+  maze: number[][],
+  newNumber: number,
+  incomingX: number,
+  incomingY: number
+) {
+  maze[incomingX][incomingY] = newNumber;
+
+  return maze;
+}
+
 interface DesignerAction {
   type: String;
   payload: payloadType;
@@ -41,11 +52,23 @@ function MazeDesignerReducer(
       };
     case DESIGNER_ACTIONS.CHANGE_MAZE_TILE:
       return {
-        ...state
+        ...state,
+        designedMaze: changeMazeDesignerTile(
+          state.designedMaze,
+          payload.selectedTileNumber,
+          payload.x,
+          payload.y
+        )
       };
     case DESIGNER_ACTIONS.CLEAR_MAZE_TILE:
       return {
-        ...state
+        ...state,
+        designedMaze: changeMazeDesignerTile(
+          state.designedMaze,
+          0,
+          payload.x,
+          payload.y
+        )
       };
     case DESIGNER_ACTIONS.REMOVE_TILE_FROM_MAZE:
       return {
@@ -66,13 +89,7 @@ function MazeDesignerReducer(
     case DESIGNER_ACTIONS.CLEAR_DESIGNER:
       return {
         ...state,
-        designedMaze: [
-          [0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0]
-        ]
+        designedMaze: [[]]
       };
     default:
       return state;

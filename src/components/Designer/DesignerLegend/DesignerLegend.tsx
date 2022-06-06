@@ -153,13 +153,13 @@ const DesignerLegend: FC<designerProps> = ({ mazeState, dispatch }) => {
             dispatch={dispatch}
           />
           <LegendButton
-            tileType={DesignerTileType.blinky}
+            tileType={DesignerTileType.pinky}
             tileNumber={23}
             mazeState={mazeState}
             dispatch={dispatch}
           />
           <LegendButton
-            tileType={DesignerTileType.pinky}
+            tileType={DesignerTileType.blinky}
             tileNumber={24}
             mazeState={mazeState}
             dispatch={dispatch}

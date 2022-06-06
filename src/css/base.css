@@ -40,8 +40,12 @@ table tfoot tr tf {
 
 table {
   table-layout: fixed;
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td {
+  vertical-align: bottom;
 }
 
 /* BUTTONS */

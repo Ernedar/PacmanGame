@@ -30,6 +30,7 @@
   border-spacing: 0px;
   width: var(--tile-dim);
   height: var(--tile-dim);
+  vertical-align: bottom;
 }
 
 .legend-cell {
