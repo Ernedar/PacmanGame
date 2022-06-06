@@ -20,9 +20,6 @@ const AddClearButton: FC<addClearButtonProps> = ({
   rowNumber,
   colNumber
 }) => {
-  console.log(mazeState.designedMaze.length);
-  console.log(mazeState.designedMaze[0].length);
-
   if (cellAction === designerCellActions.addTile) {
     return (
       <button
