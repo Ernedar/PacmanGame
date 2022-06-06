@@ -16,7 +16,9 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
       <div className="designer-view-action-bar">
         <button
           className="btn btn-success btn-md"
-          onClick={() => dispatch({ type: DESIGNER_ACTIONS.SAVE_MAZE })}
+          onClick={() => {
+            navigator.clipboard.writeText(mazeState.designedMaze.toString());
+          }}
         >
           Save Maze
         </button>
