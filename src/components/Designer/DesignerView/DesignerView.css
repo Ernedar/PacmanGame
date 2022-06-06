@@ -18,6 +18,14 @@
   margin-right: var(--nav-obj-margin);
 }
 
+.legend-row-link {
+  visibility: hidden;
+}
+
+.legend-row-link.visible {
+  visibility: visible;
+}
+
 .design-maze tr {
   height: var(--tile-dim) !important;
   overflow: hidden;
@@ -78,5 +86,11 @@
   padding-top: 1px;
   padding-right: 4px;
   justify-content: flex-end;
+  align-items: center;
+}
+
+.action-cell {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }

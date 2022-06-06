@@ -1,0 +1,42 @@
+.add-clear-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0;
+  cursor: pointer;
+  width: calc(var(--tile-dim) * 0.8);
+  height: calc(var(--tile-dim) * 0.8);
+  background-color: transparent;
+}
+
+.add-btn {
+  border-color: var(--act-btn-add-bg);
+  color: var(--act-btn-add-text);
+}
+
+.add-btn:hover {
+  background-color: var(--act-btn-add-hover-bg);
+}
+
+.add-btn:before,
+.add-btn:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--tile-dim) * 0.4);
+  height: 2px;
+  background-color: var(--act-btn-add-bg);
+}
+
+.add-btn:before {
+  transform: translate(-50%, -50%);
+}
+
+.add-btn:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}

@@ -183,3 +183,11 @@ export enum DesignerTileType {
   blinky = "blinky",
   inky = "inky"
 }
+
+export enum designerCellActions {
+  addTile = "add-tile",
+  addRow = "add-row-of-tiles",
+  clearRow = "clear-row-of-tiles",
+  clearCol = "clear-col-of-tiles",
+  removeTile = "remove-tile"
+}

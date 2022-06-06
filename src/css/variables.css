@@ -91,4 +91,8 @@ html {
   --btn-success-hover-bg: #248f24;
   --btn-success-hover-border: var(--btn-success-hover-bg);
   --btn-success-hover-text: var(--text-light);
+
+  --act-btn-add-bg: #344a4b;
+  --act-btn-add-text: var(--act-btn-add-bg);
+  --act-btn-add-hover-bg: rgba(52, 74, 75, 0.5);
 }

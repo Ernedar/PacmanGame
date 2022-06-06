@@ -5,21 +5,15 @@ import "./DesignerContainer.css";
 import { DESIGNER_ACTIONS } from "../../../utils/actions";
 import { DesignerTileType } from "../../../utils/enums";
 import { payloadType } from "../../../utils/types";
+import {
+  changeMazeDesignerTile,
+  addTileToMaze,
+  addNewRowToMaze
+} from "../../../utils/handlers";
 import MazeDesignerInitState from "../../../state/initialDesignerState";
 
 import DesignerLegend from "../DesignerLegend";
 import DesignerView from "../DesignerView";
-
-function changeMazeDesignerTile(
-  maze: number[][],
-  newNumber: number,
-  incomingX: number,
-  incomingY: number
-) {
-  maze[incomingX][incomingY] = newNumber;
-
-  return maze;
-}
 
 interface DesignerAction {
   type: String;
@@ -48,7 +42,12 @@ function MazeDesignerReducer(
       };
     case DESIGNER_ACTIONS.ADD_TILE_TO_MAZE:
       return {
-        ...state
+        ...state,
+        designedMaze: addTileToMaze(
+          state.designedMaze,
+          payload.x,
+          payload.selectedTileNumber
+        )
       };
     case DESIGNER_ACTIONS.CHANGE_MAZE_TILE:
       return {
@@ -74,11 +73,19 @@ function MazeDesignerReducer(
       return {
         ...state
       };
-    case DESIGNER_ACTIONS.REMOVE_ROW_OF_TILES:
+    case DESIGNER_ACTIONS.ADD_ROW_OF_TILES:
+      return {
+        ...state,
+        designedMaze: addNewRowToMaze(
+          state.designedMaze,
+          payload.selectedTileNumber
+        )
+      };
+    case DESIGNER_ACTIONS.CLEAR_ROW_OF_TILES:
       return {
         ...state
       };
-    case DESIGNER_ACTIONS.REMOVE_COL_OF_TILES:
+    case DESIGNER_ACTIONS.CLEAR_COL_OF_TILES:
       return {
         ...state
       };

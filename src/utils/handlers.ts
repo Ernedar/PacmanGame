@@ -63,3 +63,45 @@ export function escapeKeyEventHandler(event: KeyboardEvent): void {
     console.log(event.code + " was pushed and released");
   }
 }
+
+/*
+  ------- DESIGNER FUNCTIONS ------
+*/
+
+export function changeMazeDesignerTile(
+  maze: number[][],
+  newNumber: number,
+  incomingX: number,
+  incomingY: number
+) {
+  maze[incomingX][incomingY] = newNumber;
+
+  return maze;
+}
+
+export function addTileToMaze(
+  maze: number[][],
+  mazeRow: number,
+  newNumber: number
+) {
+  console.log("current maze:" + maze);
+  console.log("selected row:" + mazeRow);
+  console.log("number to add:" + newNumber);
+
+  maze[mazeRow].push(newNumber);
+
+  console.log("new maze:" + maze);
+
+  return maze;
+}
+
+export function addNewRowToMaze(maze: number[][], newNumber: number) {
+  console.log("current maze:" + maze);
+  console.log("number to add:" + newNumber);
+
+  maze.push([newNumber]);
+
+  console.log("new maze:" + maze);
+
+  return maze;
+}

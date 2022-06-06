@@ -4,8 +4,11 @@ import "./DesignerView.css";
 
 import { DESIGNER_ACTIONS } from "../../../utils/actions";
 import { designerProps } from "../../../utils/types";
+import { designerCellActions } from "../../../utils/enums";
 
 import DesignerViewButton from "../DesignerViewButton";
+import AddClearButton from "../AddClearButton";
+import classNames from "classnames";
 
 const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
   return (
@@ -37,6 +40,11 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
                 </div>
               </th>
             ))}
+            <th>
+              <div className="legend-cell horizontal">
+                <p>{mazeState.designedMaze[0].length}</p>
+              </div>
+            </th>
           </tr>
         </thead>
         <tbody className="design-maze">
@@ -58,8 +66,34 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
                   />
                 </td>
               ))}
+              <td className="action-cell">
+                <AddClearButton
+                  cellAction={designerCellActions.addTile}
+                  rowNumber={x}
+                  mazeState={mazeState}
+                  dispatch={dispatch}
+                />
+              </td>
             </tr>
           ))}
+          <tr
+            className={classNames("legend-row-link", {
+              visible: mazeState.designedMaze[0].length > 0
+            })}
+          >
+            <td>
+              <div className="legend-cell vertical">
+                <p>{mazeState.designedMaze.length}</p>
+              </div>
+            </td>
+            <td className="action-cell">
+              <AddClearButton
+                cellAction={designerCellActions.addRow}
+                mazeState={mazeState}
+                dispatch={dispatch}
+              />
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
