@@ -95,4 +95,8 @@ html {
   --act-btn-add-bg: #344a4b;
   --act-btn-add-text: var(--act-btn-add-bg);
   --act-btn-add-hover-bg: rgba(52, 74, 75, 0.25);
+
+  --act-btn-clr-bg: #993300;
+  --act-btn-clr-text: var(--act-btn-clr-bg);
+  --act-btn-clr-hover-bg: rgba(153, 51, 0, 0.25);
 }
