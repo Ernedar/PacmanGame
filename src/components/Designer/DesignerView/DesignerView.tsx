@@ -17,7 +17,11 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
         <button
           className="btn btn-success btn-md"
           onClick={() => {
-            navigator.clipboard.writeText(mazeState.designedMaze.toString());
+            navigator.clipboard.writeText(
+              mazeState.designedMaze[0].length.toString() +
+                "," +
+                mazeState.designedMaze.toString()
+            );
           }}
         >
           Save Maze
@@ -42,7 +46,7 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
               <th key={"mazeColPre" + i}>
                 <div className="action-cell">
                   <AddClearButton
-                    cellAction={designerCellActions.clearRow}
+                    cellAction={designerCellActions.clearCol}
                     colNumber={i}
                     mazeState={mazeState}
                     dispatch={dispatch}
@@ -75,7 +79,11 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
         <tbody className="design-maze">
           {mazeState.designedMaze.map((mazeLine, x) => (
             <tr key={"mazeLine" + x}>
-              <td>
+              <td
+                className={classNames("legend-cell-outside", {
+                  visible: mazeState.designedMaze[x].length > 0
+                })}
+              >
                 <div className="action-cell">
                   <AddClearButton
                     cellAction={designerCellActions.clearRow}
@@ -104,17 +112,21 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
               <td>
                 <div className="action-cell">
                   <AddClearButton
-                    cellAction={designerCellActions.removeTile}
+                    cellAction={designerCellActions.addTile}
                     rowNumber={x}
                     mazeState={mazeState}
                     dispatch={dispatch}
                   />
                 </div>
               </td>
-              <td>
+              <td
+                className={classNames("legend-cell-inside", {
+                  visible: mazeState.designedMaze[x].length > 0
+                })}
+              >
                 <div className="action-cell">
                   <AddClearButton
-                    cellAction={designerCellActions.addTile}
+                    cellAction={designerCellActions.removeTile}
                     rowNumber={x}
                     mazeState={mazeState}
                     dispatch={dispatch}

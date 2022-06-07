@@ -84,30 +84,31 @@ export function addTileToMaze(
   mazeRow: number,
   newNumber: number
 ) {
-  console.log("current maze:" + maze);
-  console.log("selected row:" + mazeRow);
-  console.log("number to add:" + newNumber);
-
   maze[mazeRow].push(newNumber);
-
-  console.log("new maze:" + maze);
 
   return maze;
 }
 
 export function addNewRowToMaze(maze: number[][], newNumber: number) {
-  console.log("current maze:" + maze);
-  console.log("number to add:" + newNumber);
-
   maze.push([newNumber]);
-
-  console.log("new maze:" + maze);
 
   return maze;
 }
 
 export function removeTileFromMaze(maze: number[][], rowNumber: number) {
   maze[rowNumber].pop();
+
+  return maze;
+}
+
+export function clearMazeRow(maze: number[][], rowNumber: number) {
+  maze[rowNumber].fill(0, 0, maze[rowNumber].length);
+
+  return maze;
+}
+
+export function clearMazeColumn(maze: number[][], colNumber: number) {
+  maze.map((cell, i) => (maze[i][colNumber] = 0));
 
   return maze;
 }

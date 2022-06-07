@@ -9,7 +9,9 @@ import {
   changeMazeDesignerTile,
   addTileToMaze,
   addNewRowToMaze,
-  removeTileFromMaze
+  removeTileFromMaze,
+  clearMazeRow,
+  clearMazeColumn
 } from "../../../utils/handlers";
 import MazeDesignerInitState from "../../../state/initialDesignerState";
 
@@ -85,15 +87,22 @@ function MazeDesignerReducer(
       };
     case DESIGNER_ACTIONS.CLEAR_ROW_OF_TILES:
       return {
-        ...state
+        ...state,
+        designedMaze: clearMazeRow(state.designedMaze, payload.x)
       };
     case DESIGNER_ACTIONS.CLEAR_COL_OF_TILES:
       return {
-        ...state
+        ...state,
+        designedMaze: clearMazeColumn(state.designedMaze, payload.y)
       };
     case DESIGNER_ACTIONS.SAVE_MAZE:
       return {
         ...state
+      };
+    case DESIGNER_ACTIONS.REFRESH_STATE_RENDER:
+      return {
+        ...state,
+        designedMaze: state.designedMaze
       };
     case DESIGNER_ACTIONS.CLEAR_DESIGNER:
       return {
@@ -112,8 +121,17 @@ const MazeDesigner: FC = () => {
   );
 
   useEffect(() => {
-    console.log(MazeDesignerInitState.designedMaze);
-  }, [MazeDesignerInitState.designedMaze]);
+    if (
+      state.designedMaze.length > 1 &&
+      state.designedMaze[state.designedMaze.length - 1].length === 0
+    ) {
+      state.designedMaze.pop();
+    }
+    dispatch({ type: DESIGNER_ACTIONS.REFRESH_STATE_RENDER });
+  }, [
+    state.designedMaze.length,
+    state.designedMaze[state.designedMaze.length - 1].length
+  ]);
 
   return (
     <div className="designer-wrapper">

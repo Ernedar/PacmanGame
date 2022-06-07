@@ -18,12 +18,32 @@
   margin-right: var(--nav-obj-margin);
 }
 
+.legend-cell-inside {
+  visibility: hidden;
+  display: none;
+}
+
+.legend-cell-inside.visible {
+  visibility: visible;
+  display: table-cell;
+}
+
+.legend-cell-outside {
+  visibility: hidden;
+}
+
+.legend-cell-outside.visible {
+  visibility: visible;
+}
+
 .legend-row-link {
   visibility: hidden;
+  display: none;
 }
 
 .legend-row-link.visible {
   visibility: visible;
+  display: table-row;
 }
 
 .design-maze tr {

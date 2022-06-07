@@ -20,5 +20,6 @@ export const DESIGNER_ACTIONS = {
   CLEAR_ROW_OF_TILES: "clear-row-from-maze",
   CLEAR_COL_OF_TILES: "clear-col-from-maze",
   SAVE_MAZE: "save-designed-maze",
-  CLEAR_DESIGNER: "clear-designer"
+  CLEAR_DESIGNER: "clear-designer",
+  REFRESH_STATE_RENDER: "refresh-state-render"
 };

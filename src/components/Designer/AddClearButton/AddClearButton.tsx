@@ -93,7 +93,7 @@ const AddClearButton: FC<addClearButtonProps> = ({
           dispatch({
             type: DESIGNER_ACTIONS.CLEAR_COL_OF_TILES,
             payload: {
-              x: colNumber
+              y: colNumber
             }
           })
         }

@@ -49,10 +49,6 @@ function renderBuildingBlocks(
 const DesignerLegend: FC<designerProps> = ({ mazeState, dispatch }) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
-  useEffect(() => {
-    console.log(mazeState);
-  }, [mazeState]);
-
   return (
     <div
       className="designer-legend-wrapper"
