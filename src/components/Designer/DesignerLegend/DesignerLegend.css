@@ -8,7 +8,8 @@
   height: auto;
   padding: 1rem;
   margin: 0;
-  background-color: rgba(var(--header-bg-rgb), 0.25);
+  background-color: rgb(165, 182, 183);
+  z-index: 10;
 }
 
 .designer-legend-header {
@@ -25,7 +26,7 @@
   width: 100%;
   height: auto;
   position: relative;
-  background-color: rgba(var(--header-bg-rgb), 0.75);
+  background-color: rgb(80, 101, 102);
   padding: 1rem;
   border: 1px solid var(--header-bg);
   border-radius: 4px;
@@ -47,7 +48,7 @@
 .tab-button {
   display: block;
   padding: 0.5rem 1rem;
-  background-color: rgba(var(--header-bg-rgb), 0.25);
+  background-color: rgb(165, 182, 183);
   border: 1px solid var(--header-bg);
   border-radius: 4px;
   border-bottom-left-radius: 0;
@@ -60,5 +61,5 @@
 }
 
 .tab-button.active {
-  background-color: rgba(var(--header-bg-rgb), 0.75);
+  background-color: rgb(80, 101, 102);
 }

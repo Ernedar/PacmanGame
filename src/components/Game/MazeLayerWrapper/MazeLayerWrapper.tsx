@@ -10,12 +10,7 @@ import {
   PacManStates
 } from "../../../utils/enums";
 import { GAME_ACTIONS } from "../../../utils/actions";
-import {
-  randomDirectionHandler,
-  startPositionHandler,
-  keyDownEventHandler,
-  escapeKeyEventHandler
-} from "../../../utils/handlers";
+import { startPositionHandler } from "../../../utils/handlers";
 import initialGameState from "../../../state/initialState";
 
 import "./MazeLayerWrapper.css";
@@ -24,7 +19,7 @@ type MazeLayerProps = {
   mazeArrayInput: number[][];
 };
 
-function selectGameState(state) {
+function selectGameState(state: typeof initialGameState) {
   return state.game.gameState;
 }
 
@@ -98,7 +93,7 @@ function GameReducer(state, action) {
             ghostCurrentDirection: Directions.none
           },
           inky: {
-            ...state.ghosts.cinky,
+            ...state.ghosts.inky,
             ghostState: GhostStates.idle,
             ghostCurrentPosition: state.ghosts.inky.ghostStartPosition,
             ghostCurrentDirection: Directions.none
