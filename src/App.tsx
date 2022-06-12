@@ -11,6 +11,7 @@ import MazeDesigner from "./components/Designer/DesignerContainer";
 
 import { PacmanMaze } from "./assets/OriginalPacmanMaze";
 import { FenixMaze } from "./assets/FenixPacmanMaze";
+import { ZlinFourMaze } from "./assets/ZlinFourMaze";
 
 /* CORE ROUTER */
 
@@ -30,6 +31,11 @@ export default function App() {
           exact
           path="/FenixMaze"
           element={<MazeLayerWrapper mazeArrayInput={FenixMaze} />}
+        />
+        <Route
+          exact
+          path="/ZlinFourMaze"
+          element={<MazeLayerWrapper mazeArrayInput={ZlinFourMaze} />}
         />
         <Route exact path="/designer" element={<MazeDesigner />} />
       </Routes>

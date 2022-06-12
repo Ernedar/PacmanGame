@@ -25,6 +25,11 @@ const Navigation: FC = () => {
                 <Link to="/FenixMaze">Fenix Game</Link>
               </p>
             </li>
+            <li>
+              <p className="sub-link">
+                <Link to="/ZlinFourMaze">Zlin Four Game</Link>
+              </p>
+            </li>
           </ul>
         </li>
         <li>
