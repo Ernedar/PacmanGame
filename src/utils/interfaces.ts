@@ -16,6 +16,13 @@ export interface Ghost {
   currentSpeed: number;
 }
 
+export interface importMaze {
+  id: number;
+  name: string;
+  linktag: string;
+  mazeArray: number[][];
+}
+
 /*
 interface PlayTile {
   x: number;

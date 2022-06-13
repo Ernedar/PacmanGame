@@ -3,6 +3,7 @@ html {
   --pure-white: #ffffff;
   --text-light: #f7f7f7;
   --base-black: #0d0d0d;
+  --font-size: 16px;
 
   /* PAGE SETTINGS */
 
@@ -72,6 +73,10 @@ html {
   --header-bg: #344a4b;
   --header-bg-rgb: 52, 74, 75;
   --legend-btn-bg: var(--text-light);
+
+  /* ACTIVE ELEMENTS */
+  --font-size-md: 0.85rem;
+  --line-height-md: 1.325;
 
   /* BUTTON COLORS */
 

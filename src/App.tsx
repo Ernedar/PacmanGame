@@ -9,34 +9,28 @@ import MazeDesigner from "./components/Designer/DesignerContainer";
 
 /* MAZE IMPORTS */
 
-import { PacmanMaze } from "./assets/OriginalPacmanMaze";
-import { FenixMaze } from "./assets/FenixPacmanMaze";
-import { ZlinFourMaze } from "./assets/ZlinFourMaze";
+import mazesJSON from "./assets/prepMazes.json";
 
 /* CORE ROUTER */
 
 export default function App() {
   return (
     <div className="App main-container">
-      <Navigation />
+      <Navigation jsonImport={mazesJSON.mazes} />
 
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route
-          exact
-          path="/PacmanMaze"
-          element={<MazeLayerWrapper mazeArrayInput={PacmanMaze} />}
-        />
-        <Route
-          exact
-          path="/FenixMaze"
-          element={<MazeLayerWrapper mazeArrayInput={FenixMaze} />}
-        />
-        <Route
-          exact
-          path="/ZlinFourMaze"
-          element={<MazeLayerWrapper mazeArrayInput={ZlinFourMaze} />}
-        />
+
+        {mazesJSON.mazes.map((id, i) => (
+          <Route
+            key={mazesJSON.mazes[i].id}
+            exact
+            path={"/" + mazesJSON.mazes[i].linktag}
+            element={
+              <MazeLayerWrapper mazeArrayInput={mazesJSON.mazes[i].mazeArray} />
+            }
+          />
+        ))}
         <Route exact path="/designer" element={<MazeDesigner />} />
       </Routes>
     </div>

@@ -38,6 +38,7 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
   );
 
   const pacmanAvailableDirections = positionChecker(
+    mazeDefinition,
     pacmanCurrentPosition[0],
     pacmanCurrentPosition[1]
   );

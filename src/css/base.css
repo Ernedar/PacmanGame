@@ -61,6 +61,8 @@ button {
   border-style: solid;
   border-radius: 4px;
   margin: 0;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
 }
 
 .btn-md {
@@ -89,4 +91,46 @@ button {
   background-color: var(--btn-success-hover-bg);
   border-color: var(--btn-success-hover-border);
   color: var(--btn-success-hover-text);
+}
+
+/* INPUTS */
+
+input,
+.form-input {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  margin: 0;
+  border-color: var(--act-btn-add-bg);
+  color: var(--act-btn-add-text);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+}
+
+.input-md {
+  padding: var(--btn-md-p-hor) var(--btn-md-p-hor);
+}
+
+.left-adj {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* LABELS FOR INPUTS */
+
+.input-label {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  margin: 0;
+  border-color: var(--act-btn-add-bg);
+  color: var(--text-light);
+  background-color: var(--act-btn-add-bg);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+}
+
+.right-adj {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }

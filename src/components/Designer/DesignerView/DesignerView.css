@@ -8,14 +8,32 @@
 
 .designer-view-action-bar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-bottom: var(--nav-obj-margin);
 }
 
-.designer-view-action-bar button:not(:last-child) {
-  margin-right: var(--nav-obj-margin);
+.action-bar-left,
+.action-bar-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.action-bar-left {
+  justify-content: flex-start;
+  flex-grow: 1;
+  padding-right: var(--nav-obj-margin);
+}
+
+.action-bar-right {
+  justify-content: flex-end;
+}
+
+.action-bar-left input:not(:last-child),
+.action-bar-right button:not(:last-child) {
+  margin-right: var(--nav-sub-obj-margin);
 }
 
 .legend-cell-inside {

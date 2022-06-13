@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 
 import "./Navigation.css";
 
-const Navigation: FC = () => {
+import { importMaze } from "../../utils/interfaces";
+
+type navProps = {
+  jsonImport: Array<importMaze>;
+};
+
+const Navigation: FC<navProps> = ({ jsonImport }) => {
   return (
     <nav className="side-nav">
       <ul>
@@ -15,21 +21,15 @@ const Navigation: FC = () => {
         <li>
           <p>Game</p>
           <ul>
-            <li>
-              <p className="sub-link">
-                <Link to="/PacmanMaze">Pacman Game</Link>
-              </p>
-            </li>
-            <li>
-              <p className="sub-link">
-                <Link to="/FenixMaze">Fenix Game</Link>
-              </p>
-            </li>
-            <li>
-              <p className="sub-link">
-                <Link to="/ZlinFourMaze">Zlin Four Game</Link>
-              </p>
-            </li>
+            {jsonImport.map((id, i) => (
+              <li key={jsonImport[i].id}>
+                <p className="sub-link">
+                  <Link to={"/" + jsonImport[i].linktag}>
+                    {jsonImport[i].name}
+                  </Link>
+                </p>
+              </li>
+            ))}
           </ul>
         </li>
         <li>

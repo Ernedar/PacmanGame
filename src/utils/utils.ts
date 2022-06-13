@@ -1,5 +1,4 @@
 import { TileType } from "./enums";
-import { PacmanMaze } from "../assets/OriginalPacmanMaze";
 
 export function translateTile(t: number) {
   if (t === 31) {
@@ -19,13 +18,13 @@ export function translateTile(t: number) {
 
 // it should get object coordinates, take same coordinates from generated maze and return class of tile on those coordinates in maze.
 
-export function positionChecker(x: number, y: number) {
+export function positionChecker(maze: number[][], x: number, y: number) {
   let left;
 
   if (y === 0) {
     left = TileType["wall"];
   } else {
-    left = translateTile(PacmanMaze[x][y - 1]);
+    left = translateTile(maze[x][y - 1]);
   }
 
   let top;
@@ -33,11 +32,11 @@ export function positionChecker(x: number, y: number) {
   if (y === 0) {
     top = TileType["wall"];
   } else {
-    top = translateTile(PacmanMaze[x - 1][y]);
+    top = translateTile(maze[x - 1][y]);
   }
 
-  const right = translateTile(PacmanMaze[x][y + 1]);
-  const bottom = translateTile(PacmanMaze[x + 1][y]);
+  const right = translateTile(maze[x][y + 1]);
+  const bottom = translateTile(maze[x + 1][y]);
 
   return { left, right, top, bottom };
 }

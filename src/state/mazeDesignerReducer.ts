@@ -22,6 +22,16 @@ export default function MazeDesignerReducer(
 ) {
   const { type, payload } = action;
   switch (type) {
+    case DESIGNER_ACTIONS.SET_MAZE_NAME:
+      return {
+        ...state,
+        designedMazeName: payload.designedMazeName
+      };
+    case DESIGNER_ACTIONS.SET_MAZE_LINKTAG:
+      return {
+        ...state,
+        designedMazeLinkTag: payload.designedMazeLinkTag
+      };
     case DESIGNER_ACTIONS.SELECT_TILE:
       return {
         ...state,
@@ -100,6 +110,9 @@ export default function MazeDesignerReducer(
     case DESIGNER_ACTIONS.CLEAR_DESIGNER:
       return {
         ...state,
+        designedMazeID: 0,
+        designedMazeName: "",
+        designedMazeLinkTag: "",
         designedMaze: [[]]
       };
     default:

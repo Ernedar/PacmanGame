@@ -17,6 +17,8 @@ export const DESIGNER_ACTIONS = {
   CHANGE_MAZE_TILE: "change-maze-tile",
   CLEAR_MAZE_TILE: "clear-maze-tile",
   REMOVE_TILE_FROM_MAZE: "remove-tile-from-maze",
+  SET_MAZE_NAME: "set-maze-name",
+  SET_MAZE_LINKTAG: "set-maze-linktag",
   CLEAR_ROW_OF_TILES: "clear-row-from-maze",
   CLEAR_COL_OF_TILES: "clear-col-from-maze",
   SAVE_MAZE: "save-designed-maze",

@@ -14,24 +14,58 @@ const DesignerView: FC<designerProps> = ({ mazeState, dispatch }) => {
   return (
     <div className="designer-view-wrapper">
       <div className="designer-view-action-bar">
-        <button
-          className="btn btn-success btn-md"
-          onClick={() => {
-            navigator.clipboard.writeText(
-              mazeState.designedMaze[0].length.toString() +
-                "," +
-                mazeState.designedMaze.toString()
-            );
-          }}
-        >
-          Save Maze
-        </button>
-        <button
-          className="btn btn-danger btn-md"
-          onClick={() => dispatch({ type: DESIGNER_ACTIONS.CLEAR_DESIGNER })}
-        >
-          Clear Maze
-        </button>
+        <div className="action-bar-left">
+          <label className="input-label input-md right-adj" htmlFor="mazeName">
+            Maze Name:
+          </label>
+          <input
+            className="form-input input-md left-adj"
+            type="text"
+            name="mazeName"
+            id="mazeName"
+            onChange={(e) => {
+              dispatch({
+                type: DESIGNER_ACTIONS.SET_MAZE_NAME,
+                payload: { designedMazeName: e.target.value }
+              });
+            }}
+          />
+          <label className="input-label input-md right-adj" htmlFor="mazeTag">
+            Maze linkTag:
+          </label>
+          <input
+            className="form-input input-md left-adj"
+            type="text"
+            name="mazeTag"
+            id="mazeTag"
+            onChange={(e) => {
+              dispatch({
+                type: DESIGNER_ACTIONS.SET_MAZE_LINKTAG,
+                payload: { designedMazeLinkTag: e.target.value }
+              });
+            }}
+          />
+        </div>
+        <div className="action-bar-right">
+          <button
+            className="btn btn-success btn-md"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                mazeState.designedMaze[0].length.toString() +
+                  "," +
+                  mazeState.designedMaze.toString()
+              );
+            }}
+          >
+            Save Maze
+          </button>
+          <button
+            className="btn btn-danger btn-md"
+            onClick={() => dispatch({ type: DESIGNER_ACTIONS.CLEAR_DESIGNER })}
+          >
+            Clear Maze
+          </button>
+        </div>
       </div>
       <table cellSpacing="0">
         <thead>
