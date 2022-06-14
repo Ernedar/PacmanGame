@@ -182,6 +182,9 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput }) => {
 
   return (
     <div className="game-wrapper">
+      <div className="game-action-bar">
+        <p className="game-score">Score: {state.game.gameScore}</p>
+      </div>
       <div
         className="maze-layer-wrapper"
         style={{

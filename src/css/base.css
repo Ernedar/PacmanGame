@@ -108,7 +108,7 @@ input,
 }
 
 .input-md {
-  padding: var(--btn-md-p-hor) var(--btn-md-p-hor);
+  padding: var(--btn-md-p-ver) var(--btn-md-p-ver);
 }
 
 .left-adj {
