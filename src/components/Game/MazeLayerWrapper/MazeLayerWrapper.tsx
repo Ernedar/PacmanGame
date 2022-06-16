@@ -124,7 +124,7 @@ function GameReducer(state: gameStateInterface, action: gameAction) {
           ...state.pacman,
           pacmanState: PacManStates.idle,
           pacmanCurrentPosition: state.pacman.entityStartPosition,
-          pacmanCurrentDirection: Directions.none
+          pacmanCurrentDirection: [0, 0]
         },
         ghosts: {
           ...state.ghosts,
@@ -132,25 +132,25 @@ function GameReducer(state: gameStateInterface, action: gameAction) {
             ...state.ghosts.clyde,
             ghostState: GhostStates.idle,
             ghostCurrentPosition: state.ghosts.clyde.entityStartPosition,
-            ghostCurrentDirection: Directions.none
+            ghostCurrentDirection: [0, 0]
           },
           pinky: {
             ...state.ghosts.pinky,
             ghostState: GhostStates.idle,
             ghostCurrentPosition: state.ghosts.pinky.entityStartPosition,
-            ghostCurrentDirection: Directions.none
+            ghostCurrentDirection: [0, 0]
           },
           blinky: {
             ...state.ghosts.blinky,
             ghostState: GhostStates.idle,
             ghostCurrentPosition: state.ghosts.blinky.entityStartPosition,
-            ghostCurrentDirection: Directions.none
+            ghostCurrentDirection: [0, 0]
           },
           inky: {
             ...state.ghosts.inky,
             ghostState: GhostStates.idle,
             ghostCurrentPosition: state.ghosts.inky.entityStartPosition,
-            ghostCurrentDirection: Directions.none
+            ghostCurrentDirection: [0, 0]
           }
         }
       };
