@@ -1,4 +1,32 @@
-import { Inhabitants } from "./enums";
+import { Inhabitants, TileType } from "./enums";
+
+export function populatePowerPoints(
+  maze: [][],
+  type: TileType.power | TileType.point
+) {
+  let mazePoints: {}[] = [];
+  if (type === TileType.power) {
+    maze.map((tileRow, y) => {
+      tileRow.map((tile, x) => {
+        if (tile === 32) {
+          const tileObject = { x, y };
+          mazePoints.push(tileObject);
+        }
+      });
+    });
+  } else {
+    maze.map((tileRow, y) => {
+      tileRow.map((tile, x) => {
+        if (tile === 31) {
+          const tileObject = { x, y };
+          mazePoints.push(tileObject);
+        }
+      });
+    });
+  }
+
+  return mazePoints;
+}
 
 export function randomDirectionHandler(directions: {}) {
   const directionsArray = Object.entries(directions);

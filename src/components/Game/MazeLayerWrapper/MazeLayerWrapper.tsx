@@ -3,14 +3,17 @@ import MazeBuilder from "../MazeBuilder";
 import PlayBuilder from "../PlayBuilder";
 import GameInfoModal from "../GameInfoModal";
 import {
-  Directions,
   InhabitantNames,
   GameStateType,
   GhostStates,
-  PacManStates
+  PacManStates,
+  TileType
 } from "../../../utils/enums";
 import { GAME_ACTIONS } from "../../../utils/actions";
-import { startPositionHandler } from "../../../utils/handlers";
+import {
+  populatePowerPoints,
+  startPositionHandler
+} from "../../../utils/handlers";
 import {
   gameStateInterface,
   gameAction,
@@ -94,7 +97,9 @@ function GameReducer(state: gameStateInterface, action: gameAction) {
               InhabitantNames.inky
             )
           }
-        }
+        },
+        points: populatePowerPoints(payload.mazeArrayInput, TileType.point),
+        powers: populatePowerPoints(payload.mazeArrayInput, TileType.power)
       };
     case GAME_ACTIONS.START_GAME:
       console.log("Running");
@@ -212,6 +217,94 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
   const playgroundWidth = mazeArrayInput[0].length;
   const playgroundHeight = mazeArrayInput.length;
 
+  /*
+    ------ WINDOW LISTENER FOR KEYBOARD ------
+  */
+
+  /* ----- KEYBOARD HANDLING ----- */
+
+  function keyDownEventHandler(event: KeyboardEvent) {
+    const { key, keyCode } = event;
+    switch (keyCode) {
+      case 37 /* ArrowLeft */:
+      case 65 /* A */:
+        console.log("direction: left, key: " + key);
+        dispatch({
+          type: GAME_ACTIONS.CHANGE_PACMAN_DIRECTION,
+          payload: {
+            pacman: {
+              entityCurrentDirection: [0, -1]
+            }
+          }
+        });
+        break;
+      case 38 /* ArrowUp */:
+      case 87 /* W */:
+        console.log("direction: up, key: " + key);
+        dispatch({
+          type: GAME_ACTIONS.CHANGE_PACMAN_DIRECTION,
+          payload: {
+            pacman: {
+              entityCurrentDirection: [-1, 0]
+            }
+          }
+        });
+        break;
+      case 39 /* ArrowRight */:
+      case 68 /* D */:
+        console.log("direction: right, key: " + key);
+        dispatch({
+          type: GAME_ACTIONS.CHANGE_PACMAN_DIRECTION,
+          payload: {
+            pacman: {
+              entityCurrentDirection: [0, 1]
+            }
+          }
+        });
+        break;
+      case 40 /* ArrowDown */:
+      case 83 /* S */:
+        console.log("direction: down, key: " + key);
+        dispatch({
+          type: GAME_ACTIONS.CHANGE_PACMAN_DIRECTION,
+          payload: {
+            pacman: {
+              entityCurrentDirection: [1, 0]
+            }
+          }
+        });
+        break;
+      case 13 /* Enter */:
+        console.log(key + "pushed. Agreed");
+        break;
+      default:
+        break;
+    }
+  }
+
+  function escapeKeyEventHandler(event: KeyboardEvent) {
+    const { key, keyCode } = event;
+    if (keyCode === 27) {
+      dispatch({ type: GAME_ACTIONS.PAUSE_GAME });
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", keyDownEventHandler);
+
+    return () => {
+      window.removeEventListener("keydown", keyDownEventHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("keyup", escapeKeyEventHandler);
+
+    return () => {
+      window.removeEventListener("keyup", escapeKeyEventHandler);
+    };
+  }, []);
+
   /* GAME TICK BASICS AND SETTINGS */
 
   /* prepare selector for different parts of state and helper functions */
@@ -229,6 +322,14 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
   useEffect(() => {
     console.log("GameState changed to: " + state.game.gameState);
   }, [state.game.gameState]);
+
+  useEffect(() => {
+    console.log("Powers changed to: ", state.powers);
+  }, [state.powers]);
+
+  useEffect(() => {
+    console.log("Points changed to: ", state.points);
+  }, [state.points]);
 
   return (
     <GameContext.Provider value={value}>
