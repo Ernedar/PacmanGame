@@ -66,12 +66,12 @@ export interface gameStateInterface {
   game?: gameInterface;
   pacman?: pacmanInterface;
   ghosts?: GhostsInterface;
-  points?: [];
-  powers?: [];
+  points?: { x: number; y: number }[];
+  powers?: { x: number; y: number }[];
 }
 
 export interface gameAction {
-  type: String;
+  type: string;
   payload?: gamePayloadType;
 }
 

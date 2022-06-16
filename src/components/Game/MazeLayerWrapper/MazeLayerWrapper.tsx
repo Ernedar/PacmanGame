@@ -323,14 +323,6 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
     console.log("GameState changed to: " + state.game.gameState);
   }, [state.game.gameState]);
 
-  useEffect(() => {
-    console.log("Powers changed to: ", state.powers);
-  }, [state.powers]);
-
-  useEffect(() => {
-    console.log("Points changed to: ", state.points);
-  }, [state.points]);
-
   return (
     <GameContext.Provider value={value}>
       <div className="game-wrapper">

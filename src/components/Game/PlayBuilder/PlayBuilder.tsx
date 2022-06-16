@@ -17,6 +17,24 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
 
   return (
     <div className="game-actions-entities">
+      {gameContext.state.powers.map((power, i) => {
+        return (
+          <EntityPower
+            key={"power-" + power.x + "-" + power.y}
+            x={power.x}
+            y={power.y}
+          />
+        );
+      })}
+      {gameContext.state.points.map((point, i) => {
+        return (
+          <EntityPoint
+            key={"power-" + point.x + "-" + point.y}
+            x={point.x}
+            y={point.y}
+          />
+        );
+      })}
       <EntityPacman
         speed={gameContext.state.pacman.entitySpeed}
         currentPosition={gameContext.state.pacman.entityCurrentPosition}

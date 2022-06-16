@@ -10,7 +10,9 @@ export function populatePowerPoints(
       tileRow.map((tile, x) => {
         if (tile === 32) {
           const tileObject = { x, y };
-          mazePoints.push(tileObject);
+          return mazePoints.push(tileObject);
+        } else {
+          return mazePoints;
         }
       });
     });
@@ -19,7 +21,9 @@ export function populatePowerPoints(
       tileRow.map((tile, x) => {
         if (tile === 31) {
           const tileObject = { x, y };
-          mazePoints.push(tileObject);
+          return mazePoints.push(tileObject);
+        } else {
+          return mazePoints;
         }
       });
     });
