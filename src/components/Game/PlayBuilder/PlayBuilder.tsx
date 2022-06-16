@@ -69,16 +69,3 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
 };
 
 export default PlayBuilder;
-
-/*
-      {mazeDefinition.map((tileColumn, y) =>
-        tileColumn.map((tile, x) => {
-          if (tile === 31) {
-            return <EntityPoint key={"point-" + x + "-" + y} x={x} y={y} />;
-          } else if (tile === 32) {
-            return <EntityPower key={"power-" + x + "-" + y} x={x} y={y} />;
-          }
-          return null;
-        }
-      )}
-*/
