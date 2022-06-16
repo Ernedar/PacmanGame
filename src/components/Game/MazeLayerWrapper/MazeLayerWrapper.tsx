@@ -31,8 +31,6 @@ function GameReducer(state: gameStateInterface, action: gameAction) {
   const { type, payload } = action;
   switch (type) {
     case GAME_ACTIONS.INIT_GAME:
-      console.log("Game Initialization");
-      console.log(payload);
       return {
         ...state,
         game: {
@@ -207,22 +205,14 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
   const [state, dispatch] = useReducer(GameReducer, initialGameState);
   const value = { state, dispatch };
 
-  console.log("----- GamePageWrapper -----");
-  console.log("current mazeID: " + mazeID);
-
   const playgroundWidth = mazeArrayInput[0].length;
   const playgroundHeight = mazeArrayInput.length;
-
-  console.log(
-    "Current Game Maze Dimensions: " + playgroundWidth + ", " + playgroundHeight
-  );
 
   /* GAME TICK BASICS AND SETTINGS */
 
   /* prepare selector for different parts of state and helper functions */
 
   useEffect(() => {
-    console.log("effect on start");
     dispatch({
       type: GAME_ACTIONS.INIT_GAME,
       payload: {
@@ -231,47 +221,27 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
     });
     dispatch({ type: GAME_ACTIONS.GAME_LOADED });
   }, [mazeArrayInput, mazeID]);
-  console.log(state);
-  console.log(state.pacman);
 
-  console.log(
-    "After Init Effect Pacman Starter Pos: " + state.pacman.entityStartPosition
-  );
-  console.log(
-    "After Init Effect Clyde Starter Pos: " +
-      state.ghosts.clyde.entityStartPosition
-  );
-  console.log(
-    "After Init Effect Pinky Starter Pos: " +
-      state.ghosts.inky.entityStartPosition
-  );
-  console.log(
-    "After Init Effect Blinky Starter Pos: " +
-      state.ghosts.blinky.entityStartPosition
-  );
-  console.log(
-    "After Init Effect Inky Starter Pos: " +
-      state.ghosts.pinky.entityStartPosition
-  );
   return (
     <GameContext.Provider value={value}>
       <div className="game-wrapper">
         <div className="game-action-bar">
           <p className="game-score">Score: {state.game.gameScore}</p>
         </div>
-        <div
-          className="maze-layer-wrapper"
-          style={{
-            width: "calc(" + playgroundWidth + " * var(--tile-dim))",
-            height: "calc(" + playgroundHeight + " * var(--tile-dim))"
-          }}
-        >
-          <MazeBuilder mazeArray={mazeArrayInput} />
-          {state.game.gameLoaded && (
+        {!state.game.gameLoaded && <div>loading</div>}
+        {state.game.gameLoaded && (
+          <div
+            className="maze-layer-wrapper"
+            style={{
+              width: "calc(" + playgroundWidth + " * var(--tile-dim))",
+              height: "calc(" + playgroundHeight + " * var(--tile-dim))"
+            }}
+          >
+            <MazeBuilder mazeArray={mazeArrayInput} />
             <PlayBuilder mazeDefinition={mazeArrayInput} />
-          )}
-        </div>
-        <GameInfoModal />
+          </div>
+        )}
+        {state.game.gameLoaded && <GameInfoModal />}
       </div>
     </GameContext.Provider>
   );

@@ -2,7 +2,9 @@
   min-width: var(--nav-min-w);
   max-width: var(--nav-max-w);
   width: 25%;
+  height: 100vh;
   min-height: 100vh;
+  max-height: 100vh;
   height: auto;
   background-color: var(--nav-bg);
   overflow: hidden;

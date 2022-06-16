@@ -19,15 +19,6 @@ type PlayBuilderProps = {
 const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
   const gameContext = useContext(GameContext);
 
-  /* ----- POINTS and POWERS ----- */
-
-  const [points, handlePoints] = useState<
-    { x: number; y: number; eaten: boolean }[]
-  >([]);
-  const [powers, handlePowers] = useState<
-    { x: number; y: number; eaten: boolean }[]
-  >([]);
-
   /* ----- KEYBOARD HANDLING ----- */
 
   useEffect(() => {
@@ -51,10 +42,8 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
       {mazeDefinition.map((tileColumn, y) =>
         tileColumn.map((tile, x) => {
           if (tile === 31) {
-            points.push({ x: x, y: y, eaten: false });
             return <EntityPoint key={"point-" + x + "-" + y} x={x} y={y} />;
           } else if (tile === 32) {
-            powers.push({ x: x, y: y, eaten: false });
             return <EntityPower key={"power-" + x + "-" + y} x={x} y={y} />;
           }
           return null;

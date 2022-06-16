@@ -21,7 +21,8 @@ const initialGameState = {
 
   game: {
     gameState: GameStateType.notstarted,
-    gameScore: 0
+    gameScore: 0,
+    gameLoaded: false
   },
   pacman: {
     pacmanState: PacManStates.idle,

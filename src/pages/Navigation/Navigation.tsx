@@ -1,15 +1,18 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Navigation.css";
 
 import { importMaze } from "../../utils/interfaces";
+import initialState from "../../state/initialState";
 
 type navProps = {
   jsonImport: Array<importMaze>;
 };
 
 const Navigation: FC<navProps> = ({ jsonImport }) => {
+  const [gameState, setGameState] = useState(initialState);
+
   return (
     <nav className="side-nav">
       <ul>
@@ -24,7 +27,12 @@ const Navigation: FC<navProps> = ({ jsonImport }) => {
             {jsonImport.map((id, i) => (
               <li key={jsonImport[i].id}>
                 <p className="sub-link">
-                  <Link to={"/" + jsonImport[i].linktag}>
+                  <Link
+                    to={"/" + jsonImport[i].linktag}
+                    onClick={() => {
+                      setGameState(initialState);
+                    }}
+                  >
                     {jsonImport[i].name}
                   </Link>
                 </p>
