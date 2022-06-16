@@ -1,6 +1,6 @@
 import { DESIGNER_ACTIONS } from "../utils/actions";
 import { DesignerTileType } from "../utils/enums";
-import { payloadType } from "../utils/types";
+import { DesignerAction, designerStateInterface } from "../utils/interfaces";
 import {
   changeMazeDesignerTile,
   addTileToMaze,
@@ -9,15 +9,9 @@ import {
   clearMazeRow,
   clearMazeColumn
 } from "../utils/handlers";
-import MazeDesignerInitState from "../state/initialDesignerState";
-
-interface DesignerAction {
-  type: String;
-  payload: payloadType;
-}
 
 export default function MazeDesignerReducer(
-  state: typeof MazeDesignerInitState,
+  state: designerStateInterface,
   action: DesignerAction
 ) {
   const { type, payload } = action;

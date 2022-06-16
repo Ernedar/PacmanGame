@@ -1,18 +1,27 @@
-import MazeDesignerInitState from "../state/initialDesignerState";
+import { Dispatch } from "react";
 import { DesignerTileType } from "./enums";
+import {
+  DesignerAction,
+  designerStateInterface,
+  gameStateInterface
+} from "./interfaces";
 
-export type payloadType = typeof MazeDesignerInitState & {
-  x: number;
-  y: number;
+export type designerPayloadType = designerStateInterface & {
+  x?: number;
+  y?: number;
 };
 
 export type designerProps = {
-  mazeState: typeof MazeDesignerInitState;
-  dispatch(arg: {}): void;
+  mazeState: designerStateInterface;
+  dispatch: Dispatch<DesignerAction>;
 };
 
 export type designerButtonProps = designerProps & {
-  tileKey?: string | undefined;
-  tileNumber?: number | undefined;
-  tileType: DesignerTileType;
+  tileKey?: string;
+  tileNumber?: number;
+  tileType?: DesignerTileType;
+};
+
+export type gamePayloadType = gameStateInterface & {
+  mazeArrayInput: number[][];
 };

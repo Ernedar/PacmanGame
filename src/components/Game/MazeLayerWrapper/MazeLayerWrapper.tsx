@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useReducer } from "react";
+import React, { FC, createContext, useEffect, useReducer } from "react";
 import MazeBuilder from "../MazeBuilder";
 import PlayBuilder from "../PlayBuilder";
 import GameInfoModal from "../GameInfoModal";
@@ -11,44 +11,95 @@ import {
 } from "../../../utils/enums";
 import { GAME_ACTIONS } from "../../../utils/actions";
 import { startPositionHandler } from "../../../utils/handlers";
+import {
+  gameStateInterface,
+  gameAction,
+  IGameContext
+} from "../../../utils/interfaces";
 import initialGameState from "../../../state/initialState";
 
 import "./MazeLayerWrapper.css";
 
+export const GameContext = createContext({} as IGameContext);
+
 type MazeLayerProps = {
   mazeArrayInput: number[][];
+  mazeID: number;
 };
 
-function selectGameState(state: typeof initialGameState) {
-  return state.game.gameState;
-}
-
-function updateAllGhosts(ghosts, values = {}) {
-  const updatedObject = Object.keys(ghosts).reduce((acc, ghostName) => {
-    return {
-      ...acc,
-      [ghostName]: { ...ghosts[ghostName], ...values }
-    };
-  }, {});
-}
-
-function GameReducer(state, action) {
-  switch (action.type) {
+function GameReducer(state: gameStateInterface, action: gameAction) {
+  const { type, payload } = action;
+  switch (type) {
     case GAME_ACTIONS.INIT_GAME:
-      console.log("First Initialization");
+      console.log("Game Initialization");
+      console.log(payload);
       return {
         ...state,
+        game: {
+          ...state.game,
+          gameState: GameStateType.notstarted
+        },
         pacman: {
           ...state.pacman,
-          pacmanStartPosition: startPositionHandler(
-            action.payload.mazeArrayInput,
+          entityStartPosition: startPositionHandler(
+            payload.mazeArrayInput,
+            InhabitantNames.pacman
+          ),
+          entityCurrentPosition: startPositionHandler(
+            payload.mazeArrayInput,
             InhabitantNames.pacman
           )
+        },
+        ghosts: {
+          ...state.ghosts,
+          clyde: {
+            ...state.ghosts.clyde,
+            entityStartPosition: startPositionHandler(
+              payload.mazeArrayInput,
+              InhabitantNames.clyde
+            ),
+            entityCurrentPosition: startPositionHandler(
+              payload.mazeArrayInput,
+              InhabitantNames.clyde
+            )
+          },
+          pinky: {
+            ...state.ghosts.pinky,
+            entityStartPosition: startPositionHandler(
+              payload.mazeArrayInput,
+              InhabitantNames.pinky
+            ),
+            entityCurrentPosition: startPositionHandler(
+              payload.mazeArrayInput,
+              InhabitantNames.pinky
+            )
+          },
+          blinky: {
+            ...state.ghosts.blinky,
+            entityStartPosition: startPositionHandler(
+              payload.mazeArrayInput,
+              InhabitantNames.blinky
+            ),
+            entityCurrentPosition: startPositionHandler(
+              payload.mazeArrayInput,
+              InhabitantNames.blinky
+            )
+          },
+          inky: {
+            ...state.ghosts.inky,
+            entityStartPosition: startPositionHandler(
+              payload.mazeArrayInput,
+              InhabitantNames.inky
+            ),
+            entityCurrentPosition: startPositionHandler(
+              payload.mazeArrayInput,
+              InhabitantNames.inky
+            )
+          }
         }
       };
     case GAME_ACTIONS.START_GAME:
       console.log("Running");
-      updateAllGhosts(state.ghosts, { ghostState: GhostStates.hunting });
       return {
         ...state,
         game: {
@@ -69,7 +120,7 @@ function GameReducer(state, action) {
         pacman: {
           ...state.pacman,
           pacmanState: PacManStates.idle,
-          pacmanCurrentPosition: state.pacman.pacmanStartPosition,
+          pacmanCurrentPosition: state.pacman.entityStartPosition,
           pacmanCurrentDirection: Directions.none
         },
         ghosts: {
@@ -77,25 +128,25 @@ function GameReducer(state, action) {
           clyde: {
             ...state.ghosts.clyde,
             ghostState: GhostStates.idle,
-            ghostCurrentPosition: state.ghosts.clyde.ghostStartPosition,
+            ghostCurrentPosition: state.ghosts.clyde.entityStartPosition,
             ghostCurrentDirection: Directions.none
           },
           pinky: {
             ...state.ghosts.pinky,
             ghostState: GhostStates.idle,
-            ghostCurrentPosition: state.ghosts.pinky.ghostStartPosition,
+            ghostCurrentPosition: state.ghosts.pinky.entityStartPosition,
             ghostCurrentDirection: Directions.none
           },
           blinky: {
             ...state.ghosts.blinky,
             ghostState: GhostStates.idle,
-            ghostCurrentPosition: state.ghosts.blinky.ghostStartPosition,
+            ghostCurrentPosition: state.ghosts.blinky.entityStartPosition,
             ghostCurrentDirection: Directions.none
           },
           inky: {
             ...state.ghosts.inky,
             ghostState: GhostStates.idle,
-            ghostCurrentPosition: state.ghosts.inky.ghostStartPosition,
+            ghostCurrentPosition: state.ghosts.inky.entityStartPosition,
             ghostCurrentDirection: Directions.none
           }
         }
@@ -133,15 +184,17 @@ function GameReducer(state, action) {
         game: {
           ...state.game,
           gameState: GameStateType.finished
-        },
-        pacman: {
-          ...state.pacman,
-          pacmanState: PacManStates.idle
-        },
-        ghosts: updateAllGhosts(state.ghosts, { ghostState: GhostStates.idle })
+        }
+      };
+    case GAME_ACTIONS.GAME_LOADED:
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          gameLoaded: true
+        }
       };
     case GAME_ACTIONS.GAME_TICK:
-      console.log(state.pacman);
       return {
         ...state
       };
@@ -150,53 +203,77 @@ function GameReducer(state, action) {
   }
 }
 
-const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput }) => {
+const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
   const [state, dispatch] = useReducer(GameReducer, initialGameState);
-  const gameState = selectGameState(state);
+  const value = { state, dispatch };
+
+  console.log("----- GamePageWrapper -----");
+  console.log("current mazeID: " + mazeID);
 
   const playgroundWidth = mazeArrayInput[0].length;
   const playgroundHeight = mazeArrayInput.length;
+
+  console.log(
+    "Current Game Maze Dimensions: " + playgroundWidth + ", " + playgroundHeight
+  );
 
   /* GAME TICK BASICS AND SETTINGS */
 
   /* prepare selector for different parts of state and helper functions */
 
   useEffect(() => {
-    let gameTick = null;
-
-    if (gameState === GameStateType.running) {
-      dispatch({ type: GAME_ACTIONS.GAME_TICK });
-      /*  gameTick = setInterval(() => {
-        dispatch({ type: GAME_ACTIONS.GAME_TICK });
-      }, 100); > Look at request animation frame */
-    } else {
-      if (gameTick) {
-        clearInterval(gameTick);
+    console.log("effect on start");
+    dispatch({
+      type: GAME_ACTIONS.INIT_GAME,
+      payload: {
+        mazeArrayInput: mazeArrayInput
       }
-    }
-  }, [gameState]);
+    });
+    dispatch({ type: GAME_ACTIONS.GAME_LOADED });
+  }, [mazeArrayInput, mazeID]);
+  console.log(state);
+  console.log(state.pacman);
 
-  useEffect(() => {
-    dispatch({ type: GAME_ACTIONS.INIT_GAME, payload: { mazeArrayInput } });
-  }, [mazeArrayInput]);
-
+  console.log(
+    "After Init Effect Pacman Starter Pos: " + state.pacman.entityStartPosition
+  );
+  console.log(
+    "After Init Effect Clyde Starter Pos: " +
+      state.ghosts.clyde.entityStartPosition
+  );
+  console.log(
+    "After Init Effect Pinky Starter Pos: " +
+      state.ghosts.inky.entityStartPosition
+  );
+  console.log(
+    "After Init Effect Blinky Starter Pos: " +
+      state.ghosts.blinky.entityStartPosition
+  );
+  console.log(
+    "After Init Effect Inky Starter Pos: " +
+      state.ghosts.pinky.entityStartPosition
+  );
   return (
-    <div className="game-wrapper">
-      <div className="game-action-bar">
-        <p className="game-score">Score: {state.game.gameScore}</p>
+    <GameContext.Provider value={value}>
+      <div className="game-wrapper">
+        <div className="game-action-bar">
+          <p className="game-score">Score: {state.game.gameScore}</p>
+        </div>
+        <div
+          className="maze-layer-wrapper"
+          style={{
+            width: "calc(" + playgroundWidth + " * var(--tile-dim))",
+            height: "calc(" + playgroundHeight + " * var(--tile-dim))"
+          }}
+        >
+          <MazeBuilder mazeArray={mazeArrayInput} />
+          {state.game.gameLoaded && (
+            <PlayBuilder mazeDefinition={mazeArrayInput} />
+          )}
+        </div>
+        <GameInfoModal />
       </div>
-      <div
-        className="maze-layer-wrapper"
-        style={{
-          width: "calc(" + playgroundWidth + " * var(--tile-dim))",
-          height: "calc(" + playgroundHeight + " * var(--tile-dim))"
-        }}
-      >
-        <MazeBuilder mazeArray={mazeArrayInput} />
-        <PlayBuilder mazeDefinition={mazeArrayInput} />
-      </div>
-      <GameInfoModal gameStateType={state.game.gameState} dispatch={dispatch} />
-    </div>
+    </GameContext.Provider>
   );
 };
 

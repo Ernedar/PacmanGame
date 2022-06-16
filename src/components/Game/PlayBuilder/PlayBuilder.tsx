@@ -1,107 +1,23 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useContext } from "react";
 import "./PlayBuilder.css";
-import { positionChecker } from "../../../utils/utils";
-import { Ghost, Pacman } from "../../../utils/interfaces";
 import {
-  randomDirectionHandler,
-  startPositionHandler,
   keyDownEventHandler,
   escapeKeyEventHandler
 } from "../../../utils/handlers";
-import {
-  GameStateType,
-  Directions,
-  InhabitantNames,
-  PacManStates,
-  GhostStates,
-  GhostBehavior
-} from "../../../utils/enums";
+import { InhabitantNames } from "../../../utils/enums";
 import EntityPoint from "../EntityPoint";
 import EntityPower from "../EntityPower";
 import EntityPacman from "../EntityPacman";
 import EntityGhost from "../EntityGhost";
+
+import { GameContext } from "../MazeLayerWrapper/MazeLayerWrapper";
 
 type PlayBuilderProps = {
   mazeDefinition: number[][];
 };
 
 const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
-  const [gameState, handleGameState] = useState<GameStateType>(
-    GameStateType.notstarted
-  );
-  const [gameScore, handleGameScore] = useState<number>(0);
-
-  /* ----- PACMAN ----- */
-
-  const [pacmanCurrentPosition, handlePacmanPosition] = useState<number[]>(
-    startPositionHandler(mazeDefinition, InhabitantNames.pacman)
-  );
-
-  const pacmanAvailableDirections = positionChecker(
-    mazeDefinition,
-    pacmanCurrentPosition[0],
-    pacmanCurrentPosition[1]
-  );
-
-  const [pacmanCurrentDirection, handlePacmanDirection] = useState<Directions>(
-    Directions.none
-  );
-
-  const [pacmanState, handlePacmanStates] = useState<PacManStates>(
-    PacManStates.idle
-  );
-
-  const pacmanSpeed = 250;
-
-  /* ----- GHOSTS ----- */
-
-  /* PINKY */
-
-  const [ghostPinkyCurrentPosition, handleGhostPinkyPosition] = useState<
-    number[]
-  >(startPositionHandler(mazeDefinition, InhabitantNames.pinky));
-
-  const [ghostPinkyState, handleGhostPinkyState] = useState<GhostStates>(
-    GhostStates.idle
-  );
-
-  const ghostPinkySpeed = 450;
-
-  /* INKY */
-
-  const [ghostInkyCurrentPosition, handleGhostInkyPosition] = useState<
-    number[]
-  >(startPositionHandler(mazeDefinition, InhabitantNames.inky));
-
-  const [ghostInkyState, handleGhostInkyState] = useState<GhostStates>(
-    GhostStates.idle
-  );
-
-  const ghostInkySpeed = 150;
-
-  /* BLINKY */
-
-  const [ghostBlinkyCurrentPosition, handleGhostBlinkyPosition] = useState<
-    number[]
-  >(startPositionHandler(mazeDefinition, InhabitantNames.blinky));
-
-  const [ghostBlinkyState, handleGhostBlinkyState] = useState<GhostStates>(
-    GhostStates.idle
-  );
-
-  const ghostBlinkySpeed = 300;
-
-  /* CLYDE */
-
-  const [ghostClydeCurrentPosition, handleGhostClydePosition] = useState<
-    number[]
-  >(startPositionHandler(mazeDefinition, InhabitantNames.clyde));
-
-  const [ghostClydeState, handleGhostClydeState] = useState<GhostStates>(
-    GhostStates.idle
-  );
-
-  const ghostClydeSpeed = 250;
+  const gameContext = useContext(GameContext);
 
   /* ----- POINTS and POWERS ----- */
 
@@ -145,32 +61,32 @@ const PlayBuilder: FC<PlayBuilderProps> = ({ mazeDefinition }) => {
         })
       )}
       <EntityPacman
-        speed={pacmanSpeed}
-        currentPosition={pacmanCurrentPosition}
+        speed={gameContext.state.pacman.entitySpeed}
+        currentPosition={gameContext.state.pacman.entityCurrentPosition}
       />
       <EntityGhost
-        ghostName={GhostBehavior.clyde}
-        ghostState={ghostClydeState}
-        speed={ghostClydeSpeed}
-        currentPosition={ghostClydeCurrentPosition}
+        ghostName={InhabitantNames.clyde}
+        ghostState={gameContext.state.ghosts.clyde.ghostState}
+        speed={gameContext.state.ghosts.clyde.entitySpeed}
+        currentPosition={gameContext.state.ghosts.clyde.entityCurrentPosition}
       />
       <EntityGhost
-        ghostName={GhostBehavior.inky}
-        ghostState={ghostInkyState}
-        speed={ghostInkySpeed}
-        currentPosition={ghostInkyCurrentPosition}
+        ghostName={InhabitantNames.inky}
+        ghostState={gameContext.state.ghosts.inky.ghostState}
+        speed={gameContext.state.ghosts.inky.entitySpeed}
+        currentPosition={gameContext.state.ghosts.inky.entityCurrentPosition}
       />
       <EntityGhost
-        ghostName={GhostBehavior.pinky}
-        ghostState={ghostPinkyState}
-        speed={ghostPinkySpeed}
-        currentPosition={ghostPinkyCurrentPosition}
+        ghostName={InhabitantNames.pinky}
+        ghostState={gameContext.state.ghosts.pinky.ghostState}
+        speed={gameContext.state.ghosts.pinky.entitySpeed}
+        currentPosition={gameContext.state.ghosts.pinky.entityCurrentPosition}
       />
       <EntityGhost
-        ghostName={GhostBehavior.blinky}
-        ghostState={ghostBlinkyState}
-        speed={ghostBlinkySpeed}
-        currentPosition={ghostBlinkyCurrentPosition}
+        ghostName={InhabitantNames.blinky}
+        ghostState={gameContext.state.ghosts.blinky.ghostState}
+        speed={gameContext.state.ghosts.blinky.entitySpeed}
+        currentPosition={gameContext.state.ghosts.blinky.entityCurrentPosition}
       />
     </div>
   );

@@ -1,12 +1,12 @@
 export const GAME_ACTIONS = {
   INIT_GAME: "initialize-game",
+  GAME_LOADED: "game-is-loaded",
   START_GAME: "start-game",
   RESET_GAME: "reset-game",
   PAUSE_GAME: "pause-game",
   CONTINUE_GAME: "continue-game",
   FINISH_GAME: "finish-game",
-  LOSE_GAME: "lose-game",
-  GAME_TICK: "game-time-interval"
+  LOSE_GAME: "lose-game"
 };
 
 export const DESIGNER_ACTIONS = {

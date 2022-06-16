@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GameStateType } from "../../../utils/enums";
 import classNames from "classnames";
 
 import "./GameInfoModal.css";
 import { GAME_ACTIONS } from "../../../utils/actions";
+import { GameContext } from "../MazeLayerWrapper/MazeLayerWrapper";
 
-function GameInfoModal({ gameStateType, dispatch }) {
+function GameInfoModal() {
+  const gameContext = useContext(GameContext);
+  const gameStateContextValue = gameContext.state.game.gameState;
+
   const opened =
-    gameStateType === GameStateType.notstarted ||
-    gameStateType === GameStateType.paused ||
-    gameStateType === GameStateType.lost ||
-    gameStateType === GameStateType.finished;
+    gameStateContextValue === GameStateType.notstarted ||
+    gameStateContextValue === GameStateType.paused ||
+    gameStateContextValue === GameStateType.lost ||
+    gameStateContextValue === GameStateType.finished;
 
   return (
     <div
@@ -25,7 +29,9 @@ function GameInfoModal({ gameStateType, dispatch }) {
         <div className="modal-card-body">
           <p
             className={classNames({
-              "force-hidden": !(gameStateType === GameStateType.notstarted)
+              "force-hidden": !(
+                gameStateContextValue === GameStateType.notstarted
+              )
             })}
           >
             Welcome to PacMan Game. Can you win? Can you eat all points before
@@ -33,21 +39,23 @@ function GameInfoModal({ gameStateType, dispatch }) {
           </p>
           <p
             className={classNames({
-              "force-hidden": !(gameStateType === GameStateType.paused)
+              "force-hidden": !(gameStateContextValue === GameStateType.paused)
             })}
           >
             Game Paused. Would you like to resume or start over?
           </p>
           <p
             className={classNames({
-              "force-hidden": !(gameStateType === GameStateType.finished)
+              "force-hidden": !(
+                gameStateContextValue === GameStateType.finished
+              )
             })}
           >
             Con gratulations. You won. You final score is:
           </p>
           <p
             className={classNames({
-              "force-hidden": !(gameStateType === GameStateType.lost)
+              "force-hidden": !(gameStateContextValue === GameStateType.lost)
             })}
           >
             You got eaten. You final score is:
@@ -56,10 +64,12 @@ function GameInfoModal({ gameStateType, dispatch }) {
         <div className="modal-card-footer">
           <button
             className={classNames("modal-btn", {
-              "force-hidden": !(gameStateType === GameStateType.notstarted)
+              "force-hidden": !(
+                gameStateContextValue === GameStateType.notstarted
+              )
             })}
             onClick={() =>
-              dispatch({
+              gameContext.dispatch({
                 type: GAME_ACTIONS.START_GAME
               })
             }
@@ -68,10 +78,10 @@ function GameInfoModal({ gameStateType, dispatch }) {
           </button>
           <button
             className={classNames("modal-btn", {
-              "force-hidden": !(gameStateType === GameStateType.paused)
+              "force-hidden": !(gameStateContextValue === GameStateType.paused)
             })}
             onClick={() =>
-              dispatch({
+              gameContext.dispatch({
                 type: GAME_ACTIONS.CONTINUE_GAME
               })
             }
@@ -81,13 +91,13 @@ function GameInfoModal({ gameStateType, dispatch }) {
           <button
             className={classNames("modal-btn", {
               "force-hidden": !(
-                gameStateType === GameStateType.paused ||
-                gameStateType === GameStateType.lost ||
-                gameStateType === GameStateType.finished
+                gameStateContextValue === GameStateType.paused ||
+                gameStateContextValue === GameStateType.lost ||
+                gameStateContextValue === GameStateType.finished
               )
             })}
             onClick={() =>
-              dispatch({
+              gameContext.dispatch({
                 type: GAME_ACTIONS.RESET_GAME
               })
             }

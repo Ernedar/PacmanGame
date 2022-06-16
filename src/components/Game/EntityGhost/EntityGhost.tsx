@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import classNames from "classnames";
-import { GhostStates, GhostBehavior } from "../../../utils/enums";
+import { GhostStates, InhabitantNames } from "../../../utils/enums";
 
 type GhostProps = {
-  ghostName: GhostBehavior;
+  ghostName: InhabitantNames;
   ghostState: GhostStates;
   speed: number;
   currentPosition: number[];

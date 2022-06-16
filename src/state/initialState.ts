@@ -25,39 +25,39 @@ const initialGameState = {
   },
   pacman: {
     pacmanState: PacManStates.idle,
-    pacmanStartPosition: [],
-    pacmanCurrentPositon: [],
-    pacmanCurrentDirection: Directions.none,
-    pacmanSpeed: 250
+    entityStartPosition: [],
+    entityCurrentPositon: [],
+    entityCurrentDirection: Directions.none,
+    entitySpeed: 250
   },
   ghosts: {
     clyde: {
       ghostState: GhostStates.idle,
-      ghostStartPosition: [],
-      ghostCurrentPositon: [],
-      ghostCurrentDirection: Directions.none,
-      ghostSpeed: 250
+      entityStartPosition: [],
+      entityCurrentPositon: [],
+      entityCurrentDirection: Directions.none,
+      entitySpeed: 250
     },
     pinky: {
       ghostState: GhostStates.idle,
-      ghostStartPosition: [],
-      ghostCurrentPositon: [],
-      ghostCurrentDirection: Directions.none,
-      ghostSpeed: 450
+      entityStartPosition: [],
+      entityCurrentPositon: [],
+      entityCurrentDirection: Directions.none,
+      entitySpeed: 450
     },
     blinky: {
       ghostState: GhostStates.idle,
-      ghostStartPosition: [],
-      ghostCurrentPositon: [],
-      ghostCurrentDirection: Directions.none,
-      ghostSpeed: 300
+      entityStartPosition: [],
+      entityCurrentPositon: [],
+      entityCurrentDirection: Directions.none,
+      entitySpeed: 300
     },
     inky: {
       ghostState: GhostStates.idle,
-      ghostStartPosition: [],
-      ghostCurrentPositon: [],
-      ghostCurrentDirection: Directions.none,
-      ghostSpeed: 150
+      entityStartPosition: [],
+      entityCurrentPositon: [],
+      entityCurrentDirection: Directions.none,
+      entitySpeed: 150
     }
   },
   points: [],

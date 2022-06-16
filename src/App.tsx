@@ -27,7 +27,10 @@ export default function App() {
             exact
             path={"/" + mazesJSON.mazes[i].linktag}
             element={
-              <MazeLayerWrapper mazeArrayInput={mazesJSON.mazes[i].mazeArray} />
+              <MazeLayerWrapper
+                mazeArrayInput={mazesJSON.mazes[i].mazeArray}
+                mazeID={mazesJSON.mazes[i].id}
+              />
             }
           />
         ))}

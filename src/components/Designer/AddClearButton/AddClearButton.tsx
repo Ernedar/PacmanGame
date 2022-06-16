@@ -20,87 +20,91 @@ const AddClearButton: FC<addClearButtonProps> = ({
   rowNumber,
   colNumber
 }) => {
-  if (cellAction === designerCellActions.addTile) {
-    return (
-      <button
-        className={classNames("add-clear-btn add-btn")}
-        onClick={() =>
-          dispatch({
-            type: DESIGNER_ACTIONS.ADD_TILE_TO_MAZE,
-            payload: {
-              x: rowNumber,
-              selectedTileNumber: mazeState.selectedTileNumber
-            }
-          })
-        }
-      />
-    );
-  } else if (
-    cellAction === designerCellActions.addRow &&
-    mazeState.designedMaze[0].length > 0
-  ) {
-    return (
-      <button
-        className={classNames("add-clear-btn add-btn")}
-        onClick={() =>
-          dispatch({
-            type: DESIGNER_ACTIONS.ADD_ROW_OF_TILES,
-            payload: {
-              selectedTileNumber: mazeState.selectedTileNumber
-            }
-          })
-        }
-      />
-    );
-  } else if (cellAction === designerCellActions.removeTile) {
-    return (
-      <button
-        className={classNames("add-clear-btn rmw-btn")}
-        onClick={() =>
-          dispatch({
-            type: DESIGNER_ACTIONS.REMOVE_TILE_FROM_MAZE,
-            payload: {
-              x: rowNumber
-            }
-          })
-        }
-      />
-    );
-  } else if (cellAction === designerCellActions.clearRow) {
-    return (
-      <button
-        className={classNames("add-clear-btn clr-btn")}
-        onClick={() =>
-          dispatch({
-            type: DESIGNER_ACTIONS.CLEAR_ROW_OF_TILES,
-            payload: {
-              x: rowNumber
-            }
-          })
-        }
-      >
-        <p>C</p>
-      </button>
-    );
-  } else if (
-    cellAction === designerCellActions.clearCol &&
-    mazeState.designedMaze[0].length > 0
-  ) {
-    return (
-      <button
-        className={classNames("add-clear-btn clr-btn")}
-        onClick={() =>
-          dispatch({
-            type: DESIGNER_ACTIONS.CLEAR_COL_OF_TILES,
-            payload: {
-              y: colNumber
-            }
-          })
-        }
-      >
-        <p>C</p>
-      </button>
-    );
+  if (mazeState.designedMaze) {
+    if (cellAction === designerCellActions.addTile) {
+      return (
+        <button
+          className={classNames("add-clear-btn add-btn")}
+          onClick={() =>
+            dispatch({
+              type: DESIGNER_ACTIONS.ADD_TILE_TO_MAZE,
+              payload: {
+                x: rowNumber,
+                selectedTileNumber: mazeState.selectedTileNumber
+              }
+            })
+          }
+        />
+      );
+    } else if (
+      cellAction === designerCellActions.addRow &&
+      mazeState.designedMaze[0].length > 0
+    ) {
+      return (
+        <button
+          className={classNames("add-clear-btn add-btn")}
+          onClick={() =>
+            dispatch({
+              type: DESIGNER_ACTIONS.ADD_ROW_OF_TILES,
+              payload: {
+                selectedTileNumber: mazeState.selectedTileNumber
+              }
+            })
+          }
+        />
+      );
+    } else if (cellAction === designerCellActions.removeTile) {
+      return (
+        <button
+          className={classNames("add-clear-btn rmw-btn")}
+          onClick={() =>
+            dispatch({
+              type: DESIGNER_ACTIONS.REMOVE_TILE_FROM_MAZE,
+              payload: {
+                x: rowNumber
+              }
+            })
+          }
+        />
+      );
+    } else if (cellAction === designerCellActions.clearRow) {
+      return (
+        <button
+          className={classNames("add-clear-btn clr-btn")}
+          onClick={() =>
+            dispatch({
+              type: DESIGNER_ACTIONS.CLEAR_ROW_OF_TILES,
+              payload: {
+                x: rowNumber
+              }
+            })
+          }
+        >
+          <p>C</p>
+        </button>
+      );
+    } else if (
+      cellAction === designerCellActions.clearCol &&
+      mazeState.designedMaze[0].length > 0
+    ) {
+      return (
+        <button
+          className={classNames("add-clear-btn clr-btn")}
+          onClick={() =>
+            dispatch({
+              type: DESIGNER_ACTIONS.CLEAR_COL_OF_TILES,
+              payload: {
+                y: colNumber
+              }
+            })
+          }
+        >
+          <p>C</p>
+        </button>
+      );
+    } else {
+      return null;
+    }
   } else {
     return null;
   }
