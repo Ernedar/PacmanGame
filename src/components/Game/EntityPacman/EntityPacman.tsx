@@ -3,10 +3,35 @@ import React, { FC } from "react";
 type PacmanProps = {
   speed: number;
   currentPosition: number[];
+  direction: [];
 };
 
-const EntityPacman: FC<PacmanProps> = ({ speed, currentPosition }) => {
+const EntityPacman: FC<PacmanProps> = ({
+  speed,
+  currentPosition,
+  direction
+}) => {
   const pacmanAnimationDuration = speed * 3 + "ms";
+
+  let pacmanRotation;
+
+  switch (direction.toString()) {
+    case "-1,0":
+      pacmanRotation = "rotate(-90deg)";
+      break;
+    case "1,0":
+      pacmanRotation = "rotate(90deg)";
+      break;
+    case "0,-1":
+      pacmanRotation = "rotateY(180deg)";
+      break;
+    case "0,1":
+    case "0,0":
+      pacmanRotation = "";
+      break;
+    default:
+      pacmanRotation = "";
+  }
 
   return (
     <div
@@ -17,7 +42,8 @@ const EntityPacman: FC<PacmanProps> = ({ speed, currentPosition }) => {
           currentPosition[1] +
           " * var(--tile-dim)), calc(" +
           currentPosition[0] +
-          " * var(--tile-dim))"
+          " * var(--tile-dim)))" +
+          pacmanRotation
       }}
     >
       <div

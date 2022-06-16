@@ -3,7 +3,6 @@ import { Dispatch } from "react";
 import {
   PacManStates,
   GhostStates,
-  Directions,
   GameStateType,
   DesignerTileType
 } from "./enums";
@@ -44,7 +43,7 @@ export interface gameInterface {
 export interface movingEntity {
   entityStartPosition?: number[];
   entityCurrentPosition?: number[];
-  entityCurrentDirection?: Directions;
+  entityCurrentDirection?: number[];
   entitySpeed?: number;
 }
 

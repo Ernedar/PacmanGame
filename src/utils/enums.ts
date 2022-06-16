@@ -162,14 +162,6 @@ export enum GameStateType {
   lost = "lost"
 }
 
-export enum Directions {
-  top = "top",
-  right = "right",
-  bottom = "bottom",
-  left = "left",
-  none = "none"
-}
-
 export enum DesignerTileType {
   wall = "wall",
   path = "path",

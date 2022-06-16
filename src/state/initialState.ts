@@ -1,9 +1,4 @@
-import {
-  Directions,
-  GameStateType,
-  GhostStates,
-  PacManStates
-} from "../utils/enums";
+import { GameStateType, GhostStates, PacManStates } from "../utils/enums";
 
 /* ----- GAME SETTINGS ----- */
 
@@ -28,7 +23,7 @@ const initialGameState = {
     pacmanState: PacManStates.idle,
     entityStartPosition: [],
     entityCurrentPositon: [],
-    entityCurrentDirection: Directions.none,
+    entityCurrentDirection: [0, 0],
     entitySpeed: 250
   },
   ghosts: {
@@ -36,28 +31,28 @@ const initialGameState = {
       ghostState: GhostStates.idle,
       entityStartPosition: [],
       entityCurrentPositon: [],
-      entityCurrentDirection: Directions.none,
+      entityCurrentDirection: [0, 0],
       entitySpeed: 250
     },
     pinky: {
       ghostState: GhostStates.idle,
       entityStartPosition: [],
       entityCurrentPositon: [],
-      entityCurrentDirection: Directions.none,
+      entityCurrentDirection: [0, 0],
       entitySpeed: 450
     },
     blinky: {
       ghostState: GhostStates.idle,
       entityStartPosition: [],
       entityCurrentPositon: [],
-      entityCurrentDirection: Directions.none,
+      entityCurrentDirection: [0, 0],
       entitySpeed: 300
     },
     inky: {
       ghostState: GhostStates.idle,
       entityStartPosition: [],
       entityCurrentPositon: [],
-      entityCurrentDirection: Directions.none,
+      entityCurrentDirection: [0, 0],
       entitySpeed: 150
     }
   },

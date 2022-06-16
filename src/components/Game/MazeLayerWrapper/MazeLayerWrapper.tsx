@@ -192,9 +192,13 @@ function GameReducer(state: gameStateInterface, action: gameAction) {
           gameLoaded: true
         }
       };
-    case GAME_ACTIONS.GAME_TICK:
+    case GAME_ACTIONS.CHANGE_PACMAN_DIRECTION:
       return {
-        ...state
+        ...state,
+        pacman: {
+          ...state.pacman,
+          entityCurrentDirection: payload.pacman.entityCurrentDirection
+        }
       };
     default:
       return state;
@@ -221,6 +225,10 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
     });
     dispatch({ type: GAME_ACTIONS.GAME_LOADED });
   }, [mazeArrayInput, mazeID]);
+
+  useEffect(() => {
+    console.log("GameState changed to: " + state.game.gameState);
+  }, [state.game.gameState]);
 
   return (
     <GameContext.Provider value={value}>

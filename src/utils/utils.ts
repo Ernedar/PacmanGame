@@ -27,31 +27,35 @@ export function positionChecker(maze: number[][], x: number, y: number) {
     left = translateTile(maze[x][y - 1]);
   }
 
-  let top;
+  let up;
 
-  if (y === 0) {
-    top = TileType["wall"];
+  if (x === 0) {
+    up = TileType["wall"];
   } else {
-    top = translateTile(maze[x - 1][y]);
+    up = translateTile(maze[x - 1][y]);
   }
 
-  const right = translateTile(maze[x][y + 1]);
-  const bottom = translateTile(maze[x + 1][y]);
+  let right;
 
-  return { left, right, top, bottom };
+  if (y === maze[0].length - 1) {
+    right = TileType["wall"];
+  } else {
+    right = translateTile(maze[x][y + 1]);
+  }
+
+  let down;
+
+  if (x === maze.length - 1) {
+    down = TileType["wall"];
+  } else {
+    down = translateTile(maze[x + 1][y]);
+  }
+
+  return { left, right, up, down };
 }
 
-export function pacmanMovement(
-  e: Event,
-  currentPacmanX: number,
-  currentPacmanY: number
-) {
-  // this should handle key inputs and moving pacman from current coordinates to new coordinates
-
-  let newPacmanX: number;
-  let newPacmanY: number;
-
-  return [(newPacmanX = 0), (newPacmanY = 0)];
+export function pacmanMovement() {
+  // change of current pacman position
 }
 
 export function eatingPoint() {

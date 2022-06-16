@@ -6,7 +6,8 @@ export const GAME_ACTIONS = {
   PAUSE_GAME: "pause-game",
   CONTINUE_GAME: "continue-game",
   FINISH_GAME: "finish-game",
-  LOSE_GAME: "lose-game"
+  LOSE_GAME: "lose-game",
+  CHANGE_PACMAN_DIRECTION: "change-pacman-direction"
 };
 
 export const DESIGNER_ACTIONS = {

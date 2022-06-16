@@ -15,7 +15,16 @@ export function randomDirectionHandler(directions: {}) {
   const randomDirection =
     adjustedDirections[(adjustedDirections.length * Math.random()) << 0];
 
-  return Object.values(randomDirection)[0];
+  switch (randomDirection) {
+    case "left":
+      return [0, -1];
+    case "right":
+      return [0, 1];
+    case "up":
+      return [-1, 0];
+    case "down":
+      return [1, 0];
+  }
 }
 
 export function startPositionHandler(maze: number[][], inhabitant: string) {
@@ -38,30 +47,6 @@ export function startPositionHandler(maze: number[][], inhabitant: string) {
   );
 
   return entityStartPosition;
-}
-
-/*
-  ------ WINDOW LISTENER FOR KEYBOARD ------
-*/
-
-export function keyDownEventHandler(event: KeyboardEvent): void {
-  if (event.code === "Enter") {
-    console.log("agreed");
-  } else if (event.code === "ArrowLeft") {
-    console.log("direction: left");
-  } else if (event.code === "ArrowRight") {
-    console.log("direction: right");
-  } else if (event.code === "ArrowUp") {
-    console.log("direction: up");
-  } else if (event.code === "ArrowDown") {
-    console.log("direction: down");
-  }
-}
-
-export function escapeKeyEventHandler(event: KeyboardEvent): void {
-  if (event.code === "Escape") {
-    console.log(event.code + " was pushed and released");
-  }
 }
 
 /*

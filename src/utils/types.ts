@@ -23,5 +23,5 @@ export type designerButtonProps = designerProps & {
 };
 
 export type gamePayloadType = gameStateInterface & {
-  mazeArrayInput: number[][];
+  mazeArrayInput?: number[][];
 };
