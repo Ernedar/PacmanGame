@@ -16,8 +16,6 @@ export default function GameReducer(
 ): gameStateInterface {
   switch (action.type) {
     case GameActionType.InitiateGame:
-      console.log("Game Initiated.");
-      console.log(action.payload);
       return {
         ...state,
         game: {

@@ -13,8 +13,7 @@ import {
 import { GameStateType, InhabitantNames } from "../../../utils/enums";
 import {
   useGameState,
-  useGameDispatch,
-  GameContextProvider
+  useGameDispatch
 } from "../../../state/PacmanGameContext";
 
 type MazeLayerProps = {
@@ -79,7 +78,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
     return () => {
       window.removeEventListener("keydown", keyDownEventHandler);
     };
-  }, []);
+  });
 
   useEffect(() => {
     window.addEventListener("keyup", escapeKeyEventHandler);
@@ -87,7 +86,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
     return () => {
       window.removeEventListener("keyup", escapeKeyEventHandler);
     };
-  }, []);
+  });
 
   /* GAME TICK BASICS AND SETTINGS */
 
@@ -96,7 +95,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
   useEffect(() => {
     dispatch(initiateGame(mazeArrayInput));
     dispatch(gameLoaded());
-  }, [mazeArrayInput, mazeID]);
+  }, [mazeArrayInput, mazeID, dispatch]);
 
   useEffect(() => {
     console.log("GameState changed to: " + state.game.gameState);
@@ -106,27 +105,25 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
   console.log(mazeID);
   console.log(mazeArrayInput);
   return (
-    <GameContextProvider>
-      <div className="game-wrapper">
-        <div className="game-action-bar">
-          <p className="game-score">Score: {state.game.gameScore}</p>
-        </div>
-        {!state.game.gameLoaded && <div>loading</div>}
-        {state.game.gameLoaded && (
-          <div
-            className="maze-layer-wrapper"
-            style={{
-              width: "calc(" + playgroundWidth + " * var(--tile-dim))",
-              height: "calc(" + playgroundHeight + " * var(--tile-dim))"
-            }}
-          >
-            <MazeBuilder mazeArray={mazeArrayInput} />
-            <PlayBuilder />
-          </div>
-        )}
-        {state.game.gameLoaded && <GameInfoModal />}
+    <div className="game-wrapper">
+      <div className="game-action-bar">
+        <p className="game-score">Score: {state.game.gameScore}</p>
       </div>
-    </GameContextProvider>
+      {!state.game.gameLoaded && <div>loading</div>}
+      {state.game.gameLoaded && (
+        <div
+          className="maze-layer-wrapper"
+          style={{
+            width: "calc(" + playgroundWidth + " * var(--tile-dim))",
+            height: "calc(" + playgroundHeight + " * var(--tile-dim))"
+          }}
+        >
+          <MazeBuilder mazeArray={mazeArrayInput} />
+          <PlayBuilder />
+        </div>
+      )}
+      {state.game.gameLoaded && <GameInfoModal />}
+    </div>
   );
 };
 

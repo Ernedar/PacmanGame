@@ -72,7 +72,10 @@ function GameInfoModal() {
                 gameStateContextValue === GameStateType.notstarted
               )
             })}
-            onClick={() => dispatch(changeGameStatus(GameStateType.running))}
+            onClick={() => {
+              dispatch(changeGameStatus(GameStateType.running));
+              console.log("dispatch from modal: " + dispatch);
+            }}
           >
             Start New Game
           </button>

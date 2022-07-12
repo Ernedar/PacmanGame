@@ -6,6 +6,7 @@ import Navigation from "./pages/Navigation";
 import HomePage from "./pages/HomePage";
 import MazeLayerWrapper from "./components/Game/MazeLayerWrapper";
 import MazeDesigner from "./components/Designer/DesignerContainer";
+import { GameContextProvider } from "./state/PacmanGameContext";
 
 /* MAZE IMPORTS */
 
@@ -27,10 +28,12 @@ export default function App() {
             exact
             path={"/" + mazesJSON.mazes[i].linktag}
             element={
-              <MazeLayerWrapper
-                mazeArrayInput={mazesJSON.mazes[i].mazeArray}
-                mazeID={mazesJSON.mazes[i].id}
-              />
+              <GameContextProvider>
+                <MazeLayerWrapper
+                  mazeArrayInput={mazesJSON.mazes[i].mazeArray}
+                  mazeID={mazesJSON.mazes[i].id}
+                />
+              </GameContextProvider>
             }
           />
         ))}
