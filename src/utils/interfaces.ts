@@ -72,16 +72,6 @@ export interface gameStateInterface {
   powers: { x: number; y: number }[];
 }
 
-export interface gameAction {
-  type: string;
-  payload?: gamePayloadType;
-}
-
-export interface IGameContext {
-  state: gameStateInterface;
-  dispatch: Dispatch<gameAction>;
-}
-
 /* GAME ACTION INTERFACES */
 
 export interface InitiateGame {
