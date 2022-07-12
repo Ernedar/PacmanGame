@@ -1,5 +1,3 @@
-import { Dispatch } from "react";
-
 import {
   PacManStates,
   GhostStates,
@@ -8,7 +6,7 @@ import {
   GameActionType,
   InhabitantNames
 } from "./enums";
-import { gamePayloadType, designerPayloadType } from "./types";
+import { designerPayloadType } from "./types";
 
 /* DESIGNER INTERFACES */
 
