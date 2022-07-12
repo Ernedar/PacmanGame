@@ -1,10 +1,10 @@
 import { Inhabitants, TileType } from "./enums";
 
 export function populatePowerPoints(
-  maze: [][],
+  maze: number[][],
   type: TileType.power | TileType.point
 ) {
-  let mazePoints: {}[] = [];
+  let mazePoints: { x: number; y: number }[] = [];
   if (type === TileType.power) {
     maze.map((tileRow, y) => {
       tileRow.map((tile, x) => {

@@ -183,3 +183,10 @@ export enum designerCellActions {
   clearCol = "clear-col-of-tiles",
   removeTile = "remove-tile"
 }
+
+export enum GameActionType {
+  InitiateGame,
+  GameLoaded,
+  ChangeGameStatus,
+  ChangeEntityDirection
+}

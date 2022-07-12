@@ -4,7 +4,9 @@ import {
   PacManStates,
   GhostStates,
   GameStateType,
-  DesignerTileType
+  DesignerTileType,
+  GameActionType,
+  InhabitantNames
 } from "./enums";
 import { gamePayloadType, designerPayloadType } from "./types";
 
@@ -35,39 +37,39 @@ export interface importMaze {
 }
 
 export interface gameInterface {
-  gameState?: GameStateType;
-  gameScore?: number;
-  gameLoaded?: boolean;
+  gameState: GameStateType;
+  gameScore: number;
+  gameLoaded: boolean;
 }
 
 export interface movingEntity {
-  entityStartPosition?: number[];
-  entityCurrentPosition?: number[];
-  entityCurrentDirection?: number[];
-  entitySpeed?: number;
+  entityStartPosition: number[];
+  entityCurrentPosition: number[];
+  entityCurrentDirection: number[];
+  entitySpeed: number;
 }
 
 export interface ghostInterface extends movingEntity {
-  ghostState?: GhostStates;
-}
-
-export interface GhostsInterface {
-  clyde?: ghostInterface;
-  inky?: ghostInterface;
-  pinky?: ghostInterface;
-  blinky?: ghostInterface;
+  entityState: GhostStates;
 }
 
 export interface pacmanInterface extends movingEntity {
-  pacmanState?: PacManStates;
+  entityState: PacManStates;
+}
+
+export interface EntitiesInterface {
+  pacman: pacmanInterface;
+  clyde: ghostInterface;
+  inky: ghostInterface;
+  pinky: ghostInterface;
+  blinky: ghostInterface;
 }
 
 export interface gameStateInterface {
-  game?: gameInterface;
-  pacman?: pacmanInterface;
-  ghosts?: GhostsInterface;
-  points?: { x: number; y: number }[];
-  powers?: { x: number; y: number }[];
+  game: gameInterface;
+  entity: EntitiesInterface;
+  points: { x: number; y: number }[];
+  powers: { x: number; y: number }[];
 }
 
 export interface gameAction {
@@ -80,13 +82,30 @@ export interface IGameContext {
   dispatch: Dispatch<gameAction>;
 }
 
-/*
-interface PlayTile {
-  x: number;
-  y: number;
-  whatAmI: "wall" | "point" | "power";
+/* GAME ACTION INTERFACES */
+
+export interface InitiateGame {
+  type: GameActionType.InitiateGame;
+  payload: {
+    mazeArray: number[][];
+  };
 }
 
-type PlayMap = Record<string, PlayTile>;
+export interface GameLoaded {
+  type: GameActionType.GameLoaded;
+}
 
-*/
+export interface ChangeGameStatus {
+  type: GameActionType.ChangeGameStatus;
+  payload: {
+    gameStatus: GameStateType;
+  };
+}
+
+export interface ChangeEntityDirection {
+  type: GameActionType.ChangeEntityDirection;
+  payload: {
+    entity: InhabitantNames;
+    direction: number[];
+  };
+}

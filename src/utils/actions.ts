@@ -1,14 +1,10 @@
-export const GAME_ACTIONS = {
-  INIT_GAME: "initialize-game",
-  GAME_LOADED: "game-is-loaded",
-  START_GAME: "start-game",
-  RESET_GAME: "reset-game",
-  PAUSE_GAME: "pause-game",
-  CONTINUE_GAME: "continue-game",
-  FINISH_GAME: "finish-game",
-  LOSE_GAME: "lose-game",
-  CHANGE_PACMAN_DIRECTION: "change-pacman-direction"
-};
+import { GameActionType, GameStateType, InhabitantNames } from "./enums";
+import {
+  ChangeEntityDirection,
+  ChangeGameStatus,
+  GameLoaded,
+  InitiateGame
+} from "./interfaces";
 
 export const DESIGNER_ACTIONS = {
   SELECT_TILE: "select-tile",
@@ -26,3 +22,34 @@ export const DESIGNER_ACTIONS = {
   CLEAR_DESIGNER: "clear-designer",
   REFRESH_STATE_RENDER: "refresh-state-render"
 };
+
+export const initiateGame = (maze: number[][]): InitiateGame => ({
+  type: GameActionType.InitiateGame,
+  payload: {
+    mazeArray: maze
+  }
+});
+
+export const gameLoaded = (): GameLoaded => ({
+  type: GameActionType.GameLoaded
+});
+
+export const changeGameStatus = (
+  gameStatus: GameStateType
+): ChangeGameStatus => ({
+  type: GameActionType.ChangeGameStatus,
+  payload: {
+    gameStatus: gameStatus
+  }
+});
+
+export const changeEntityDirection = (
+  entityIdentifier: InhabitantNames,
+  entityDirection: number[]
+): ChangeEntityDirection => ({
+  type: GameActionType.ChangeEntityDirection,
+  payload: {
+    entity: entityIdentifier,
+    direction: entityDirection
+  }
+});

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 type PacmanProps = {
   speed: number;
   currentPosition: number[];
-  direction: [];
+  direction: number[];
 };
 
 const EntityPacman: FC<PacmanProps> = ({

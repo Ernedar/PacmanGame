@@ -1,14 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import { GameStateType } from "../../../utils/enums";
 import classNames from "classnames";
+import { changeGameStatus } from "../../../utils/actions";
+import {
+  useGameState,
+  useGameDispatch
+} from "../../../state/PacmanGameContext";
 
 import "./GameInfoModal.css";
-import { GAME_ACTIONS } from "../../../utils/actions";
-import { GameContext } from "../MazeLayerWrapper/MazeLayerWrapper";
 
 function GameInfoModal() {
-  const gameContext = useContext(GameContext);
-  const gameStateContextValue = gameContext.state.game.gameState;
+  const state = useGameState();
+  const gameStateContextValue = state.game.gameState;
+  const dispatch = useGameDispatch();
 
   const opened =
     gameStateContextValue === GameStateType.notstarted ||
@@ -68,11 +72,7 @@ function GameInfoModal() {
                 gameStateContextValue === GameStateType.notstarted
               )
             })}
-            onClick={() =>
-              gameContext.dispatch({
-                type: GAME_ACTIONS.START_GAME
-              })
-            }
+            onClick={() => dispatch(changeGameStatus(GameStateType.running))}
           >
             Start New Game
           </button>
@@ -80,11 +80,7 @@ function GameInfoModal() {
             className={classNames("modal-btn", {
               "force-hidden": !(gameStateContextValue === GameStateType.paused)
             })}
-            onClick={() =>
-              gameContext.dispatch({
-                type: GAME_ACTIONS.CONTINUE_GAME
-              })
-            }
+            onClick={() => dispatch(changeGameStatus(GameStateType.running))}
           >
             Resume Game
           </button>
@@ -96,11 +92,7 @@ function GameInfoModal() {
                 gameStateContextValue === GameStateType.finished
               )
             })}
-            onClick={() =>
-              gameContext.dispatch({
-                type: GAME_ACTIONS.RESET_GAME
-              })
-            }
+            onClick={() => dispatch(changeGameStatus(GameStateType.notstarted))}
           >
             Reset Game
           </button>

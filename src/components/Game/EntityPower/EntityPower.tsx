@@ -32,7 +32,7 @@ const EntityPoint: FC<PowerProps> = ({ x, y, eaten = false }) => {
         }}
       >
         <div className="power">
-          <img src={logos[randomLogoKey]} alt="CN Group Logo" />
+          <img src={logos[randomLogoKey]} alt="CN Group Technology Logo" />
         </div>
       </div>
     );

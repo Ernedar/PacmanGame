@@ -1,8 +1,9 @@
 import { GameStateType, GhostStates, PacManStates } from "../utils/enums";
+import { gameStateInterface } from "../utils/interfaces";
 
 /* ----- GAME SETTINGS ----- */
 
-const initialGameState = {
+const initialGameState: gameStateInterface = {
   /* STATES
    * Game is default in mode "not-started" in that case, overlay is visible with welcome message and "Start Game" button.
    * On pushing the button game will change state to "Running" which will allow timers to cycle therefore ghosts to move and so on.
@@ -19,39 +20,39 @@ const initialGameState = {
     gameScore: 0,
     gameLoaded: false
   },
-  pacman: {
-    pacmanState: PacManStates.idle,
-    entityStartPosition: [],
-    entityCurrentPositon: [],
-    entityCurrentDirection: [0, 0],
-    entitySpeed: 250
-  },
-  ghosts: {
-    clyde: {
-      ghostState: GhostStates.idle,
+  entity: {
+    pacman: {
+      entityState: PacManStates.idle,
       entityStartPosition: [],
-      entityCurrentPositon: [],
+      entityCurrentPosition: [],
+      entityCurrentDirection: [0, 0],
+      entitySpeed: 250
+    },
+    clyde: {
+      entityState: GhostStates.idle,
+      entityStartPosition: [],
+      entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
       entitySpeed: 250
     },
     pinky: {
-      ghostState: GhostStates.idle,
+      entityState: GhostStates.idle,
       entityStartPosition: [],
-      entityCurrentPositon: [],
+      entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
       entitySpeed: 450
     },
     blinky: {
-      ghostState: GhostStates.idle,
+      entityState: GhostStates.idle,
       entityStartPosition: [],
-      entityCurrentPositon: [],
+      entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
       entitySpeed: 300
     },
     inky: {
-      ghostState: GhostStates.idle,
+      entityState: GhostStates.idle,
       entityStartPosition: [],
-      entityCurrentPositon: [],
+      entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
       entitySpeed: 150
     }
