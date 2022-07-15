@@ -11,7 +11,11 @@ h2 {
   margin: 0;
   display: block;
   position: relative;
-  padding-top: 25%;
+  padding-top: 10%;
+  display: flex;
+  justify-content: flex flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
 .loading-animation-wrapper {
@@ -39,6 +43,8 @@ h2 {
   position: absolute;
   top: 50%;
   left: 15%;
+  width: var(--pacman-loading-dim);
+  height: var(--pacman-loading-dim);
   transform: translate(0%, -50%);
   animation-name: PacmanMovement;
   animation-duration: 6000ms;

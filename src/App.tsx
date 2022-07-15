@@ -27,7 +27,7 @@ export default function App() {
       <Navigation jsonImport={mazesJSON.mazes} />
 
       <Routes>
-        <Route path="/" element={<LoadingPage />} />
+        <Route path="/" element={<HomePage />} />
 
         {mazesJSON.mazes.map((id, i) => (
           <Route
