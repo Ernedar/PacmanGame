@@ -2,6 +2,7 @@ import React, { FC, useEffect } from "react";
 import MazeBuilder from "../MazeBuilder";
 import PlayBuilder from "../PlayBuilder";
 import GameInfoModal from "../GameInfoModal";
+import LoadingPage from "../../../pages/LoadingPage";
 
 import "./MazeLayerWrapper.css";
 import {
@@ -17,16 +18,15 @@ import {
 } from "../../../state/PacmanGameContext";
 
 type MazeLayerProps = {
-  mazeArrayInput: number[][];
+  mazeArray: number[][];
   mazeID: number;
 };
 
-const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
+const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
   const state = useGameState();
   const dispatch = useGameDispatch();
-
-  const playgroundWidth = mazeArrayInput[0].length;
-  const playgroundHeight = mazeArrayInput.length;
+  const playgroundWidth = mazeArray[0].length;
+  const playgroundHeight = mazeArray.length;
 
   /*
     ------ WINDOW LISTENER FOR KEYBOARD ------
@@ -93,23 +93,20 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
   /* prepare selector for different parts of state and helper functions */
 
   useEffect(() => {
-    dispatch(initiateGame(mazeArrayInput));
+    dispatch(initiateGame(mazeArray));
     dispatch(gameLoaded());
-  }, [mazeArrayInput, mazeID, dispatch]);
+  }, [mazeArray, mazeID, dispatch]);
 
   useEffect(() => {
     console.log("GameState changed to: " + state.game.gameState);
   }, [state.game.gameState]);
 
-  console.log(state);
-  console.log(mazeID);
-  console.log(mazeArrayInput);
   return (
     <div className="game-wrapper">
       <div className="game-action-bar">
         <p className="game-score">Score: {state.game.gameScore}</p>
       </div>
-      {!state.game.gameLoaded && <div>loading</div>}
+      {!state.game.gameLoaded && <LoadingPage />}
       {state.game.gameLoaded && (
         <div
           className="maze-layer-wrapper"
@@ -118,7 +115,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArrayInput, mazeID }) => {
             height: "calc(" + playgroundHeight + " * var(--tile-dim))"
           }}
         >
-          <MazeBuilder mazeArray={mazeArrayInput} />
+          <MazeBuilder mazeArray={mazeArray} />
           <PlayBuilder />
         </div>
       )}

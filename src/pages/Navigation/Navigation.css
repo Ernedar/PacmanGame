@@ -56,6 +56,13 @@ ul li a {
   transition: color 250ms ease-in-out;
 }
 
+ul li a.active {
+  text-transform: uppercase;
+  color: var(--pacman-color);
+  text-decoration: none;
+  transition: color 250ms ease-in-out;
+}
+
 ul li a:hover {
   color: var(--pacman-color-grad);
 }

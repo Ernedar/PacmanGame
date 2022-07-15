@@ -68,6 +68,15 @@ html {
   --ghost-blinky: #ff0000;
   --ghost-scared: #1919a6;
 
+  /* LOADING */
+
+  --loading-w: 31.25rem;
+  --loading-w-inner-plus: 12.5rem;
+  --loading-h: 6.25rem;
+  --loading-bg: rgba(0, 0, 0, 0.85);
+  --pacman-loading-dim: 3rem;
+  --ghost-loading-dim: 3rem;
+
   /* DESIGNER SETTINGS */
 
   --header-bg: #344a4b;

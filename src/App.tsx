@@ -4,13 +4,20 @@ import { Routes, Route } from "react-router-dom";
 /* PAGES COMPONENTS */
 import Navigation from "./pages/Navigation";
 import HomePage from "./pages/HomePage";
-import MazeLayerWrapper from "./components/Game/MazeLayerWrapper";
-import MazeDesigner from "./components/Designer/DesignerContainer";
+import NotFound from "./pages/NotFound";
+import LoadingPage from "./pages/LoadingPage";
 import { GameContextProvider } from "./state/PacmanGameContext";
 
 /* MAZE IMPORTS */
 
 import mazesJSON from "./assets/prepMazes.json";
+
+/* PAGES LAZY LOADING */
+
+const LazyDesigner = React.lazy(() =>
+  import("./components/Designer/DesignerContainer")
+);
+const LazyMaze = React.lazy(() => import("./components/Game/MazeLayerWrapper"));
 
 /* CORE ROUTER */
 
@@ -20,24 +27,33 @@ export default function App() {
       <Navigation jsonImport={mazesJSON.mazes} />
 
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
+        <Route path="/" element={<LoadingPage />} />
 
         {mazesJSON.mazes.map((id, i) => (
           <Route
             key={mazesJSON.mazes[i].id}
-            exact
-            path={"/" + mazesJSON.mazes[i].linktag}
+            path={"/mazes/" + mazesJSON.mazes[i].linktag}
             element={
-              <GameContextProvider>
-                <MazeLayerWrapper
-                  mazeArrayInput={mazesJSON.mazes[i].mazeArray}
-                  mazeID={mazesJSON.mazes[i].id}
-                />
-              </GameContextProvider>
+              <React.Suspense fallback={<LoadingPage />}>
+                <GameContextProvider>
+                  <LazyMaze
+                    mazeArray={mazesJSON.mazes[i].mazeArray}
+                    mazeID={mazesJSON.mazes[i].id}
+                  />
+                </GameContextProvider>
+              </React.Suspense>
             }
           />
         ))}
-        <Route exact path="/designer" element={<MazeDesigner />} />
+        <Route
+          path="designer"
+          element={
+            <React.Suspense fallback={<LoadingPage />}>
+              <LazyDesigner />
+            </React.Suspense>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

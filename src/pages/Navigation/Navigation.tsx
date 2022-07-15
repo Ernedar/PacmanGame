@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import "./Navigation.css";
 
@@ -18,7 +18,7 @@ const Navigation: FC<navProps> = ({ jsonImport }) => {
       <ul>
         <li>
           <p>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </p>
         </li>
         <li>
@@ -27,14 +27,14 @@ const Navigation: FC<navProps> = ({ jsonImport }) => {
             {jsonImport.map((id, i) => (
               <li key={jsonImport[i].id}>
                 <p className="sub-link">
-                  <Link
-                    to={"/" + jsonImport[i].linktag}
+                  <NavLink
+                    to={"/mazes/" + jsonImport[i].linktag}
                     onClick={() => {
                       setGameState(initialState);
                     }}
                   >
                     {jsonImport[i].name}
-                  </Link>
+                  </NavLink>
                 </p>
               </li>
             ))}
@@ -42,7 +42,7 @@ const Navigation: FC<navProps> = ({ jsonImport }) => {
         </li>
         <li>
           <p>
-            <Link to="/designer">Maze Designer</Link>
+            <NavLink to="/designer">Maze Designer</NavLink>
           </p>
         </li>
       </ul>

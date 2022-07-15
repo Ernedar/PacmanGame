@@ -1,0 +1,285 @@
+h2 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.loading-wrapper {
+  text-align: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  display: block;
+  position: relative;
+  padding-top: 25%;
+}
+
+.loading-animation-wrapper {
+  background-color: transparent;
+  width: var(--loading-w);
+  height: var(--loading-h);
+  margin-bottom: var(--padding-main);
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-animation-inner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: var(--loading-bg);
+  height: var(--loading-h);
+  width: calc(var(--loading-w) + var(--loading-w-inner-plus));
+}
+
+/* --- PACMAN --- */
+
+.pacman.loading {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(0%, -50%);
+  animation-name: PacmanMovement;
+  animation-duration: 6000ms;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: linear;
+}
+
+.loading .top-half,
+.loading .bottom-half {
+  animation-duration: 750ms;
+  height: calc(var(--pacman-loading-dim) / 2);
+}
+
+.loading .top-half {
+  border-top-left-radius: var(--pacman-loading-dim);
+  border-top-right-radius: var(--pacman-loading-dim);
+}
+
+.loading .bottom-half {
+  border-bottom-left-radius: var(--pacman-loading-dim);
+  border-bottom-right-radius: var(--pacman-loading-dim);
+}
+
+.loading .eye {
+  top: calc(var(--pacman-loading-dim) / 5);
+  width: calc(var(--pacman-loading-dim) / 10);
+  height: calc(var(--pacman-loading-dim) / 10);
+  background-color: var(--loading-bg);
+}
+
+@keyframes PacmanMovement {
+  0% {
+    left: 15%;
+    transform: translate(0%, -50%) rotateY(0deg);
+  }
+  40.29% {
+    left: 100%;
+    transform: translate(0%, -50%) rotateY(0deg);
+  }
+  40.3% {
+    transform: translate(0%, -50%) rotateY(180deg);
+  }
+  87.7% {
+    left: 0%;
+    transform: translate(0%, -50%) rotateY(180deg);
+  }
+  92.88% {
+    left: 0%;
+    transform: translate(0%, -50%) rotateY(0deg);
+  }
+  92.89% {
+    left: 0%;
+  }
+  100% {
+    left: 15%;
+  }
+}
+
+/* --- PACMAN END --- */
+
+/* --- GHOSTS --- */
+
+.ghost-wrapper.loading {
+  position: absolute;
+  top: 50%;
+  width: var(--ghost-loading-dim);
+  height: calc(var(--ghost-loading-dim) * 1.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(0, -50%);
+  animation-duration: 6000ms;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: linear;
+}
+
+.clyde-wrapper {
+  left: 35%;
+  animation-name: ClydeMovement;
+}
+
+.blinky-wrapper {
+  left: 40%;
+  animation-name: BlinkyMovement;
+}
+
+.loading .ghost {
+  position: relative;
+  animation-duration: 3000ms;
+  width: var(--ghost-loading-dim);
+  height: calc(var(--ghost-loading-dim) * 1.2);
+}
+
+.loading .ghost-body {
+  width: var(--ghost-loading-dim);
+  height: var(--ghost-loading-dim);
+  border-top-left-radius: calc(var(--ghost-loading-dim) / 2);
+  border-top-right-radius: calc(var(--ghost-loading-dim) / 2);
+}
+
+.loading .skirt-wave {
+  width: calc(var(--ghost-loading-dim) / 3);
+  height: calc(var(--ghost-loading-dim) / 5);
+  border-bottom-left-radius: calc(var(--ghost-loading-dim) / 3);
+  border-bottom-right-radius: calc(var(--ghost-loading-dim) / 3);
+}
+
+.loading .ghost-eye {
+  top: calc(var(--ghost-loading-dim) / 3);
+  width: calc(var(--ghost-loading-dim) / 6);
+  height: calc(var(--ghost-loading-dim) / 3);
+}
+
+.loading .ghost-eye-socket {
+  width: calc(var(--ghost-loading-dim) / 10);
+  height: calc(var(--ghost-loading-dim) / 10);
+}
+
+/* GHOST COLORS */
+
+.loading .clyde .ghost-body,
+.loading .clyde .skirt-wave,
+.loading .blinky .ghost-body,
+.loading .blinky .skirt-wave {
+  background-color: var(--ghost-scared);
+  animation-duration: 6000ms;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: linear;
+}
+
+.loading .clyde .ghost-body,
+.loading .clyde .skirt-wave {
+  animation-name: ClydeBGColorChange;
+}
+
+.loading .blinky .ghost-body,
+.loading .blinky .skirt-wave {
+  animation-name: BlinkyBGColorChange;
+}
+
+@keyframes ClydeMovement {
+  0% {
+    left: 35%;
+  }
+  32.5% {
+    left: 100%;
+  }
+  45% {
+    left: 100%;
+  }
+  91% {
+    left: 0%;
+  }
+  91.1% {
+    left: 8%;
+  }
+  100% {
+    left: 35%;
+  }
+}
+
+@keyframes BlinkyMovement {
+  0% {
+    left: 40%;
+  }
+  30% {
+    left: 100%;
+  }
+  43.5% {
+    left: 100%;
+  }
+  91.5% {
+    left: 0%;
+  }
+  91.6% {
+    left: 8%;
+  }
+  100% {
+    left: 40%;
+  }
+}
+
+@keyframes ClydeBGColorChange {
+  0% {
+    left: 35%;
+    background-color: var(--ghost-scared);
+  }
+  32.4% {
+    left: 100%;
+    background-color: var(--ghost-scared);
+  }
+  32.5% {
+    left: 100%;
+    background-color: var(--ghost-clyde);
+  }
+  45% {
+    left: 100%;
+  }
+  91% {
+    left: 0%;
+    background-color: var(--ghost-clyde);
+  }
+  91.1% {
+    left: 8%;
+    background-color: var(--ghost-scared);
+  }
+  100% {
+    left: 35%;
+    background-color: var(--ghost-scared);
+  }
+}
+
+@keyframes BlinkyBGColorChange {
+  0% {
+    left: 35%;
+    background-color: var(--ghost-scared);
+  }
+  32.4% {
+    left: 100%;
+    background-color: var(--ghost-scared);
+  }
+  32.5% {
+    left: 100%;
+    background-color: var(--ghost-blinky);
+  }
+  45% {
+    left: 100%;
+  }
+  91% {
+    left: 0%;
+    background-color: var(--ghost-blinky);
+  }
+  91.1% {
+    left: 8%;
+    background-color: var(--ghost-scared);
+  }
+  100% {
+    left: 35%;
+    background-color: var(--ghost-scared);
+  }
+}
