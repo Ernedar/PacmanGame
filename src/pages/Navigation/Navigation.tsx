@@ -3,14 +3,15 @@ import { NavLink } from "react-router-dom";
 
 import "./Navigation.css";
 
-import { importMaze } from "../../utils/interfaces";
+/* MAZE IMPORTS */
+
+import mazesJSON from "../../assets/prepMazes.json";
+
+/* STATE IMPORT */
+
 import initialState from "../../state/initialState";
 
-type navProps = {
-  jsonImport: Array<importMaze>;
-};
-
-const Navigation: FC<navProps> = ({ jsonImport }) => {
+const Navigation: FC = () => {
   const [gameState, setGameState] = useState(initialState);
 
   return (
@@ -24,16 +25,16 @@ const Navigation: FC<navProps> = ({ jsonImport }) => {
         <li>
           <p>Game</p>
           <ul>
-            {jsonImport.map((id, i) => (
-              <li key={jsonImport[i].id}>
+            {mazesJSON.mazes.map((id, i) => (
+              <li key={mazesJSON.mazes[i].id}>
                 <p className="sub-link">
                   <NavLink
-                    to={"/mazes/" + jsonImport[i].linktag}
+                    to={"/mazes/" + mazesJSON.mazes[i].linktag}
                     onClick={() => {
                       setGameState(initialState);
                     }}
                   >
-                    {jsonImport[i].name}
+                    {mazesJSON.mazes[i].name}
                   </NavLink>
                 </p>
               </li>
