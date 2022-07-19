@@ -18,10 +18,7 @@ const initialGameState: gameStateInterface = {
   game: {
     gameState: GameStateType.notstarted,
     gameScore: 0,
-    gameLoaded: false,
-    gameInterval: 0,
-    gameDeltaCounter: 0,
-    gameSpeed: 0
+    gameLoaded: false
   },
   entity: {
     pacman: {

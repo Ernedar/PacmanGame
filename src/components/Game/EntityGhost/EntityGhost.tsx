@@ -5,18 +5,14 @@ import { GhostStates, InhabitantNames } from "../../../utils/enums";
 type GhostProps = {
   ghostName: InhabitantNames;
   ghostState: GhostStates;
-  speed: number;
   currentPosition: number[];
 };
 
 const EntityGhost: FC<GhostProps> = ({
   ghostName = test,
   ghostState,
-  speed,
   currentPosition
 }) => {
-  const ghostAnimationDuration = speed * 10 + "ms";
-
   let ghostStateName;
 
   if (ghostState === GhostStates.scared) {
@@ -39,10 +35,7 @@ const EntityGhost: FC<GhostProps> = ({
           " * var(--tile-dim))"
       }}
     >
-      <div
-        className={classNames("ghost", ghostStateName)}
-        style={{ animationDuration: ghostAnimationDuration }}
-      >
+      <div className={classNames("ghost", ghostStateName)}>
         <div className="ghost-body">
           <div className="ghost-eye">
             <div className="ghost-eye-socket"></div>

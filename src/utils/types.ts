@@ -3,7 +3,6 @@ import { DesignerTileType } from "./enums";
 import {
   DesignerAction,
   designerStateInterface,
-  gameStateInterface,
   InitiateGame,
   GameLoaded,
   ChangeGameStatus,
@@ -29,15 +28,9 @@ export type designerButtonProps = designerProps & {
   tileType?: DesignerTileType;
 };
 
-export type gamePayloadType = gameStateInterface & {
-  mazeArrayInput?: number[][];
-};
-
 export type GameActions =
   | InitiateGame
   | GameLoaded
   | ChangeGameStatus
   | ChangeEntityDirection
-  | ResetLoop
-  | UpdateLoop
   | UpdateEntityActionCounter;

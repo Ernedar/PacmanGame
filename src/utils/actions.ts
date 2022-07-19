@@ -3,8 +3,6 @@ import {
   ChangeEntityDirection,
   ChangeGameStatus,
   GameLoaded,
-  ResetLoop,
-  UpdateLoop,
   UpdateEntityActionCounter,
   InitiateGame
 } from "./interfaces";
@@ -54,15 +52,6 @@ export const changeEntityDirection = (
   payload: {
     entity: entityIdentifier,
     direction: entityDirection
-  }
-});
-
-export const resetLoop = (): ResetLoop => ({ type: GameActionType.ResetLoop });
-
-export const updateLoop = (loopSpeed: number): UpdateLoop => ({
-  type: GameActionType.UpdateLoop,
-  payload: {
-    speed: loopSpeed
   }
 });
 

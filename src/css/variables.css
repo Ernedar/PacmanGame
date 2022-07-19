@@ -54,6 +54,7 @@ html {
   --pacman-color-eye: var(--background-color);
   --pacman-mouth-rotation: 45deg;
   --pacman-mouth-rotation-neg: -45deg;
+  --pacman-mouth-anim-speed: 750ms;
 
   /* GHOST */
   --ghost-dimension: var(--tile-dim) * 0.85;
@@ -67,6 +68,7 @@ html {
   --ghost-clyde: #ffb852;
   --ghost-blinky: #ff0000;
   --ghost-scared: #1919a6;
+  --ghost-hover-anim-speed: 2500ms;
 
   /* LOADING */
 

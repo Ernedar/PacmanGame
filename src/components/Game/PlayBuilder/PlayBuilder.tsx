@@ -38,25 +38,21 @@ const PlayBuilder: FC = () => {
       <EntityGhost
         ghostName={InhabitantNames.clyde}
         ghostState={state.entity.clyde.entityState}
-        speed={state.entity.clyde.entitySpeed}
         currentPosition={state.entity.clyde.entityCurrentPosition}
       />
       <EntityGhost
         ghostName={InhabitantNames.inky}
         ghostState={state.entity.inky.entityState}
-        speed={state.entity.inky.entitySpeed}
         currentPosition={state.entity.inky.entityCurrentPosition}
       />
       <EntityGhost
         ghostName={InhabitantNames.pinky}
         ghostState={state.entity.pinky.entityState}
-        speed={state.entity.pinky.entitySpeed}
         currentPosition={state.entity.pinky.entityCurrentPosition}
       />
       <EntityGhost
         ghostName={InhabitantNames.blinky}
         ghostState={state.entity.blinky.entityState}
-        speed={state.entity.blinky.entitySpeed}
         currentPosition={state.entity.blinky.entityCurrentPosition}
       />
     </div>

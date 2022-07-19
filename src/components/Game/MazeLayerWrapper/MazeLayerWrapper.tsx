@@ -10,12 +10,9 @@ import {
   changeGameStatus,
   gameLoaded,
   initiateGame,
-  resetLoop,
-  updateLoop,
   updateEntityCounters
 } from "../../../utils/actions";
 import { GameStateType, InhabitantNames } from "../../../utils/enums";
-import { loopIntervalLength } from "../../../utils/handlers";
 import {
   useGameState,
   useGameDispatch
@@ -32,27 +29,19 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
   const playgroundWidth = mazeArray[0].length;
   const playgroundHeight = mazeArray.length;
 
-  const maxIntervalLength = loopIntervalLength([
-    state.entity.pacman.entitySpeed,
-    state.entity.clyde.entitySpeed,
-    state.entity.inky.entitySpeed,
-    state.entity.pinky.entitySpeed,
-    state.entity.blinky.entitySpeed
-  ]);
-
   /*
     ------ REFERENCE REQUESTS FOR TIME LOOP ------
   */
 
   const requestRef = useRef<number>();
   const previousTimeRef = useRef<number>();
-
+  /*
   function loopReset() {
     dispatch(resetLoop());
     requestRef.current = undefined;
     previousTimeRef.current = undefined;
   }
-
+*/
   /*
     ------ WINDOW LISTENER FOR KEYBOARD ------
   */
@@ -138,63 +127,16 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
       if (previousTimeRef.current !== undefined && state !== undefined) {
         const deltaTime = time - previousTimeRef.current;
 
-        if (state.game.gameDeltaCounter >= maxIntervalLength) {
-          loopReset();
-        }
-        dispatch(updateLoop(deltaTime));
-
         entityCounterDispatcher(InhabitantNames.pacman, deltaTime);
         entityCounterDispatcher(InhabitantNames.clyde, deltaTime);
         entityCounterDispatcher(InhabitantNames.inky, deltaTime);
         entityCounterDispatcher(InhabitantNames.pinky, deltaTime);
         entityCounterDispatcher(InhabitantNames.blinky, deltaTime);
-
-        /* HEAVY LOAD - USE OCCASIONALLY
-        console.table([
-          [
-            "Entity",
-            "Game Timer",
-            "Pacman Timer",
-            "Clyde Timer",
-            "Inky Timer",
-            "Pinky Timer",
-            "Blinky Timer"
-          ],
-
-          [
-            "Interval Speed",
-            maxIntervalLength,
-            state.entity.pacman.entitySpeed,
-            state.entity.clyde.entitySpeed,
-            state.entity.inky.entitySpeed,
-            state.entity.pinky.entitySpeed,
-            state.entity.blinky.entitySpeed
-          ],
-          [
-            "Current Delta",
-            parseInt(state.game.gameDeltaCounter.toFixed(2), 10),
-            parseInt(state.entity.pacman.entityDeltaCounter.toFixed(2), 10),
-            parseInt(state.entity.clyde.entityDeltaCounter.toFixed(2), 10),
-            parseInt(state.entity.inky.entityDeltaCounter.toFixed(2), 10),
-            parseInt(state.entity.pinky.entityDeltaCounter.toFixed(2), 10),
-            parseInt(state.entity.blinky.entityDeltaCounter.toFixed(2), 10)
-          ],
-          [
-            "Actions Counter",
-            state.game.gameInterval,
-            state.entity.pacman.entityActionCounter,
-            state.entity.clyde.entityActionCounter,
-            state.entity.inky.entityActionCounter,
-            state.entity.pinky.entityActionCounter,
-            state.entity.blinky.entityActionCounter
-          ]
-        ]);
-        */
       }
       previousTimeRef.current = time;
       requestRef.current = requestAnimationFrame(gameLoop);
     },
-    [state, maxIntervalLength]
+    [state]
   );
 
   /*
@@ -207,7 +149,6 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
   }, [mazeArray, mazeID, dispatch]);
 
   useEffect(() => {
-    console.log("GameState changed to: " + state.game.gameState);
     if (state.game.gameState === GameStateType.running) {
       requestRef.current = requestAnimationFrame(gameLoop);
     } else {

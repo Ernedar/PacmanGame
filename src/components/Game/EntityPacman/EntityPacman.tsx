@@ -6,13 +6,7 @@ type PacmanProps = {
   direction: number[];
 };
 
-const EntityPacman: FC<PacmanProps> = ({
-  speed,
-  currentPosition,
-  direction
-}) => {
-  const pacmanAnimationDuration = speed * 3 + "ms";
-
+const EntityPacman: FC<PacmanProps> = ({ currentPosition, direction }) => {
   let pacmanRotation;
 
   switch (direction.toString()) {
@@ -46,14 +40,8 @@ const EntityPacman: FC<PacmanProps> = ({
           pacmanRotation
       }}
     >
-      <div
-        className="top-half"
-        style={{ animationDuration: pacmanAnimationDuration }}
-      ></div>
-      <div
-        className="bottom-half"
-        style={{ animationDuration: pacmanAnimationDuration }}
-      ></div>
+      <div className="top-half"></div>
+      <div className="bottom-half"></div>
       <div className="eye"></div>
     </div>
   );

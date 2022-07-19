@@ -38,9 +38,6 @@ export interface gameInterface {
   gameState: GameStateType;
   gameScore: number;
   gameLoaded: boolean;
-  gameInterval: number;
-  gameDeltaCounter: number;
-  gameSpeed: number;
 }
 
 export interface movingEntity {
@@ -100,17 +97,6 @@ export interface ChangeEntityDirection {
   payload: {
     entity: InhabitantNames;
     direction: number[];
-  };
-}
-
-export interface ResetLoop {
-  type: GameActionType.ResetLoop;
-}
-
-export interface UpdateLoop {
-  type: GameActionType.UpdateLoop;
-  payload: {
-    speed: number;
   };
 }
 

@@ -100,10 +100,7 @@ export default function GameReducer(
           game: {
             ...state.game,
             gameState: GameStateType.notstarted,
-            gameScore: 0,
-            gameInterval: 0,
-            gameSpeed: 0,
-            gameDeltaCounter: 0
+            gameScore: 0
           },
           entity: {
             ...state.entity,
@@ -175,25 +172,6 @@ export default function GameReducer(
       } else {
         return state;
       }
-    case GameActionType.ResetLoop:
-      return {
-        ...state,
-        game: {
-          ...state.game,
-          gameInterval: 0,
-          gameDeltaCounter: 0
-        }
-      };
-
-    case GameActionType.UpdateLoop:
-      return {
-        ...state,
-        game: {
-          ...state.game,
-          gameDeltaCounter: state.game.gameDeltaCounter + action.payload.speed,
-          gameSpeed: action.payload.speed
-        }
-      };
     case GameActionType.UpdateEntityActionCounter:
       if (action.payload.entity in InhabitantNames) {
         return {
