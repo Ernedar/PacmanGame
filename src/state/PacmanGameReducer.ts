@@ -190,6 +190,21 @@ export default function GameReducer(
       } else {
         return state;
       }
+    case GameActionType.UpdateEntityCurrentPosition:
+      if (action.payload.entity in InhabitantNames) {
+        return {
+          ...state,
+          entity: {
+            ...state.entity,
+            [action.payload.entity]: {
+              ...state.entity[action.payload.entity],
+              entityCurrentPosition: action.payload.newPosition
+            }
+          }
+        };
+      } else {
+        return state;
+      }
     default:
       return state;
   }

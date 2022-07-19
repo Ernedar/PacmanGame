@@ -7,9 +7,8 @@ import {
   GameLoaded,
   ChangeGameStatus,
   ChangeEntityDirection,
-  UpdateLoop,
   UpdateEntityActionCounter,
-  ResetLoop
+  UpdateEntityCurrentPosition
 } from "./interfaces";
 
 export type designerPayloadType = designerStateInterface & {
@@ -33,4 +32,5 @@ export type GameActions =
   | GameLoaded
   | ChangeGameStatus
   | ChangeEntityDirection
-  | UpdateEntityActionCounter;
+  | UpdateEntityActionCounter
+  | UpdateEntityCurrentPosition;

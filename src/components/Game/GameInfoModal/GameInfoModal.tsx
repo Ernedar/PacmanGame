@@ -74,7 +74,6 @@ function GameInfoModal() {
             })}
             onClick={() => {
               dispatch(changeGameStatus(GameStateType.running));
-              console.log("dispatch from modal: " + dispatch);
             }}
           >
             Start New Game

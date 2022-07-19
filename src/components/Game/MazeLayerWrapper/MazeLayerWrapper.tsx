@@ -10,9 +10,11 @@ import {
   changeGameStatus,
   gameLoaded,
   initiateGame,
-  updateEntityCounters
+  updateEntityCounters,
+  updateEntityCurrentPosition
 } from "../../../utils/actions";
 import { GameStateType, InhabitantNames } from "../../../utils/enums";
+import { newPositionHandler } from "../../../utils/handlers";
 import {
   useGameState,
   useGameDispatch
@@ -110,7 +112,8 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
     let newEntityDC =
       state.entity[entityIdentity].entityDeltaCounter + deltaTime;
     if (newEntityDC >= state.entity[entityIdentity].entitySpeed) {
-      newEntityDC = newEntityDC - state.entity[entityIdentity].entitySpeed;
+      // Delta counter reset for entity after action. Since RAF is more than speed, 0 works better here than just substraction.
+      newEntityDC = 0; //newEntityDC - state.entity[entityIdentity].entitySpeed;
 
       dispatch(updateEntityCounters(entityIdentity, 1, newEntityDC));
     } else {
@@ -169,12 +172,18 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
   /* PACMAN */
   useEffect(() => {
     if (state.entity.pacman.entityActionCounter !== 0) {
-      console.log(
-        "new pacman Action Triggered. counter: " +
-          state.entity.pacman.entityActionCounter
+      dispatch(
+        updateEntityCurrentPosition(
+          newPositionHandler(
+            state.entity.pacman.entityCurrentPosition,
+            state.entity.pacman.entityCurrentDirection,
+            mazeArray
+          ),
+          InhabitantNames.pacman
+        )
       );
     }
-  }, [state.entity.pacman.entityActionCounter]);
+  }, [state.entity.pacman, mazeArray, dispatch]);
 
   /* CLYDE */
   useEffect(() => {
@@ -184,7 +193,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
           state.entity.clyde.entityActionCounter
       );
     }
-  }, [state.entity.clyde.entityActionCounter]);
+  }, [state.entity.clyde]);
 
   /* INKY */
   useEffect(() => {
@@ -194,7 +203,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
           state.entity.inky.entityActionCounter
       );
     }
-  }, [state.entity.inky.entityActionCounter]);
+  }, [state.entity.inky]);
 
   /* PINKY */
   useEffect(() => {
@@ -204,7 +213,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
           state.entity.pinky.entityActionCounter
       );
     }
-  }, [state.entity.pinky.entityActionCounter]);
+  }, [state.entity.pinky]);
 
   /* BLINKY */
   useEffect(() => {
@@ -214,7 +223,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
           state.entity.blinky.entityActionCounter
       );
     }
-  }, [state.entity.blinky.entityActionCounter]);
+  }, [state.entity.blinky]);
 
   /* 
   ------ GAME PLAN RENDER ------ 

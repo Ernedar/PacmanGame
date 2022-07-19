@@ -4,7 +4,8 @@ import {
   ChangeGameStatus,
   GameLoaded,
   UpdateEntityActionCounter,
-  InitiateGame
+  InitiateGame,
+  UpdateEntityCurrentPosition
 } from "./interfaces";
 
 export const DESIGNER_ACTIONS = {
@@ -65,5 +66,16 @@ export const updateEntityCounters = (
     entity: entityIdentity,
     entityActionCounter: entityAC,
     entityDeltaCounter: entityDC
+  }
+});
+
+export const updateEntityCurrentPosition = (
+  newPosition: number[],
+  entityIdentity: InhabitantNames
+): UpdateEntityCurrentPosition => ({
+  type: GameActionType.UpdateEntityCurrentPosition,
+  payload: {
+    newPosition: newPosition,
+    entity: entityIdentity
   }
 });

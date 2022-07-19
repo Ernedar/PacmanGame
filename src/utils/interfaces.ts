@@ -108,3 +108,11 @@ export interface UpdateEntityActionCounter {
     entityDeltaCounter: number;
   };
 }
+
+export interface UpdateEntityCurrentPosition {
+  type: GameActionType.UpdateEntityCurrentPosition;
+  payload: {
+    newPosition: number[];
+    entity: InhabitantNames;
+  };
+}

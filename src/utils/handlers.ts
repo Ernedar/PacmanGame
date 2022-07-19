@@ -1,5 +1,7 @@
 import { Inhabitants, TileType } from "./enums";
 
+/* ------ INITIATION FUNCTIONS ------ */
+
 export function populatePowerPoints(
   maze: number[][],
   type: TileType.power | TileType.point
@@ -32,33 +34,6 @@ export function populatePowerPoints(
   return mazePoints;
 }
 
-export function randomDirectionHandler(directions: {}) {
-  const directionsArray = Object.entries(directions);
-
-  const adjustedDirections: Array<{}> = [];
-
-  directionsArray.map((direction, d) => {
-    if (direction[1] !== "wall") {
-      adjustedDirections.push(direction);
-    }
-    return adjustedDirections;
-  });
-
-  const randomDirection =
-    adjustedDirections[(adjustedDirections.length * Math.random()) << 0];
-
-  switch (randomDirection) {
-    case "left":
-      return [0, -1];
-    case "right":
-      return [0, 1];
-    case "up":
-      return [-1, 0];
-    case "down":
-      return [1, 0];
-  }
-}
-
 export function startPositionHandler(maze: number[][], inhabitant: string) {
   let inhabitantValue: number;
 
@@ -81,36 +56,55 @@ export function startPositionHandler(maze: number[][], inhabitant: string) {
   return entityStartPosition;
 }
 
-/* 
-  ------- MATH HELPERS ------
-*/
+/* ------ MOVEMENT FUNCTIONS ------ */
 
-export function gcdOfTwo(x: number, y: number) {
-  x = Math.abs(x);
-  y = Math.abs(y);
-  while (y) {
-    let divider = y;
-    y = x % y;
-    x = divider;
-  }
-  return x;
-}
+export function randomPositionHandler(
+  currentPosition: number[],
+  maze: number[][]
+) {
+  const positionsArray: number[][] = [
+    [currentPosition[0], currentPosition[1] + 1],
+    [currentPosition[0], currentPosition[1] - 1],
+    [currentPosition[0] + 1, currentPosition[1]],
+    [currentPosition[0] - 1, currentPosition[1]]
+  ];
 
-export function lcmOfTwo(x: number, y: number) {
-  return (x * y) / gcdOfTwo(x, y);
-}
+  const adjustedDirections: Array<{}> = [];
 
-export function loopIntervalLength(array: number[]) {
-  let currentLCM = array[0];
-  let resultLCM = 0;
-
-  array.map((arrayNumber, i) => {
-    resultLCM = lcmOfTwo(currentLCM, array[i]);
-    currentLCM = resultLCM;
-    return resultLCM;
+  positionsArray.map((position, d) => {
+    if (
+      !(
+        maze[position[0]][position[1]] >= 200 &&
+        maze[position[0]][position[1]] < 300
+      )
+    ) {
+      adjustedDirections.push(position);
+    }
+    return adjustedDirections;
   });
 
-  return resultLCM;
+  const randomDirection =
+    adjustedDirections[(adjustedDirections.length * Math.random()) << 0];
+  return randomDirection;
+}
+
+export function newPositionHandler(
+  currentPosition: number[],
+  currentDirection: number[],
+  maze: number[][]
+) {
+  let newCurrentPosition = [
+    currentPosition[0] + currentDirection[0],
+    currentPosition[1] + currentDirection[1]
+  ];
+  if (
+    maze[newCurrentPosition[0]][newCurrentPosition[1]] >= 100 &&
+    maze[newCurrentPosition[0]][newCurrentPosition[1]] < 300
+  ) {
+    newCurrentPosition = currentPosition;
+  }
+
+  return newCurrentPosition;
 }
 
 /*
