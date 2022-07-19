@@ -18,7 +18,10 @@ const initialGameState: gameStateInterface = {
   game: {
     gameState: GameStateType.notstarted,
     gameScore: 0,
-    gameLoaded: false
+    gameLoaded: false,
+    gameInterval: 0,
+    gameDeltaCounter: 0,
+    gameSpeed: 0
   },
   entity: {
     pacman: {
@@ -26,35 +29,45 @@ const initialGameState: gameStateInterface = {
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 250
+      entitySpeed: 250,
+      entityDeltaCounter: 0,
+      entityActionCounter: 0
     },
     clyde: {
       entityState: GhostStates.idle,
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 250
+      entitySpeed: 250,
+      entityDeltaCounter: 0,
+      entityActionCounter: 0
     },
     pinky: {
       entityState: GhostStates.idle,
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 450
+      entitySpeed: 450,
+      entityDeltaCounter: 0,
+      entityActionCounter: 0
     },
     blinky: {
       entityState: GhostStates.idle,
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 300
+      entitySpeed: 300,
+      entityDeltaCounter: 0,
+      entityActionCounter: 0
     },
     inky: {
       entityState: GhostStates.idle,
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 150
+      entitySpeed: 150,
+      entityDeltaCounter: 0,
+      entityActionCounter: 0
     }
   },
   points: [],

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useRef, useCallback } from "react";
 import MazeBuilder from "../MazeBuilder";
 import PlayBuilder from "../PlayBuilder";
 import GameInfoModal from "../GameInfoModal";
@@ -9,9 +9,13 @@ import {
   changeEntityDirection,
   changeGameStatus,
   gameLoaded,
-  initiateGame
+  initiateGame,
+  resetLoop,
+  updateLoop,
+  updateEntityCounters
 } from "../../../utils/actions";
 import { GameStateType, InhabitantNames } from "../../../utils/enums";
+import { loopIntervalLength } from "../../../utils/handlers";
 import {
   useGameState,
   useGameDispatch
@@ -27,6 +31,27 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
   const dispatch = useGameDispatch();
   const playgroundWidth = mazeArray[0].length;
   const playgroundHeight = mazeArray.length;
+
+  const maxIntervalLength = loopIntervalLength([
+    state.entity.pacman.entitySpeed,
+    state.entity.clyde.entitySpeed,
+    state.entity.inky.entitySpeed,
+    state.entity.pinky.entitySpeed,
+    state.entity.blinky.entitySpeed
+  ]);
+
+  /*
+    ------ REFERENCE REQUESTS FOR TIME LOOP ------
+  */
+
+  const requestRef = useRef<number>();
+  const previousTimeRef = useRef<number>();
+
+  function loopReset() {
+    dispatch(resetLoop());
+    requestRef.current = undefined;
+    previousTimeRef.current = undefined;
+  }
 
   /*
     ------ WINDOW LISTENER FOR KEYBOARD ------
@@ -58,7 +83,6 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
         dispatch(changeEntityDirection(InhabitantNames.pacman, [1, 0]));
         break;
       case 13 /* Enter */:
-        console.log(key + "pushed. Agreed");
         break;
       default:
         break;
@@ -90,7 +114,92 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
 
   /* GAME TICK BASICS AND SETTINGS */
 
-  /* prepare selector for different parts of state and helper functions */
+  function entityCounterDispatcher(
+    entityIdentity: InhabitantNames,
+    deltaTime: number
+  ) {
+    let newEntityDC =
+      state.entity[entityIdentity].entityDeltaCounter + deltaTime;
+    if (newEntityDC >= state.entity[entityIdentity].entitySpeed) {
+      newEntityDC = newEntityDC - state.entity[entityIdentity].entitySpeed;
+
+      dispatch(updateEntityCounters(entityIdentity, 1, newEntityDC));
+    } else {
+      dispatch(updateEntityCounters(entityIdentity, 0, newEntityDC));
+    }
+  }
+
+  /*
+  ------ THEM GAME LOOP ------
+  */
+
+  const gameLoop = useCallback(
+    (time: number) => {
+      if (previousTimeRef.current !== undefined && state !== undefined) {
+        const deltaTime = time - previousTimeRef.current;
+
+        if (state.game.gameDeltaCounter >= maxIntervalLength) {
+          loopReset();
+        }
+        dispatch(updateLoop(deltaTime));
+
+        entityCounterDispatcher(InhabitantNames.pacman, deltaTime);
+        entityCounterDispatcher(InhabitantNames.clyde, deltaTime);
+        entityCounterDispatcher(InhabitantNames.inky, deltaTime);
+        entityCounterDispatcher(InhabitantNames.pinky, deltaTime);
+        entityCounterDispatcher(InhabitantNames.blinky, deltaTime);
+
+        /* HEAVY LOAD - USE OCCASIONALLY
+        console.table([
+          [
+            "Entity",
+            "Game Timer",
+            "Pacman Timer",
+            "Clyde Timer",
+            "Inky Timer",
+            "Pinky Timer",
+            "Blinky Timer"
+          ],
+
+          [
+            "Interval Speed",
+            maxIntervalLength,
+            state.entity.pacman.entitySpeed,
+            state.entity.clyde.entitySpeed,
+            state.entity.inky.entitySpeed,
+            state.entity.pinky.entitySpeed,
+            state.entity.blinky.entitySpeed
+          ],
+          [
+            "Current Delta",
+            parseInt(state.game.gameDeltaCounter.toFixed(2), 10),
+            parseInt(state.entity.pacman.entityDeltaCounter.toFixed(2), 10),
+            parseInt(state.entity.clyde.entityDeltaCounter.toFixed(2), 10),
+            parseInt(state.entity.inky.entityDeltaCounter.toFixed(2), 10),
+            parseInt(state.entity.pinky.entityDeltaCounter.toFixed(2), 10),
+            parseInt(state.entity.blinky.entityDeltaCounter.toFixed(2), 10)
+          ],
+          [
+            "Actions Counter",
+            state.game.gameInterval,
+            state.entity.pacman.entityActionCounter,
+            state.entity.clyde.entityActionCounter,
+            state.entity.inky.entityActionCounter,
+            state.entity.pinky.entityActionCounter,
+            state.entity.blinky.entityActionCounter
+          ]
+        ]);
+        */
+      }
+      previousTimeRef.current = time;
+      requestRef.current = requestAnimationFrame(gameLoop);
+    },
+    [state, maxIntervalLength]
+  );
+
+  /*
+    ------ STATE CHANGE EFFECTS ------
+  */
 
   useEffect(() => {
     dispatch(initiateGame(mazeArray));
@@ -99,7 +208,76 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
 
   useEffect(() => {
     console.log("GameState changed to: " + state.game.gameState);
-  }, [state.game.gameState]);
+    if (state.game.gameState === GameStateType.running) {
+      requestRef.current = requestAnimationFrame(gameLoop);
+    } else {
+      requestRef.current = undefined;
+      previousTimeRef.current = undefined;
+    }
+    return () => {
+      if (requestRef.current === undefined) {
+        return;
+      }
+      cancelAnimationFrame(requestRef.current);
+    };
+  }, [state.game.gameState, gameLoop]);
+
+  /*
+  ------ ENTITY EVENT TRIGGER EFFECTS ------
+  */
+  /* PACMAN */
+  useEffect(() => {
+    if (state.entity.pacman.entityActionCounter !== 0) {
+      console.log(
+        "new pacman Action Triggered. counter: " +
+          state.entity.pacman.entityActionCounter
+      );
+    }
+  }, [state.entity.pacman.entityActionCounter]);
+
+  /* CLYDE */
+  useEffect(() => {
+    if (state.entity.clyde.entityActionCounter !== 0) {
+      console.log(
+        "new clyde Action Triggered. counter: " +
+          state.entity.clyde.entityActionCounter
+      );
+    }
+  }, [state.entity.clyde.entityActionCounter]);
+
+  /* INKY */
+  useEffect(() => {
+    if (state.entity.inky.entityActionCounter !== 0) {
+      console.log(
+        "new inky Action Triggered. counter: " +
+          state.entity.inky.entityActionCounter
+      );
+    }
+  }, [state.entity.inky.entityActionCounter]);
+
+  /* PINKY */
+  useEffect(() => {
+    if (state.entity.pinky.entityActionCounter !== 0) {
+      console.log(
+        "new pinky Action Triggered. counter: " +
+          state.entity.pinky.entityActionCounter
+      );
+    }
+  }, [state.entity.pinky.entityActionCounter]);
+
+  /* BLINKY */
+  useEffect(() => {
+    if (state.entity.blinky.entityActionCounter !== 0) {
+      console.log(
+        "new blinky Action Triggered. counter: " +
+          state.entity.blinky.entityActionCounter
+      );
+    }
+  }, [state.entity.blinky.entityActionCounter]);
+
+  /* 
+  ------ GAME PLAN RENDER ------ 
+  */
 
   return (
     <div className="game-wrapper">

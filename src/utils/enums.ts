@@ -188,5 +188,8 @@ export enum GameActionType {
   InitiateGame,
   GameLoaded,
   ChangeGameStatus,
-  ChangeEntityDirection
+  ChangeEntityDirection,
+  ResetLoop,
+  UpdateLoop,
+  UpdateEntityActionCounter
 }

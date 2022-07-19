@@ -94,14 +94,16 @@ export default function GameReducer(
       };
     case GameActionType.ChangeGameStatus:
       if (action.payload.gameStatus === GameStateType.notstarted) {
-        console.log("GameState: Reseted");
         /* RESET helper function needed, this is a mess, not even points and powers present. */
         return {
           ...state,
           game: {
             ...state.game,
             gameState: GameStateType.notstarted,
-            gameScore: 0
+            gameScore: 0,
+            gameInterval: 0,
+            gameSpeed: 0,
+            gameDeltaCounter: 0
           },
           entity: {
             ...state.entity,
@@ -109,36 +111,45 @@ export default function GameReducer(
               ...state.entity.pacman,
               entityState: PacManStates.idle,
               entityCurrentPosition: state.entity.pacman.entityStartPosition,
-              entityCurrentDirection: [0, 0]
+              entityCurrentDirection: [0, 0],
+              entityActionCounter: 0,
+              entityDeltaCounter: 0
             },
             clyde: {
               ...state.entity.clyde,
               entityState: GhostStates.idle,
               entityCurrentPosition: state.entity.clyde.entityStartPosition,
-              entityCurrentDirection: [0, 0]
+              entityCurrentDirection: [0, 0],
+              entityActionCounter: 0,
+              entityDeltaCounter: 0
             },
             pinky: {
               ...state.entity.pinky,
               entityState: GhostStates.idle,
               entityCurrentPosition: state.entity.pinky.entityStartPosition,
-              entityCurrentDirection: [0, 0]
+              entityCurrentDirection: [0, 0],
+              entityActionCounter: 0,
+              entityDeltaCounter: 0
             },
             blinky: {
               ...state.entity.blinky,
               entityState: GhostStates.idle,
               entityCurrentPosition: state.entity.blinky.entityStartPosition,
-              entityCurrentDirection: [0, 0]
+              entityCurrentDirection: [0, 0],
+              entityActionCounter: 0,
+              entityDeltaCounter: 0
             },
             inky: {
               ...state.entity.inky,
               entityState: GhostStates.idle,
               entityCurrentPosition: state.entity.inky.entityStartPosition,
-              entityCurrentDirection: [0, 0]
+              entityCurrentDirection: [0, 0],
+              entityActionCounter: 0,
+              entityDeltaCounter: 0
             }
           }
         };
       } else if (action.payload.gameStatus in GameStateType) {
-        console.log("GameState: " + action.payload.gameStatus);
         return {
           ...state,
           game: {
@@ -158,6 +169,43 @@ export default function GameReducer(
             [action.payload.entity]: {
               ...state.entity[action.payload.entity],
               entityCurrentDirection: action.payload.direction
+            }
+          }
+        };
+      } else {
+        return state;
+      }
+    case GameActionType.ResetLoop:
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          gameInterval: 0,
+          gameDeltaCounter: 0
+        }
+      };
+
+    case GameActionType.UpdateLoop:
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          gameDeltaCounter: state.game.gameDeltaCounter + action.payload.speed,
+          gameSpeed: action.payload.speed
+        }
+      };
+    case GameActionType.UpdateEntityActionCounter:
+      if (action.payload.entity in InhabitantNames) {
+        return {
+          ...state,
+          entity: {
+            ...state.entity,
+            [action.payload.entity]: {
+              ...state.entity[action.payload.entity],
+              entityDeltaCounter: action.payload.entityDeltaCounter,
+              entityActionCounter:
+                state.entity[action.payload.entity].entityActionCounter +
+                action.payload.entityActionCounter
             }
           }
         };
