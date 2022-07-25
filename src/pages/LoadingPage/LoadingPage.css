@@ -16,6 +16,7 @@ h2 {
   justify-content: flex flex-start;
   align-items: center;
   flex-direction: column;
+  background-color: var(--background-color);
 }
 
 .loading-animation-wrapper {

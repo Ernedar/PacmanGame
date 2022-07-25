@@ -28,7 +28,7 @@ export interface designerStateInterface {
 /* GAME INTERFACES */
 
 export interface importMaze {
-  id: number;
+  mazeId: number;
   name: string;
   linktag: string;
   mazeArray: number[][];

@@ -1,8 +1,5 @@
 import React, { FC, useEffect, useRef, useCallback } from "react";
-import MazeBuilder from "../MazeBuilder";
 import PlayBuilder from "../PlayBuilder";
-import GameInfoModal from "../GameInfoModal";
-import LoadingPage from "../../../pages/LoadingPage";
 
 import "./MazeLayerWrapper.css";
 import {
@@ -19,6 +16,8 @@ import {
   useGameState,
   useGameDispatch
 } from "../../../state/PacmanGameContext";
+import LoadingPage from "../../../pages/LoadingPage";
+import GameInfoModal from "../GameInfoModal";
 
 type MazeLayerProps = {
   mazeArray: number[][];
@@ -28,8 +27,6 @@ type MazeLayerProps = {
 const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
   const state = useGameState();
   const dispatch = useGameDispatch();
-  const playgroundWidth = mazeArray[0].length;
-  const playgroundHeight = mazeArray.length;
 
   /*
     ------ REFERENCE REQUESTS FOR TIME LOOP ------
@@ -129,6 +126,7 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
     (time: number) => {
       if (previousTimeRef.current !== undefined && state !== undefined) {
         const deltaTime = time - previousTimeRef.current;
+        console.log(deltaTime);
 
         entityCounterDispatcher(InhabitantNames.pacman, deltaTime);
         entityCounterDispatcher(InhabitantNames.clyde, deltaTime);
@@ -230,25 +228,11 @@ const MazeLayerWrapper: FC<MazeLayerProps> = ({ mazeArray, mazeID }) => {
   */
 
   return (
-    <div className="game-wrapper">
-      <div className="game-action-bar">
-        <p className="game-score">Score: {state.game.gameScore}</p>
-      </div>
+    <>
       {!state.game.gameLoaded && <LoadingPage />}
-      {state.game.gameLoaded && (
-        <div
-          className="maze-layer-wrapper"
-          style={{
-            width: "calc(" + playgroundWidth + " * var(--tile-dim))",
-            height: "calc(" + playgroundHeight + " * var(--tile-dim))"
-          }}
-        >
-          <MazeBuilder mazeArray={mazeArray} />
-          <PlayBuilder />
-        </div>
-      )}
+      {state.game.gameLoaded && <PlayBuilder />}
       {state.game.gameLoaded && <GameInfoModal />}
-    </div>
+    </>
   );
 };
 

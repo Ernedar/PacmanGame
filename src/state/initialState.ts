@@ -26,7 +26,7 @@ const initialGameState: gameStateInterface = {
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 250,
+      entitySpeed: 750,
       entityDeltaCounter: 0,
       entityActionCounter: 0
     },
@@ -35,7 +35,7 @@ const initialGameState: gameStateInterface = {
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 250,
+      entitySpeed: 750,
       entityDeltaCounter: 0,
       entityActionCounter: 0
     },
@@ -44,7 +44,7 @@ const initialGameState: gameStateInterface = {
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 450,
+      entitySpeed: 1350,
       entityDeltaCounter: 0,
       entityActionCounter: 0
     },
@@ -53,7 +53,7 @@ const initialGameState: gameStateInterface = {
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 300,
+      entitySpeed: 900,
       entityDeltaCounter: 0,
       entityActionCounter: 0
     },
@@ -62,7 +62,7 @@ const initialGameState: gameStateInterface = {
       entityStartPosition: [],
       entityCurrentPosition: [],
       entityCurrentDirection: [0, 0],
-      entitySpeed: 150,
+      entitySpeed: 450,
       entityDeltaCounter: 0,
       entityActionCounter: 0
     }

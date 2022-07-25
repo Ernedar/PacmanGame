@@ -26,10 +26,10 @@ const Navigation: FC = () => {
           <p>Game</p>
           <ul>
             {mazesJSON.mazes.map((id, i) => (
-              <li key={mazesJSON.mazes[i].id}>
+              <li key={mazesJSON.mazes[i].mazeId}>
                 <p className="sub-link">
                   <NavLink
-                    to={"/mazes/" + mazesJSON.mazes[i].linktag}
+                    to={"/mazes/" + mazesJSON.mazes[i].mazeId}
                     onClick={() => {
                       setGameState(initialState);
                     }}

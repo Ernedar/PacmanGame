@@ -1,7 +1,7 @@
 {
   "mazes": [
     {
-      "id": 1,
+      "mazeId": 1,
       "name": "Pacman Maze",
       "linktag": "pacman",
       "mazeArray": [
@@ -938,7 +938,7 @@
       ]
     },
     {
-      "id": 2,
+      "mazeId": 2,
       "name": "Fenix Office Maze",
       "linktag": "fenixoffice",
       "mazeArray": [
@@ -2351,7 +2351,7 @@
       ]
     },
     {
-      "id": 3,
+      "mazeId": 3,
       "name": "Zlin 4 Office Maze",
       "linktag": "zlinfourmaze",
       "mazeArray": [
